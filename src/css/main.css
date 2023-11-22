@@ -22,3 +22,73 @@
   font-weight: 400;
   line-height: 18px; /* 128.571% */
 }
+
+.hero-img {
+  margin: 32px auto 0 auto;
+  border-radius: 30px;
+}
+
+.filters {
+  margin-top: 74px;
+}
+
+.filter-title {
+  color: rgba(1, 1, 1, 0.3);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 128.571% */
+}
+
+.input-container {
+  display: flex;
+  position: relative;
+}
+
+.input-container button {
+  position: absolute;
+  background-color: var(--light-green) transparent;
+  right: 0;
+  border: none;
+  padding: 14px 20px;
+}
+
+.input-container input {
+  flex: 1;
+  background-color: var(--light-green);
+  padding: 14px 20px;
+  border-radius: 30px;
+  border: 1px solid var(--font-color);
+  color: var(--font-color);
+  font-family: Neue Montreal;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  margin-top: 8px;
+}
+
+.categories {
+  width: 100%;
+  background-color: var(--light-green);
+  padding: 14px 20px;
+  border-radius: 30px;
+  border: 1px solid var(--font-color);
+  color: var(--font-color);
+  font-family: Neue Montreal;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  margin: 12px 0 12px 0;
+}
+
+h2 {
+  color: var(--font-color);
+  font-family: Neue Montreal;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28px; /* 116.667% */
+  margin-bottom: 20px;
+}
