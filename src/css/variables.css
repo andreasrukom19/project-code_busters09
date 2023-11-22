@@ -3,11 +3,16 @@
   --main-green: #6d8434;
   --dark-green: #586f1f;
   --font-color: #010101;
+  --backgroup-light: #fafafa;
 }
 
 body {
   font-family: 'Neue Montreal', sans-serif;
   background-color: var(--light-green);
+}
+
+button {
+  font-family: inherit;
 }
 
 .no-scroll {
@@ -32,6 +37,39 @@ body {
   max-width: 375px;
   padding: 0 20px;
   margin: 0 auto;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('https://db.onlinewebfonts.com/t/7980cc1889b6b0b264dc47cca659f7c2.eot');
+  src: url('https://db.onlinewebfonts.com/t/7980cc1889b6b0b264dc47cca659f7c2.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://db.onlinewebfonts.com/t/7980cc1889b6b0b264dc47cca659f7c2.woff2')
+      format('woff2'),
+    url('https://db.onlinewebfonts.com/t/7980cc1889b6b0b264dc47cca659f7c2.woff')
+      format('woff'),
+    url('https://db.onlinewebfonts.com/t/7980cc1889b6b0b264dc47cca659f7c2.ttf')
+      format('truetype'),
+    url('https://db.onlinewebfonts.com/t/7980cc1889b6b0b264dc47cca659f7c2.svg#Neue Montreal Regular')
+      format('svg');
+}
+
+@font-face {
+  font-family: 'FSP DEMO - Quincy CF';
+  src: url('https://db.onlinewebfonts.com/t/1e620c12dccfdccb1f82a507eefd1b8b.eot');
+  src: url('https://db.onlinewebfonts.com/t/1e620c12dccfdccb1f82a507eefd1b8b.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://db.onlinewebfonts.com/t/1e620c12dccfdccb1f82a507eefd1b8b.woff')
+      format('woff'),
+    url('https://db.onlinewebfonts.com/t/1e620c12dccfdccb1f82a507eefd1b8b.woff2')
+      format('woff2'),
+    url('https://db.onlinewebfonts.com/t/1e620c12dccfdccb1f82a507eefd1b8b.ttf')
+      format('truetype'),
+    url('https://db.onlinewebfonts.com/t/1e620c12dccfdccb1f82a507eefd1b8b.svg#FSP DEMO - Quincy CF Regular')
+      format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 @media screen and (min-width: 768px) {
