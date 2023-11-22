@@ -9,6 +9,7 @@
 @import url('./header.css');
 @import url('./variables.css');
 @import url('./main.css');
+@import url('./footer.css');
 
 @font-face {
   font-family: 'Neue Montreal';
