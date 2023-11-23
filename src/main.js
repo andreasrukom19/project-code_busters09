@@ -1,3 +1,4 @@
+
 import {
   createProductsMarkup,
   createPopularMarkup,
