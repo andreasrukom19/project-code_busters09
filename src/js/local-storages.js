@@ -5,12 +5,28 @@ axios.defaults.baseURL = 'https://food-boutique.b.goit.study/api';
 
 const foodService = new FoodService();
 
-function saveToLocal() { 
-    foodService.getFoodList()
-        .then(resp => {
-            localStorage.setItem('products', JSON.stringify(resp.results))
-        }
-    )
-}
+export class LocalStorage {
 
-saveToLocal()
+    constructor() { 
+
+    }
+
+    saveAllToLocalStorage() { 
+        if (!localStorage.getItem('products')) { 
+            return foodService.getFoodList()
+            .then(resp => {
+            localStorage.setItem('products', JSON.stringify(resp.results))
+        })
+        }
+}
+    
+    getFromLocalStorage(item) { 
+        return localStorage.getItem(`${item}`).JSON.parse()
+    }
+
+    addToCart() { 
+        
+    }
+
+}
+localStorage.getFromLocalStorage()
