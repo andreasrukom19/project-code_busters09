@@ -1,0 +1,29 @@
+.hero-title {
+  padding-top: 72px;
+  text-align: center;
+  font-family: Neue Montreal;
+  font-size: 44px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 48px; /* 109.091% */
+  letter-spacing: -0.88px;
+}
+
+.hero-title-span {
+  color: var(--main-green);
+}
+
+.hero-text {
+  margin: 16px auto 0 auto;
+  width: 292px;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 128.571% */
+}
+
+.hero-img {
+  margin: 32px auto 0 auto;
+  border-radius: 30px;
+}
