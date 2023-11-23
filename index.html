@@ -8,7 +8,8 @@
   <title>Vanilla App Template</title>
   
   <script type="module" crossorigin src="/project-code_busters09/commonHelpers2.js"></script>
-  <link rel="stylesheet" href="/project-code_busters09/assets/index-027f3cde.css">
+  <link rel="modulepreload" crossorigin href="/project-code_busters09/assets/vendor-a61d8330.js">
+  <link rel="stylesheet" href="/project-code_busters09/assets/index-e20bcb26.css">
 </head>
 
 <body>
@@ -51,48 +52,50 @@
   </div>
 </section>
   <main>
-    <section id="content-block">
-        <div class="container">
-            <div class="filters">
-                <h3 class="filter-title">Filters:</h3>
-                <form>
-                    <div class="input-container">
-                        <input type="text" name="search" class="search" placeholder="Search for anything" />
-                        <button type="submit">
-                            <svg class="search-icon" width="20" height="20">
-                                <use href="..//img/icons.svg#icon-Vector"></use>
-                            </svg>
-                        </button>
-                    </div>
-                </form>
+  <section id="content-block">
+    <div class="container">
+      <div class="filters">
+        <h3 class="filter-title">Filters:</h3>
+        <form>
+          <div class="input-container">
+            <input type="text" name="search" class="search" placeholder="Search for anything" />
+            <button type="submit">
+              <svg class="search-icon" width="20" height="20">
+                <use href="..//img/icons.svg#icon-Vector"></use>
+              </svg>
+            </button>
+          </div>
+        </form>
 
-                <select name="product-categories" class="categories">
-                    <option value="" disabled selected>Categories</option>
-                    <option value="Beverages">Beverages</option>
-                    <option value="Breads&_Bakery">Breads / Bakery</option>
-                    <option value="Dairy">Dairy</option>
-                    <option value="Deli">Deli</option>
-                    <option value="Eggs">Eggs</option>
-                    <option value="Fresh_Produce">Fresh Produce</option>
-                    <option value="Meat_&Seafood">Meat & Seafood</option>
-                    <option value="Pantry_Items">Pantry Items</option>
-                    <option value="Prepared_Foods">Prepared Foods</option>
-                    <option value="Snacks">Snacks</option>
-                    <option value="">Show all</option>
-                </select>
-            </div>
+        <select name="product-categories" class="categories">
+          <option value="" disabled selected>Categories</option>
+          <option value="Beverages">Beverages</option>
+          <option value="Breads&_Bakery">Breads / Bakery</option>
+          <option value="Dairy">Dairy</option>
+          <option value="Deli">Deli</option>
+          <option value="Eggs">Eggs</option>
+          <option value="Fresh_Produce">Fresh Produce</option>
+          <option value="Meat_&Seafood">Meat & Seafood</option>
+          <option value="Pantry_Items">Pantry Items</option>
+          <option value="Prepared_Foods">Prepared Foods</option>
+          <option value="Snacks">Snacks</option>
+          <option value="">Show all</option>
+        </select>
+      </div>
 
-            <div class="products">
-                <h2 class="visually-hidden">Products</h2>
-            </div>
-            <div class="popular-products">
-                <h2>Popular products</h2>
-            </div>
-            <div class="discount-products">
-                <h2>Discount products</h2>
-            </div>
+      <div class="main-products">
+        <div class="filter-box">
+          <ul class="filter-box__list"></ul>
         </div>
-    </section>
+        <div class="popular-discount-box">
+          <h2 class="popular__title">Popular products</h2>
+          <ul class="popular-products__list"></ul>
+          <h2 class="discount__title">Discount products</h2>
+          <ul class="discount-products__list"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
    <footer class="footer">
     <div class="container footer-container">
