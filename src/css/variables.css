@@ -64,7 +64,7 @@ button {
 }
 
 @media screen and (min-width: 1440px) {
-  .container {
+  .container {    
     max-width: 1440px;
     padding: 0 100px;
   }

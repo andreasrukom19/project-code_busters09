@@ -9,36 +9,19 @@
         up for a fresher, fitter, and happier you.
       </p>
       <picture>
-        <source
-          media="(min-width: 320px)"
-          srcset="
+        <source media="(min-width: 320px)" srcset="
             ../img/src/img/hero_img_mobile_1x-min.jpg 1x,
             ../img/hero_img_mobile_2x-min.jpg         2x
-          "
-          type="image/jpg"
-        />
-        <source
-          media="(min-width: 768px)"
-          srcset="
+          " type="image/jpg" />
+        <source media="(min-width: 768px)" srcset="
             ../img/hero_img_tablet_1x-min.jpg 1x,
             ../img/hero_img_tablet_2x-min.jpg 2x
-          "
-          type="image/jpg"
-        />
-        <source
-          media="(min-width: 1440px)"
-          srcset="
+          " type="image/jpg" />
+        <source media="(min-width: 1440px)" srcset="
             ../img/hero_img_desctop_1x-min.jpg 1x,
             ../img/hero_img_desctop_2x-min.jpg 2x
-          "
-          type="image/jpg"
-        />
-        <img
-          class="hero-img"
-          src="../img/hero_img_mobile_1x-min.jpg"
-          alt="Fresh vegetables"
-          width="335"
-        />
+          " type="image/jpg" />
+        <img class="hero-img" src="../img/hero_img_mobile_1x-min.jpg" alt="Fresh vegetables" width="335" />
       </picture>
     </div>
   </section>
@@ -48,12 +31,7 @@
         <h3 class="filter-title">Filters:</h3>
         <form>
           <div class="input-container">
-            <input
-              type="text"
-              name="search"
-              class="search"
-              placeholder="Search for anything"
-            />
+            <input type="text" name="search" class="search" placeholder="Search for anything" />
             <button type="submit">
               <svg class="search-icon" width="20" height="20">
                 <use href="..//img/icons.svg#icon-Vector"></use>
@@ -78,14 +56,16 @@
         </select>
       </div>
 
-      <div class="products">
-        <h2 class="visually-hidden">Products</h2>
-      </div>
-      <div class="popular-products">
-        <h2>Popular products</h2>
-      </div>
-      <div class="discount-products">
-        <h2>Discount products</h2>
+      <div class="main-products">
+        <div class="filter-box">
+          <ul class="filter-box__list"></ul>
+        </div>
+        <div class="popular-discount-box">
+          <h2 class="popular__title">Popular products</h2>
+          <ul class="popular-products__list"></ul>
+          <h2 class="discount__title">Discount products</h2>
+          <ul class="discount-products__list"></ul>
+        </div>
       </div>
     </div>
   </section>

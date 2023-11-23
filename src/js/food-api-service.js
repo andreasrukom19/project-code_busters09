@@ -4,7 +4,7 @@ export class FoodService {
   constructor() {
     this.URL = `https://food-boutique.b.goit.study/api`;
     this.currentPage = 1;
-    this.perPage = 6;
+    this.perPage = 9;
     this.searchQuerry = '';
     this.category = '';
   }
