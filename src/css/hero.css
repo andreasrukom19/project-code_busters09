@@ -1,0 +1,63 @@
+.hero-title {
+  padding-top: 72px;
+  text-align: center;
+  font-family: Neue Montreal;
+  font-size: 44px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.09em;
+  letter-spacing: -0.02em;
+}
+
+.hero-title-span {
+  color: var(--main-green);
+}
+
+.hero-text {
+  margin: 16px auto 0 auto;
+  width: 292px;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.28em;
+}
+
+.hero-img {
+  margin: 32px auto 0 auto;
+  border-radius: 30px;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    max-width: 658px;
+    padding-top: 116px;
+    font-size: 80px;
+    line-height: 1em;
+    letter-spacing: -0.02em;
+    margin: 0 auto;
+  }
+
+  .hero-text {
+    font-size: 18px;
+    line-height: 1.33em;
+    margin: 20px auto 0 auto;
+    width: 492px;
+  }
+
+  .hero-img {
+    margin: 40px auto 0 auto;
+    width: 704px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero-title {
+    max-width: 100%;
+    padding-top: 77px;
+  }
+
+  .hero-img {
+    width: 1240px;
+  }
+}
