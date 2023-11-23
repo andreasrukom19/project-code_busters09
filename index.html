@@ -8,7 +8,7 @@
   <title>Vanilla App Template</title>
   
   <script type="module" crossorigin src="/project-code_busters09/commonHelpers2.js"></script>
-  <link rel="stylesheet" href="/project-code_busters09/assets/index-7f873339.css">
+  <link rel="stylesheet" href="/project-code_busters09/assets/index-027f3cde.css">
 </head>
 
 <body>
@@ -17,115 +17,83 @@
         <div class="logo">
             <a href="index.html" class="header-logo">
                 <svg class="header-icon-logo" width="20" height="20">
-                    <use href="..//img/icons.svg#icon-tdesign_cabbage"></use>
+                    <use href="/project-code_busters09/assets/icons-44b879f2.svg#icon-tdesign_cabbage"></use>
                 </svg>
                 Food Boutique
             </a>
         </div>
         <div class="header-buttons">
-            <button type="button" class="home-btn">Home</button>
-            <button type="button" class="cart-btn">
-                <svg class="header-icon-cart" width="14" height="14 ">
-                    <use href="..//img/icons.svg#icon-heroicons-solid_shopping-cart"></use>
+            <a href="index.html" class="home-btn">Home</a>
+            <a href="cart.html" class="cart-btn">
+                <svg class="header-icon-cart" width="14" height="14">
+                    <use href="/project-code_busters09/assets/icons-44b879f2.svg#icon-heroicons-solid_shopping-cart"></use>
                 </svg>
-                <span class="cart-title visually-hidden">cart</span>
-            </button>
+                <span class="cart-title">cart</span>
+            </a>
         </div>
     </div>
 </header>
-  <main>
   <section id="hero">
-    <div class="container">
-      <h2 class="hero-title">
-        Welcome to the <span class="hero-title-span">Food</span> Boutique!
-      </h2>
-      <p class="hero-text">
-        With Food Boutique, you're not just subscribing to food, you're signing
-        up for a fresher, fitter, and happier you.
-      </p>
-      <picture>
-        <source
-          media="(min-width: 320px)"
-          srcset="
-            ../img/src/img/hero_img_mobile_1x-min.jpg 1x,
-            ../img/hero_img_mobile_2x-min.jpg         2x
-          "
-          type="image/jpg"
-        />
-        <source
-          media="(min-width: 768px)"
-          srcset="
-            ../img/hero_img_tablet_1x-min.jpg 1x,
-            ../img/hero_img_tablet_2x-min.jpg 2x
-          "
-          type="image/jpg"
-        />
-        <source
-          media="(min-width: 1440px)"
-          srcset="
-            ../img/hero_img_desctop_1x-min.jpg 1x,
-            ../img/hero_img_desctop_2x-min.jpg 2x
-          "
-          type="image/jpg"
-        />
-        <img
-          class="hero-img"
-          src="../img/hero_img_mobile_1x-min.jpg"
-          alt="Fresh vegetables"
-          width="335"
-        />
-      </picture>
-    </div>
-  </section>
-  <section id="content-block">
-    <div class="container">
-      <div class="filters">
-        <h3 class="filter-title">Filters:</h3>
-        <form>
-          <div class="input-container">
-            <input
-              type="text"
-              name="search"
-              class="search"
-              placeholder="Search for anything"
-            />
-            <button type="submit">
-              <svg class="search-icon" width="20" height="20">
-                <use href="..//img/icons.svg#icon-Vector"></use>
-              </svg>
-            </button>
-          </div>
-        </form>
+  <div class="container">
+    <h2 class="hero-title">
+      Welcome to the <span class="hero-title-span">Food</span> Boutique!
+    </h2>
+    <p class="hero-text">
+      With Food Boutique, you're not just subscribing to food, you're signing
+      up for a fresher, fitter, and happier you.
+    </p>
+    <picture>
+      <source media="(min-width: 1440px)" srcset="/project-code_busters09/assets/hero_img_desctop_1x-min-63888bef.jpg 1x, /project-code_busters09/assets/hero_img_desctop_2x-min-9cd92608.jpg 2x" type="image/jpg" />
+      <source media="(min-width: 768px)" srcset="/project-code_busters09/assets/hero_img_tablet_1x-min-ffe59559.jpg 1x, /project-code_busters09/assets/hero_img_tablet_2x-min-eeb6cc98.jpg 2x" type="image/jpg" />
+      <source media="(min-width: 320px)" srcset="/project-code_busters09/assets/hero_img_mobile_1x-min-d7824de2.jpg 1x, /project-code_busters09/assets/hero_img_mobile_2x-min-25c52852.jpg 2x" type="image/jpg" />
+      <img class="hero-img" src="/project-code_busters09/assets/hero_img_mobile_1x-min-d7824de2.jpg" alt="Fresh vegetables" width="335px" />
+    </picture>
+  </div>
+</section>
+  <main>
+    <section id="content-block">
+        <div class="container">
+            <div class="filters">
+                <h3 class="filter-title">Filters:</h3>
+                <form>
+                    <div class="input-container">
+                        <input type="text" name="search" class="search" placeholder="Search for anything" />
+                        <button type="submit">
+                            <svg class="search-icon" width="20" height="20">
+                                <use href="..//img/icons.svg#icon-Vector"></use>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
 
-        <select name="product-categories" class="categories">
-          <option value="" disabled selected>Categories</option>
-          <option value="Beverages">Beverages</option>
-          <option value="Breads&_Bakery">Breads / Bakery</option>
-          <option value="Dairy">Dairy</option>
-          <option value="Deli">Deli</option>
-          <option value="Eggs">Eggs</option>
-          <option value="Fresh_Produce">Fresh Produce</option>
-          <option value="Meat_&Seafood">Meat & Seafood</option>
-          <option value="Pantry_Items">Pantry Items</option>
-          <option value="Prepared_Foods">Prepared Foods</option>
-          <option value="Snacks">Snacks</option>
-          <option value="">Show all</option>
-        </select>
-      </div>
+                <select name="product-categories" class="categories">
+                    <option value="" disabled selected>Categories</option>
+                    <option value="Beverages">Beverages</option>
+                    <option value="Breads&_Bakery">Breads / Bakery</option>
+                    <option value="Dairy">Dairy</option>
+                    <option value="Deli">Deli</option>
+                    <option value="Eggs">Eggs</option>
+                    <option value="Fresh_Produce">Fresh Produce</option>
+                    <option value="Meat_&Seafood">Meat & Seafood</option>
+                    <option value="Pantry_Items">Pantry Items</option>
+                    <option value="Prepared_Foods">Prepared Foods</option>
+                    <option value="Snacks">Snacks</option>
+                    <option value="">Show all</option>
+                </select>
+            </div>
 
-      <div class="products">
-        <h2 class="visually-hidden">Products</h2>
-      </div>
-      <div class="popular-products">
-        <h2>Popular products</h2>
-      </div>
-      <div class="discount-products">
-        <h2>Discount products</h2>
-      </div>
-    </div>
-  </section>
+            <div class="products">
+                <h2 class="visually-hidden">Products</h2>
+            </div>
+            <div class="popular-products">
+                <h2>Popular products</h2>
+            </div>
+            <div class="discount-products">
+                <h2>Discount products</h2>
+            </div>
+        </div>
+    </section>
 </main>
-
    <footer class="footer">
     <div class="container footer-container">
         <div class="logo-text-container">
