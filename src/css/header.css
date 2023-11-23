@@ -63,8 +63,15 @@
   font-weight: 500;
   line-height: 24px; /* 133.333% */
   text-transform: uppercase;
+  display: none;
 }
 
 .logo {
   display: flex;
+}
+
+@media (min-width: 768px) {
+  .cart-title {
+    display: inline;
+  }
 }
