@@ -22,10 +22,15 @@ document.addEventListener('click', function (event) {
   }
 });
 
+// storage.saveAllToLocalStorage();
+// storage.saveCategories();
+// storage.filter();
+
 foodService
   .getFoodList()
   .then(data => {
     filterBoxList.innerHTML = createProductsMarkup(data.results);
+    storage.saveAllToLocalStorage(data.results);
   })
   .catch(error => {
     // TODO ADD NOTIFLIX

@@ -2,14 +2,24 @@
 import { foodService } from './mainSection';
 
 export class LocalStorage {
-  constructor() {}
-
-    saveAllToLocalStorage() {
-            return foodService.getFoodList()
-            .then(resp => {
-                localStorage.setItem('products', JSON.stringify(resp.results))
-        })
+    constructor() { }
+    
+    saveInStorage(key, data) { 
+        localStorage.setItem(key, JSON.stringify(data))
     }
+
+    saveAllToLocalStorage(data) {
+        localStorage.setItem('products', JSON.stringify(data))
+
+        // якщо треба додати нові продукти в масив
+        // const products = localStorage.getItem('products')
+
+        // if (products) {
+        //     const addProducts = JSON.parse(localStorage.getItem(products)).push(data);
+        //     return localStorage.setItem('products', JSON.stringify(addProducts))
+        // }
+        
+        }
 
     saveCategories() {
         if (!localStorage.getItem('categories')) {
@@ -19,6 +29,10 @@ export class LocalStorage {
                     localStorage.setItem('categories', JSON.stringify(resp))
                 })
         }
+    }
+    
+    filter() { 
+        localStorage.setItem('filter', '{keyword:null, category: null, page: 1, limit: 6}');
     }
 
     addToCart(id) {
