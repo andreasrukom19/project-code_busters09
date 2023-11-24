@@ -314,11 +314,11 @@ height: 105px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-    margin-top: 20px;
+  margin-top: 20px;
 
 
 }
-.cart-img{
+.cart-img-products{
   width: 34px;
   height: 34px;
   display: flex;
