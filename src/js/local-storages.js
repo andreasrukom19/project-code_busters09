@@ -1,22 +1,24 @@
-import axios from 'axios';
-import { FoodService } from './food-api-service';
 
-axios.defaults.baseURL = 'https://food-boutique.b.goit.study/api';
-
-const foodService = new FoodService();
+import { foodService } from './mainSection';
 
 export class LocalStorage {
   constructor() {}
 
-
     saveAllToLocalStorage() {
-        if (!localStorage.getItem('products')) {
             return foodService.getFoodList()
             .then(resp => {
                 localStorage.setItem('products', JSON.stringify(resp.results))
         })
+    }
+
+    saveCategories() {
+        if (!localStorage.getItem('categories')) {
+            return foodService.getCategories()
+                .then(resp => {
+                    console.log(resp);
+                    localStorage.setItem('categories', JSON.stringify(resp))
+                })
         }
-        
     }
 
     addToCart(id) {
@@ -39,7 +41,7 @@ export class LocalStorage {
     }
 
     removeFromCart() { 
-
+        
     }
 
     clearCart() { 
