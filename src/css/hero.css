@@ -23,9 +23,19 @@
   line-height: 1.28em;
 }
 
+.hero-img-wrap {
+  position: relative;
+}
+
 .hero-img {
   margin: 32px auto 0 auto;
   border-radius: 30px;
+}
+
+.hero-sticker {
+  position: absolute;
+  right: 0;
+  transform: translateY(-7px) translateX(-8px);
 }
 
 @media (min-width: 768px) {
@@ -48,6 +58,10 @@
   .hero-img {
     margin: 40px auto 0 auto;
     width: 704px;
+  }
+
+  .hero-sticker {
+    transform: translateY(-30px) translateX(-10px);
   }
 }
 
