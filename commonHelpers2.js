@@ -40,5 +40,5 @@
          <img class="cart-img-products" src="../img/cart.svg" alt="cart" />      
         </div>        
       </div>
-    </li>`).slice(0,2).join("")}c.defaults.baseURL="https://food-boutique.b.goit.study/api";new l;localStorage.getFromLocalStorage();
+    </li>`).slice(0,2).join("")}c.defaults.baseURL="https://food-boutique.b.goit.study/api";new l;
 //# sourceMappingURL=commonHelpers2.js.map
