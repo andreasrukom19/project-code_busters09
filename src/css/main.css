@@ -323,6 +323,9 @@ height: 105px;
   height: 34px;
   display: flex;
 }
+.section-products {    
+    padding: 0 100px;
+  }
 
 @media screen and (max-width: 1125px) {
   .main-products{
@@ -365,7 +368,15 @@ height: 105px;
 }
 }
 
+
+
+
+
+
 @media screen and (max-width: 768px) {
+   .section-products {    
+    padding: 0 32px;
+  }
    .product-card{
   width: 336px;
   height: 360px;
@@ -381,7 +392,10 @@ height: 105px;
 
 
 @media screen and (max-width: 375px) {
-    .product-card{
+  .section-products {    
+    padding: 0 20px;
+  }
+  .product-card{
   width: 335px;
   height: 356px;
  }

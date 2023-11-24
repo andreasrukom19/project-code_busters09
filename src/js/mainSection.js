@@ -42,7 +42,6 @@ foodService
 foodService
   .getDiscount()
   .then(data => {
-    console.log('data', data);
     discountProductsList.innerHTML = createDiscountMarkup(data);
     discountProductsListResp.innerHTML = createDiscountMarkup(data);
   })

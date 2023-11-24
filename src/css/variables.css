@@ -49,18 +49,23 @@ button {
   src: url(../fonts/Quincy\ CF\ Black\ Regular.ttf);
 }
 
-.container {    
-    padding: 0 100px;
-  }
 
-@media screen and (max-width: 768px) {
-  .container {    
-    padding: 0 32px;
+  .container {
+  min-width: 320px;
+  max-width: 375px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
   }
 }
 
-@media screen and (max-width: 375px) {
-  .container {    
-    padding: 0 20px;
-  }
+@media screen and (min-width: 1440px) {
+.container {    
+    max-width: 1440px;
+    padding: 0 100px;
+}
 }
