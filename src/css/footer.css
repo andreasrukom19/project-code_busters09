@@ -1,36 +1,44 @@
+svg {
+  box-sizing: content-box;
+}
 .footer {
-    background-color: var(--main-green);
-padding-top: 40px;
+  background-color: var(--main-green);
+  padding-top: 40px;
+  padding-bottom: 20px;
+  padding-right: 20px;
 }
 
 .footer-container {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  gap: 72px;
-  
 }
 .footer-logo {
-  font-family: 'FSP DEMO - Quincy CF';
-  color:#E8E8E2;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 900;
-  line-height: 20px; /* 111.111% */
-  letter-spacing: -0.36px;
   display: inline-flex;
   align-items: center;
 }
 
+.footer-logo-name {
+  font-family: 'FSP DEMO - Quincy CF';
+  color: #e8e8e2;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 1.11;
+  letter-spacing: -0.02em;
+}
+
 .footer-icon-logo {
-    fill: var(--main-green);
-    background-color: #E8E8E2;
-    padding: 6px;
-    border-radius: 50%;
-    margin-right: 8px;
+  fill: var(--main-green);
+  background-color: #e8e8e2;
+  padding: 6px;
+  border-radius: 50%;
+  margin-right: 8px;
+  /* width: 28px;
+  height: 28px; */
 }
 .footer-logo {
-    align-items: center;
+  align-items: center;
   justify-content: center;
 }
 
@@ -39,8 +47,9 @@ padding-top: 40px;
   height: 40px;
 }
 
-.socials-footer-container {
+.footer-socials-container {
   margin-top: 16px;
+  margin-bottom: 40px;
 }
 .footer-socials-list {
   display: flex;
@@ -50,11 +59,11 @@ padding-top: 40px;
 }
 
 .footer-socials-icon {
-    fill: #E8E8E2;
-    opacity: 0.8;
-
-    border-radius: 10px;
-border: 1px solid rgba(232, 232, 226, 0.30);
+  fill: #e8e8e2;
+  opacity: 0.8;
+  border-radius: 10px;
+  border: 1px solid rgba(232, 232, 226, 0.3);
+  padding: 8px;
 }
 
 .footer-list-link {
@@ -65,101 +74,219 @@ border: 1px solid rgba(232, 232, 226, 0.30);
   align-items: center;
 }
 
-.footer-shop-moto {
-    color: #E8E8E2;
-font-family: Neue Montreal;
-font-size: 24px;
-font-style: normal;
-font-weight: 500;
-line-height: 28px; /* 116.667% */
-letter-spacing: -0.48px;
-width: 335px;
-margin-bottom: 14px;
+.footer-list-link:hover,
+.footer-list-link:focus {
+  background: rgba(232, 232, 226, 0.2);
+  border-radius: 10px;
 }
 
-.footer-shop-descr{
-    color: rgba(232, 232, 226, 0.70);
-font-family: Neue Montreal;
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: 18px; /* 128.571% */
+.footer-info {
+  margin-bottom: 80px;
+  width: 335px;
 }
-.subscribe-text{
-color: #E8E8E2;
-font-family: Neue Montreal;
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: 18px; /* 128.571% */
+.footer-shop-moto {
+  color: #e8e8e2;
+  font-family: Neue Montreal;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.17; /* 116.667% */
+  letter-spacing: -0.48px;
+  width: 335px;
+  margin-bottom: 14px;
+}
+
+.footer-shop-descr {
+  color: rgba(232, 232, 226, 0.7);
+  font-family: Neue Montreal;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 128.571% */
+}
+
+.subscribe-container {
+  margin-bottom: 80px;
+}
+.subscribe-text {
+  color: #e8e8e2;
+  font-family: Neue Montreal;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.29; /* 128.571% */
+  margin-bottom: 20px;
 }
 
 .footer-send-button {
-
-display: flex;
-width: 335px;
-padding: 12px 149px;
-justify-content: center;
-align-items: center;
-gap: 8px;
-border-radius: 30px;
-background: #E8E8E2;
-color: #010101;
-font-family: Neue Montreal;
-font-size: 14px;
-font-style: normal;
-font-weight: 500;
-line-height: 1.28 /* 128.571% */
+  display: flex;
+  width: 335px;
+  height: 42px;
+  padding: 12px 149px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 30px;
+  border-color: #e8e8e2;
+  background: #e8e8e2;
+  font-family: Neue Montreal;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.29; /* 128.571% */
 }
 
-.subscribe-icon {
-  margin-left: 16px;
-  fill: var(--white-color);
+.footer-send-button:hover,
+.footer-send-button:focus {
+  color: #6d8434;
 }
 
 .footer-input {
-  width: 320px;
-  height: 40px;
-  padding-left: 16px;
+  width: 100%;
+  height: 42px;
   background-color: transparent;
+ color: #E8E8E2;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.29;
+  padding-left: 16px;
   line-height: 1.5;
-  letter-spacing: 0.04em;
-  opacity: 0.30000001192092896;
   display: block;
-  color: rgba(232, 232, 226, 0.60);
-font-family: Neue Montreal;
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: 1.28; /* 128.571% */
   border-radius: 30px;
-border: 1px solid #E8E8E2;
-margin-bottom: 14px;
+  border: 1px solid #e8e8e2;
+  margin-bottom: 14px;
 }
 
-
 .footer-input::placeholder {
-  color: var(--white, #fff);
-  font-size: 12px;
+  color: rgba(232, 232, 226, 0.6);
+  font-size: 14px;
   font-weight: 400;
-  line-height: 2;
-  letter-spacing: 0.04em;
+  line-height: 1.29;
+  
+}
+.send-form {
+  width: 335px;
 }
 
 .footer-all-rights {
-color: #E8E8E2;
-font-family: Neue Montreal;
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: 1.28; /* 128.571% */
+  color: #e8e8e2;
+  font-family: Neue Montreal;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.29; /* 128.571% */
+  margin-bottom: 8px;
 }
 .footer-policy {
-color: #E8E8E2;
-font-family: Neue Montreal;
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: 1.28; /* 128.571% */
-
+  color: #e8e8e2;
+  font-family: Neue Montreal;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.29; /* 128.571% */
 }
+
+/* Медіа запити */
+@media screen and (min-width: 428px) {
+
+  
+}
+
+
+@media screen and (min-width: 768px) {
+  .footer {
+  padding-right: 0;
+  }
+
+  .footer-container {
+    justify-content: space-between;
+  }
+.footer-icon-logo {
+  height: 20px;
+  width: 20px;
+}
+
+.footer-logo-name {
+  font-size: 24px;
+}
+
+.logo-text-container {
+  margin-right: 78px;
+}
+
+.footer-socials-container {
+  margin-top: 28px;
+}
+.footer-info {
+  margin-bottom: 64px;
+  width: 429px;
+}
+.footer-shop-moto {
+  font-size: 40px;
+  line-height: 1.1; 
+  letter-spacing: -0.02em;
+  width: 429px;
+  margin-bottom: 20px;
+}
+
+.footer-shop-descr {
+  font-family: Neue Montreal;
+  font-size: 18px;
+  line-height: 1.33;
+}
+.subscribe-container {
+  margin-left: 275px;
+  margin-bottom: 120px;
+}
+.subscribe-text {
+font-size: 18px;
+line-height: 1.33;
+}
+.footer-send-button {
+  width: 336px;
+  height: 48px;
+  font-size: 16px;
+  line-height: 1.5; 
+}
+.footer-input {
+  /* width: 318px; */
+  height: 48px;
+  margin-bottom: 20px;
+  padding-left: 18px;
+}
+.footer-input::placeholder {
+  font-size: 16px;
+  line-height: 1.5; 
+}
+.footer-policy {
+  margin-left: 297px;
+}
+.footer-rights {
+  display: flex;
+}
+}
+
+@media screen and (min-width: 1440px){
+.footer-container {
+ 
+  gap: 0;
+}
+.logo-text-container {
+  margin-right: 149px;
+}
+.footer-info {
+  margin-bottom: 128px;
+  margin-right: 148px;
+  width: 410px;
+}
+.subscribe-container{
+  margin-left: 0;
+}
+.footer-policy {
+  margin-left: 833px;
+}
+}
+
+
+
+
