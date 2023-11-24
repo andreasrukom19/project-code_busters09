@@ -5,6 +5,12 @@ import { FoodService } from './food-api-service';
 const filterBoxList = document.querySelector('.filter-box__list');
 const popularProductsList = document.querySelector('.popular-products__list');
 const discountProductsList = document.querySelector('.discount-products__list');
+const popularProductsListResp = document.querySelector(
+  '.popular-products__list-responsive'
+);
+const discountProductsListResp = document.querySelector(
+  '.discount-products__list-responsive'
+);
 
 const foodService = new FoodService();
 
@@ -24,6 +30,7 @@ foodService
   .getPopular()
   .then(data => {
     popularProductsList.innerHTML = createPopularMarkup(data);
+    popularProductsListResp.innerHTML = createPopularMarkup(data);
   })
   .catch(error => {
     // TODO ADD NOTIFLIX
@@ -37,6 +44,7 @@ foodService
   .then(data => {
     console.log('data', data);
     discountProductsList.innerHTML = createDiscountMarkup(data);
+    discountProductsListResp.innerHTML = createDiscountMarkup(data);
   })
   .catch(error => {
     // TODO ADD NOTIFLIX
@@ -64,8 +72,11 @@ function createProductsMarkup(arr) {
         <p class="info-wrapper__product">Category:<span>${category}</span></p>
         <p class="info-wrapper__product">Size:<span>${size}</span></p>
         <p class="info-wrapper__product">Popularity:<span>${popularity}</span></p>
-        </div>     
+        </div>
+        <div class="info-wrapper__price-container" >
         <p class="info__price">$${price}</p>
+        <img class="cart-img" src="../img/cart.svg" alt="cart" />
+        </div>     
       </div>
     </li>`
     )
@@ -73,11 +84,11 @@ function createProductsMarkup(arr) {
 }
 
 function createPopularMarkup(arr) {
-  // arr.slice(0, 5);
   return arr
     .map(
       ({ name, img, category, popularity, size }) => `      
       <li class="popular-item">
+       <img class="popular-cart-img" src="../img/cartLight.svg" alt="cart" />  
       <div class="popular-img-container"><a href="${img}"><img class="popular-item__img" src="${img}" alt="${name}" loading="lazy" /></a>
       </div>
       <div class="popular-info">
@@ -100,11 +111,15 @@ function createDiscountMarkup(arr) {
     .map(
       ({ name, img, price }) => `      
       <li class="discount-item">
+       <img class="discount-cheap" src="../img/discount.svg" alt="cart" />  
       <div class="discount-img-container"><a href="${img}"><img class="discount-item__img" src="${img}" alt="${name}" loading="lazy" /></a>
       </div>
       <div class="discount-info">
-        <h3 class="discount-info__title">${name}</h3>        
-        <p class="discount-info__price">$${price}</p>      
+        <h3 class="discount-info__title">${name}</h3>
+        <div class="discount-img-wrapper">
+        <p class="discount-info__price">$${price}</p>
+         <img class="cart-img" src="../img/cart.svg" alt="cart" />      
+        </div>        
       </div>
     </li>`
     )
