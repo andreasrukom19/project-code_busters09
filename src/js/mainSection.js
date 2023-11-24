@@ -73,7 +73,7 @@ export function discountContentDrawer() {
     });
 }
 
-function createProductsMarkup(arr) {
+export function createProductsMarkup(arr) {
   return arr
     .map(
       ({
