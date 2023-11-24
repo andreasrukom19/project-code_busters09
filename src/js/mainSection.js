@@ -98,7 +98,7 @@ function createProductsMarkup(arr) {
         <p class="info__price">$${price}</p>       
           <img class="cart-img-products" src="${
             import.meta.env.BASE_URL
-          }assets/cart.svg" alt="cart" />
+          }img/cart.svg" alt="cart" />
         </div>     
       </div>
     </li>`
