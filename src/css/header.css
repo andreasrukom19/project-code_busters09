@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   padding-top: 18px;
-  max-width: 335px;
+  max-width: 375px;
 }
 
 .header-logo {
@@ -30,13 +30,11 @@
   padding-right: 21px;
   padding-left: 11px;
   color: var(--light-green);
-  text-shadow: none;
   transition: background-color 650ms cubic-bezier(0.4, 0, 0.5, 1),
     padding-right 650ms cubic-bezier(0.4, 0, 0.5, 1),
     padding-left 650ms cubic-bezier(0.4, 0, 0.5, 1),
     border-radius 650ms cubic-bezier(0.4, 0, 0.5, 1),
-    color 650ms cubic-bezier(0.4, 0, 0.5, 1),
-    text-shadow 650ms cubic-bezier(0.4, 0, 0.5, 1);
+    color 650ms cubic-bezier(0.4, 0, 0.5, 1);
 }
 
 .header-icon-logo {
@@ -52,11 +50,9 @@
 .header-logo:hover .header-icon-logo,
 .header-logo:focus .header-icon-logo,
 .header-logo:active .header-icon-logo {
-  box-shadow: none;
   fill: var(--main-green);
   background-color: var(--light-green);
-  transition: box-shadow 650ms cubic-bezier(0.4, 0, 0.5, 1),
-    background-color 650ms cubic-bezier(0.4, 0, 0.5, 1),
+  transition: background-color 650ms cubic-bezier(0.4, 0, 0.5, 1),
     fill 650ms cubic-bezier(0.4, 0, 0.5, 1);
 }
 
@@ -142,35 +138,31 @@
 
   .container.header-container {
     padding-top: 24px;
-    max-width: 704px;
+    max-width: 768px;
   }
 
   .header-logo {
     font-size: 24px;
     line-height: 1em;
     letter-spacing: -0.02em;
-    text-shadow: 2px 5px 10px rgba(0, 0, 0, 0.4);
     transition: background-color 650ms cubic-bezier(0.4, 0, 0.5, 1),
       padding-right 650ms cubic-bezier(0.4, 0, 0.5, 1),
       padding-left 650ms cubic-bezier(0.4, 0, 0.5, 1),
       border-radius 650ms cubic-bezier(0.4, 0, 0.5, 1),
-      color 650ms cubic-bezier(0.4, 0, 0.5, 1),
-      text-shadow 650ms cubic-bezier(0.4, 0, 0.5, 1);
+      color 650ms cubic-bezier(0.4, 0, 0.5, 1);
   }
 
   .header-icon-logo {
     width: 20px;
     height: 20px;
-    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.4);
-    transition: box-shadow 650ms cubic-bezier(0.4, 0, 0.5, 1),
-      background-color 650ms cubic-bezier(0.4, 0, 0.5, 1),
+    transition: background-color 650ms cubic-bezier(0.4, 0, 0.5, 1),
       fill 650ms cubic-bezier(0.4, 0, 0.5, 1);
   }
 }
 
 @media (min-width: 1440px) {
   .container.header-container {
-    max-width: 1240px;
+    max-width: 1440px;
   }
 
   .home-btn {
