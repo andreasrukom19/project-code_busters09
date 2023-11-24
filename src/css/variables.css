@@ -49,6 +49,10 @@ button {
   src: url(../fonts/Fontspring-DEMO-quincycf-black.otf);
 }
 
+svg {
+  box-sizing: content-box;
+}
+
 .container {
   min-width: 320px;
   max-width: 375px;
