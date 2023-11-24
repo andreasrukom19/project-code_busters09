@@ -2,6 +2,7 @@
 // import 'simplelightbox/dist/simple-lightbox.min.css';
 import { LocalStorage } from './local-storages';
 import { FoodService } from './food-api-service';
+import imgURL from '../img/icons.svg';
 const filterBoxList = document.querySelector('.filter-box__list');
 const popularProductsList = document.querySelector('.popular-products__list');
 const discountProductsList = document.querySelector('.discount-products__list');
@@ -103,7 +104,7 @@ export function createProductsMarkup(arr) {
         <div class="info-wrapper__price-container" >
           <p class="info__price">$${price}</p>       
           <svg class="cart-img-products" width="34" height="34">
-            <use href="./img/icons.svg#icon-heroicons-solid_shopping-cart"></use>
+            <use href="${imgURL}#icon-heroicons-solid_shopping-cart"></use>
           </svg>
         </div>     
       </div>
