@@ -72,7 +72,7 @@ function createProductsMarkup(arr) {
       }) => `<li class="product-card">
        ${
          is10PercentOff
-           ? '<img class="discount-icon-products" src="../img/discount.svg" alt="Discount" />'
+           ? '<img class="discount-icon-products" src="./img/discount.svg" alt="Discount" />'
            : ''
        }
       <div class="img-container"><a href="${img}"><img class="product-card__img" src="${img}" alt="${name}" loading="lazy" /></a>
@@ -86,7 +86,7 @@ function createProductsMarkup(arr) {
         </div>
         <div class="info-wrapper__price-container" >
         <p class="info__price">$${price}</p>       
-        <img class="cart-img-products" src="../img/cart.svg" alt="cart" />
+        <img class="cart-img-products" src="./img/cart.svg" alt="cart" />
         </div>     
       </div>
     </li>`
@@ -101,8 +101,8 @@ function createPopularMarkup(arr) {
       <li class="popular-item">
       ${
         is10PercentOff
-          ? '<img class="discount-icon-popular" src="../img/discount.svg" alt="Discount" />  <img class="popular-cart-img-down" src="../img/cartLight.svg" alt="cart" />'
-          : '<img class="popular-cart-img" src="../img/cartLight.svg" alt="cart" />'
+          ? '<img class="discount-icon-popular" src="./img/discount.svg" alt="Discount" />  <img class="popular-cart-img-down" src="./img/cartLight.svg" alt="cart" />'
+          : '<img class="popular-cart-img" src="./img/cartLight.svg" alt="cart" />'
       }
        
       <div class="popular-img-container"><a href="${img}"><img class="popular-item__img" src="${img}" alt="${name}" loading="lazy" /></a>
@@ -127,14 +127,14 @@ function createDiscountMarkup(arr) {
     .map(
       ({ name, img, price }) => `      
       <li class="discount-item">
-       <img class="discount-cheap" src="../img/discount.svg" alt="cart" />  
+       <img class="discount-cheap" src="./img/discount.svg" alt="cart" />  
       <div class="discount-img-container"><a href="${img}"><img class="discount-item__img" src="${img}" alt="${name}" loading="lazy" /></a>
       </div>
       <div class="discount-info">
         <h3 class="discount-info__title">${name}</h3>
         <div class="discount-img-wrapper">
         <p class="discount-info__price">$${price}</p>
-         <img class="cart-img-products" src="../img/cart.svg" alt="cart" />      
+         <img class="cart-img-products" src="./img/cart.svg" alt="cart" />      
         </div>        
       </div>
     </li>`
