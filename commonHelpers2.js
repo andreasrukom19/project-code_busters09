@@ -12,7 +12,7 @@
         <div class="info-wrapper__price-container" >
           <p class="info__price">$${s}</p>       
           <svg class="cart-img-products" width="34" height="34">
-            <use href="../img/icons.svg#icon-heroicons-solid_shopping-cart"></use>
+            <use href="./img/icons.svg#icon-heroicons-solid_shopping-cart"></use>
           </svg>
         </div>     
       </div>
