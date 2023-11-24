@@ -112,7 +112,7 @@ export function createProductsMarkup(arr) {
     .join('');
 }
 
-function createPopularMarkup(arr) {
+export function createPopularMarkup(arr) {
   return arr
     .map(
       ({
@@ -147,7 +147,7 @@ function createPopularMarkup(arr) {
     .join('');
 }
 
-function createDiscountMarkup(arr) {
+export function createDiscountMarkup(arr) {
   // arr.slice(0, 5);
   return arr
     .map(
