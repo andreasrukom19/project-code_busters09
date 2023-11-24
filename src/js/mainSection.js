@@ -22,15 +22,18 @@ document.addEventListener('click', function (event) {
   }
 });
 
+
 mainContentDrawer();
 popularContentDrawer();
 discountContentDrawer();
+
 
 export function mainContentDrawer() {
   foodService
     .getFoodList()
     .then(data => {
       filterBoxList.innerHTML = createProductsMarkup(data.results);
+      storage.saveAllToLocalStorage(data.results);
     })
     .catch(error => {
       // TODO ADD NOTIFLIX
