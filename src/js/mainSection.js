@@ -1,5 +1,6 @@
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
+// import SimpleLightbox from 'simplelightbox';
+// import 'simplelightbox/dist/simple-lightbox.min.css';
+import { LocalStorage } from './local-storages';
 import { FoodService } from './food-api-service';
 const filterBoxList = document.querySelector('.filter-box__list');
 const popularProductsList = document.querySelector('.popular-products__list');
@@ -10,8 +11,9 @@ const popularProductsListResp = document.querySelector(
 const discountProductsListResp = document.querySelector(
   '.discount-products__list-responsive'
 );
-
+const storage = new LocalStorage();
 const foodService = new FoodService();
+
 // document.addEventListener('click', function (event) {
 //   if (event.target.classList.contains('cart-img-products')) {
 //     const currentImage = event.target;
@@ -20,43 +22,51 @@ const foodService = new FoodService();
 //   }
 // });
 
-foodService
-  .getFoodList()
-  .then(data => {
-    filterBoxList.innerHTML = createProductsMarkup(data.results);
-  })
-  .catch(error => {
-    // TODO ADD NOTIFLIX
-    // Notify.failure(
-    //   "Error"
-    // );
-  });
+function set() {
+  storage.saveAllToLocalStorage();
+  const data = storage.getFromStorage('products');
+  console.log(data);
+  filterBoxList.innerHTML = createProductsMarkup(data);
+}
+set();
 
-foodService
-  .getPopular()
-  .then(data => {
-    popularProductsList.innerHTML = createPopularMarkup(data);
-    popularProductsListResp.innerHTML = createPopularMarkup(data);
-  })
-  .catch(error => {
-    // TODO ADD NOTIFLIX
-    // Notify.failure(
-    //   "Error"
-    // );
-  });
+// foodService
+//   .getFoodList()
+//   .then(data => {
+//     filterBoxList.innerHTML = createProductsMarkup(data.results);
+//   })
+//   .catch(error => {
+//     // TODO ADD NOTIFLIX
+//     // Notify.failure(
+//     //   "Error"
+//     // );
+//   });
 
-foodService
-  .getDiscount()
-  .then(data => {
-    discountProductsList.innerHTML = createDiscountMarkup(data);
-    discountProductsListResp.innerHTML = createDiscountMarkup(data);
-  })
-  .catch(error => {
-    // TODO ADD NOTIFLIX
-    // Notify.failure(
-    //   "Error"
-    // );
-  });
+// foodService
+//   .getPopular()
+//   .then(data => {
+//     popularProductsList.innerHTML = createPopularMarkup(data);
+//     popularProductsListResp.innerHTML = createPopularMarkup(data);
+//   })
+//   .catch(error => {
+//     // TODO ADD NOTIFLIX
+//     // Notify.failure(
+//     //   "Error"
+//     // );
+//   });
+
+// foodService
+//   .getDiscount()
+//   .then(data => {
+//     discountProductsList.innerHTML = createDiscountMarkup(data);
+//     discountProductsListResp.innerHTML = createDiscountMarkup(data);
+//   })
+//   .catch(error => {
+//     // TODO ADD NOTIFLIX
+//     // Notify.failure(
+//     //   "Error"
+//     // );
+//   });
 
 function createProductsMarkup(arr) {
   return arr
@@ -72,7 +82,7 @@ function createProductsMarkup(arr) {
       }) => `<li class="product-card">
        ${
          is10PercentOff
-           ? '<img class="discount-icon-products" src="./img/discount.svg" alt="Discount" />'
+           ? '<img class="discount-icon-products" src="../../assets/discount.svg" alt="Discount" />'
            : ''
        }
       <div class="img-container"><a href="${img}"><img class="product-card__img" src="${img}" alt="${name}" loading="lazy" /></a>
@@ -86,7 +96,7 @@ function createProductsMarkup(arr) {
         </div>
         <div class="info-wrapper__price-container" >
         <p class="info__price">$${price}</p>       
-        <img class="cart-img-products" src="./img/cart.svg" alt="cart" />
+        <img class="cart-img-products" src="../../assets/cart.svg" alt="cart" />
         </div>     
       </div>
     </li>`
