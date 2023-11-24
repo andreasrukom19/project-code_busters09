@@ -22,43 +22,53 @@ document.addEventListener('click', function (event) {
   }
 });
 
-foodService
-  .getFoodList()
-  .then(data => {
-    filterBoxList.innerHTML = createProductsMarkup(data.results);
-  })
-  .catch(error => {
-    // TODO ADD NOTIFLIX
-    // Notify.failure(
-    //   "Error"
-    // );
-  });
+mainContentDrawer();
+popularContentDrawer();
+discountContentDrawer();
 
-foodService
-  .getPopular()
-  .then(data => {
-    popularProductsList.innerHTML = createPopularMarkup(data);
-    popularProductsListResp.innerHTML = createPopularMarkup(data);
-  })
-  .catch(error => {
-    // TODO ADD NOTIFLIX
-    // Notify.failure(
-    //   "Error"
-    // );
-  });
+export function mainContentDrawer() {
+  foodService
+    .getFoodList()
+    .then(data => {
+      filterBoxList.innerHTML = createProductsMarkup(data.results);
+    })
+    .catch(error => {
+      // TODO ADD NOTIFLIX
+      // Notify.failure(
+      //   "Error"
+      // );
+    });
+}
 
-foodService
-  .getDiscount()
-  .then(data => {
-    discountProductsList.innerHTML = createDiscountMarkup(data);
-    discountProductsListResp.innerHTML = createDiscountMarkup(data);
-  })
-  .catch(error => {
-    // TODO ADD NOTIFLIX
-    // Notify.failure(
-    //   "Error"
-    // );
-  });
+export function popularContentDrawer() {
+  foodService
+    .getPopular()
+    .then(data => {
+      popularProductsList.innerHTML = createPopularMarkup(data);
+      popularProductsListResp.innerHTML = createPopularMarkup(data);
+    })
+    .catch(error => {
+      // TODO ADD NOTIFLIX
+      // Notify.failure(
+      //   "Error"
+      // );
+    });
+}
+
+export function discountContentDrawer() {
+  foodService
+    .getDiscount()
+    .then(data => {
+      discountProductsList.innerHTML = createDiscountMarkup(data);
+      discountProductsListResp.innerHTML = createDiscountMarkup(data);
+    })
+    .catch(error => {
+      // TODO ADD NOTIFLIX
+      // Notify.failure(
+      //   "Error"
+      // );
+    });
+}
 
 function createProductsMarkup(arr) {
   return arr
@@ -102,7 +112,15 @@ function createProductsMarkup(arr) {
 function createPopularMarkup(arr) {
   return arr
     .map(
-      ({ _id, name, img, category, popularity, size, is10PercentOff }) => `      
+      ({
+        _id,
+        name,
+        img,
+        category,
+        popularity,
+        size,
+        is10PercentOff,
+      }) => `      
       <li class="popular-item" data-id="${_id}">
       ${
         is10PercentOff
@@ -147,5 +165,3 @@ function createDiscountMarkup(arr) {
     .slice(0, 2)
     .join('');
 }
-
-export { createProductsMarkup, createPopularMarkup, createDiscountMarkup };
