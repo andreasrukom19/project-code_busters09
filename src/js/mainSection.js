@@ -86,11 +86,11 @@ export function createProductsMarkup(arr) {
         size,
         is10PercentOff,
       }) => `<li class="product-card data-id="${_id}">
-       ${
-         is10PercentOff
-           ? '<img class="discount-icon-products" src="../../assets/discount.svg" alt="Discount" />'
-           : ''
-       }
+        ${
+          is10PercentOff
+            ? '<img class="discount-icon-products" src="../../assets/discount.svg" alt="Discount" />'
+            : ''
+        }
       <div class="img-container"><a href="${img}"><img class="product-card__img" src="${img}" alt="${name}" loading="lazy" /></a>
       </div>
       <div class="info">      
@@ -101,10 +101,10 @@ export function createProductsMarkup(arr) {
         <p class="info-wrapper__product">Popularity:<span>${popularity}</span></p>
         </div>
         <div class="info-wrapper__price-container" >
-        <p class="info__price">$${price}</p>       
-          <img class="cart-img-products" src="${
-            import.meta.env.BASE_URL
-          }img/cart.svg" alt="cart" />
+          <p class="info__price">$${price}</p>       
+          <svg class="cart-img-products" width="34" height="34">
+            <use href="../img/icons.svg#icon-heroicons-solid_shopping-cart"></use>
+          </svg>
         </div>     
       </div>
     </li>`
