@@ -1,6 +1,5 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-
 import { FoodService } from './food-api-service';
 const filterBoxList = document.querySelector('.filter-box__list');
 const popularProductsList = document.querySelector('.popular-products__list');
@@ -13,6 +12,13 @@ const discountProductsListResp = document.querySelector(
 );
 
 const foodService = new FoodService();
+// document.addEventListener('click', function (event) {
+//   if (event.target.classList.contains('cart-img-products')) {
+//     const currentImage = event.target;
+//     const newImagePath = '../img/checked.svg';
+//     currentImage.src = newImagePath;
+//   }
+// });
 
 foodService
   .getFoodList()
@@ -62,10 +68,16 @@ function createProductsMarkup(arr) {
         price,
         popularity,
         size,
+        is10PercentOff,
       }) => `<li class="product-card">
+       ${
+         is10PercentOff
+           ? '<img class="discount-icon-products" src="../img/discount.svg" alt="Discount" />'
+           : ''
+       }
       <div class="img-container"><a href="${img}"><img class="product-card__img" src="${img}" alt="${name}" loading="lazy" /></a>
       </div>
-      <div class="info">
+      <div class="info">      
         <h2 class="info__title">${name}</h2>
         <div class="info-wrapper">
         <p class="info-wrapper__product">Category:<span>${category}</span></p>
@@ -73,7 +85,7 @@ function createProductsMarkup(arr) {
         <p class="info-wrapper__product">Popularity:<span>${popularity}</span></p>
         </div>
         <div class="info-wrapper__price-container" >
-        <p class="info__price">$${price}</p>
+        <p class="info__price">$${price}</p>       
         <img class="cart-img-products" src="../img/cart.svg" alt="cart" />
         </div>     
       </div>
@@ -85,9 +97,14 @@ function createProductsMarkup(arr) {
 function createPopularMarkup(arr) {
   return arr
     .map(
-      ({ name, img, category, popularity, size }) => `      
+      ({ name, img, category, popularity, size, is10PercentOff }) => `      
       <li class="popular-item">
-       <img class="popular-cart-img" src="../img/cartLight.svg" alt="cart" />  
+      ${
+        is10PercentOff
+          ? '<img class="discount-icon-popular" src="../img/discount.svg" alt="Discount" />  <img class="popular-cart-img-down" src="../img/cartLight.svg" alt="cart" />'
+          : '<img class="popular-cart-img" src="../img/cartLight.svg" alt="cart" />'
+      }
+       
       <div class="popular-img-container"><a href="${img}"><img class="popular-item__img" src="${img}" alt="${name}" loading="lazy" /></a>
       </div>
       <div class="popular-info">
