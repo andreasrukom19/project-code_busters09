@@ -4,12 +4,17 @@ export class FoodService {
   constructor() {
     this.URL = `https://food-boutique.b.goit.study/api`;
     this.currentPage = 1;
-    this.perPage = 9;
+    this.perPage = 6;
     this.searchQuerry = '';
     this.category = '';
   }
 
   getFoodList() {
+    if (window.innerWidth >= 768 && window.innerWidth < 1440) {
+      this.perPage = 8;
+    } else if (window.innerWidth >= 1440) {
+      this.perPage = 9;
+    }
     return axios
       .get(
         `${this.URL}/products?page=${this.currentPage}&limit=${this.perPage}&keyword=${this.searchQuerry}&category=${this.category}`
@@ -26,11 +31,9 @@ export class FoodService {
   }
 
   getPopular() {
-    return axios
-      .get(`${this.URL}/products/popular?limit=${this.perPage}`)
-      .then(response => {
-        return response.data;
-      });
+    return axios.get(`${this.URL}/products/popular`).then(response => {
+      return response.data;
+    });
   }
 
   getDiscount() {
