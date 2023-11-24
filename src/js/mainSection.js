@@ -74,7 +74,7 @@ function createProductsMarkup(arr) {
         </div>
         <div class="info-wrapper__price-container" >
         <p class="info__price">$${price}</p>
-        <img class="cart-img" src="../img/cart.svg" alt="cart" />
+        <img class="cart-img-products" src="../img/cart.svg" alt="cart" />
         </div>     
       </div>
     </li>`
@@ -117,7 +117,7 @@ function createDiscountMarkup(arr) {
         <h3 class="discount-info__title">${name}</h3>
         <div class="discount-img-wrapper">
         <p class="discount-info__price">$${price}</p>
-         <img class="cart-img" src="../img/cart.svg" alt="cart" />      
+         <img class="cart-img-products" src="../img/cart.svg" alt="cart" />      
         </div>        
       </div>
     </li>`
