@@ -10,7 +10,7 @@
         </div>
         <div class="info-wrapper__price-container" >
         <p class="info__price">$${r}</p>
-        <img class="cart-img" src="../img/cart.svg" alt="cart" />
+        <img class="cart-img-products" src="../img/cart.svg" alt="cart" />
         </div>     
       </div>
     </li>`).join("")}function p(e){return e.map(({name:t,img:i,category:o,popularity:r,size:s})=>`      
@@ -35,7 +35,7 @@
         <h3 class="discount-info__title">${t}</h3>
         <div class="discount-img-wrapper">
         <p class="discount-info__price">$${o}</p>
-         <img class="cart-img" src="../img/cart.svg" alt="cart" />      
+         <img class="cart-img-products" src="../img/cart.svg" alt="cart" />      
         </div>        
       </div>
     </li>`).slice(0,2).join("")}c.defaults.baseURL="https://food-boutique.b.goit.study/api";new l;localStorage.getFromLocalStorage();
