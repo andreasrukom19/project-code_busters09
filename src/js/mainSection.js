@@ -11,67 +11,60 @@ const popularProductsListResp = document.querySelector(
 const discountProductsListResp = document.querySelector(
   '.discount-products__list-responsive'
 );
-const storage = new LocalStorage();
-const foodService = new FoodService();
+export const storage = new LocalStorage();
+export const foodService = new FoodService();
 
-// document.addEventListener('click', function (event) {
-//   if (event.target.classList.contains('cart-img-products')) {
-//     const currentImage = event.target;
-//     const newImagePath = '../img/checked.svg';
-//     currentImage.src = newImagePath;
-//   }
-// });
+document.addEventListener('click', function (event) {
+  if (event.target.classList.contains('cart-img-products')) {
+    const currentImage = event.target;
+    const newImagePath = '../img/checked.svg';
+    currentImage.src = newImagePath;
+  }
+});
 
-function set() {
-  storage.saveAllToLocalStorage();
-  const data = storage.getFromStorage('products');
-  console.log(data);
-  filterBoxList.innerHTML = createProductsMarkup(data);
-}
-set();
+foodService
+  .getFoodList()
+  .then(data => {
+    filterBoxList.innerHTML = createProductsMarkup(data.results);
+  })
+  .catch(error => {
+    // TODO ADD NOTIFLIX
+    // Notify.failure(
+    //   "Error"
+    // );
+  });
 
-// foodService
-//   .getFoodList()
-//   .then(data => {
-//     filterBoxList.innerHTML = createProductsMarkup(data.results);
-//   })
-//   .catch(error => {
-//     // TODO ADD NOTIFLIX
-//     // Notify.failure(
-//     //   "Error"
-//     // );
-//   });
+foodService
+  .getPopular()
+  .then(data => {
+    popularProductsList.innerHTML = createPopularMarkup(data);
+    popularProductsListResp.innerHTML = createPopularMarkup(data);
+  })
+  .catch(error => {
+    // TODO ADD NOTIFLIX
+    // Notify.failure(
+    //   "Error"
+    // );
+  });
 
-// foodService
-//   .getPopular()
-//   .then(data => {
-//     popularProductsList.innerHTML = createPopularMarkup(data);
-//     popularProductsListResp.innerHTML = createPopularMarkup(data);
-//   })
-//   .catch(error => {
-//     // TODO ADD NOTIFLIX
-//     // Notify.failure(
-//     //   "Error"
-//     // );
-//   });
-
-// foodService
-//   .getDiscount()
-//   .then(data => {
-//     discountProductsList.innerHTML = createDiscountMarkup(data);
-//     discountProductsListResp.innerHTML = createDiscountMarkup(data);
-//   })
-//   .catch(error => {
-//     // TODO ADD NOTIFLIX
-//     // Notify.failure(
-//     //   "Error"
-//     // );
-//   });
+foodService
+  .getDiscount()
+  .then(data => {
+    discountProductsList.innerHTML = createDiscountMarkup(data);
+    discountProductsListResp.innerHTML = createDiscountMarkup(data);
+  })
+  .catch(error => {
+    // TODO ADD NOTIFLIX
+    // Notify.failure(
+    //   "Error"
+    // );
+  });
 
 function createProductsMarkup(arr) {
   return arr
     .map(
       ({
+        _id,
         name,
         img,
         category,
@@ -79,7 +72,7 @@ function createProductsMarkup(arr) {
         popularity,
         size,
         is10PercentOff,
-      }) => `<li class="product-card">
+      }) => `<li class="product-card data-id="${_id}">
        ${
          is10PercentOff
            ? '<img class="discount-icon-products" src="../../assets/discount.svg" alt="Discount" />'
@@ -109,8 +102,8 @@ function createProductsMarkup(arr) {
 function createPopularMarkup(arr) {
   return arr
     .map(
-      ({ name, img, category, popularity, size, is10PercentOff }) => `      
-      <li class="popular-item">
+      ({ _id, name, img, category, popularity, size, is10PercentOff }) => `      
+      <li class="popular-item" data-id="${_id}">
       ${
         is10PercentOff
           ? '<img class="discount-icon-popular" src="./img/discount.svg" alt="Discount" />  <img class="popular-cart-img-down" src="./img/cartLight.svg" alt="cart" />'
@@ -137,8 +130,8 @@ function createDiscountMarkup(arr) {
   // arr.slice(0, 5);
   return arr
     .map(
-      ({ name, img, price }) => `      
-      <li class="discount-item">
+      ({ _id, name, img, price }) => `      
+      <li class="discount-item" data-id="${_id}">
        <img class="discount-cheap" src="./img/discount.svg" alt="cart" />  
       <div class="discount-img-container"><a href="${img}"><img class="discount-item__img" src="${img}" alt="${name}" loading="lazy" /></a>
       </div>
