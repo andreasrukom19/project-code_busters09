@@ -95,6 +95,13 @@
   z-index: 1;
 }
 
+select option {
+  color: rgba(1, 1, 1, 0.5);
+  font-family: Neue Montreal;
+  font-size: 14px;
+  line-height: 1.28em;
+}
+
 input:focus,
 select:focus {
   outline: none;
