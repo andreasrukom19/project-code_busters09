@@ -428,20 +428,17 @@ h2 {
  
  }
   .popular-discount-box{
+    margin-bottom: 100px;
     display: flex;
     flex-direction: column;
 }
 
  @media only screen and (min-width: 768px) {
     .popular-discount-box {
-     margin-bottom: 100px;
+     margin-bottom: 0px;
    }
  }
 
-
-.discount-products__list {
-  margin-bottom: 80px;
-}
 
 @media only screen and (min-width: 768px) {
 
@@ -450,6 +447,11 @@ h2 {
       flex-wrap: wrap;
       gap: 32px;
   } 
+}
+@media only screen and (min-width: 1440px) {
+  .discount-products__list {
+    display: block;
+  }
 }
 
 /* .discount-item:not(:last-child){
