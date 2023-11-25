@@ -56,6 +56,14 @@ export class FoodService {
     this.currentPage += 1;
   }
 
+  resetSearchQuerry() {
+    this.searchQuerry = '';
+  }
+
+  resetCategory() {
+    this.category = '';
+  }
+
   //* POST => //
 
   subscribe(email) {
