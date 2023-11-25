@@ -23,15 +23,31 @@ document.addEventListener('click', function (event) {
   }
 });
 
+// console.log(foodService.options);
 
 mainContentDrawer();
 popularContentDrawer();
 discountContentDrawer();
 
-
 export function mainContentDrawer() {
   foodService
-    .getFoodList()
+    .getBasicFoodList()
+    .then(data => {
+      filterBoxList.innerHTML = createProductsMarkup(data.results);
+      storage.saveAllToLocalStorage(data.results);
+      storage.defaulApiOptions();
+    })
+    .catch(error => {
+      // TODO ADD NOTIFLIX
+      // Notify.failure(
+      //   "Error"
+      // );
+    });
+}
+
+export function contentByOptionsDrawer() {
+  foodService
+    .getFoodListWithOptions()
     .then(data => {
       filterBoxList.innerHTML = createProductsMarkup(data.results);
       storage.saveAllToLocalStorage(data.results);
