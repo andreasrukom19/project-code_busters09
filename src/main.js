@@ -4,3 +4,4 @@ import './js/local-storages.js';
 import './js/filters.js';
 // import './js/footer-send.js';
 import './js/mainSection.js';
+import './js/modal.js';
