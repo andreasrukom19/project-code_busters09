@@ -28,6 +28,10 @@
   border-radius: 30px;
 } */
 
+.filters {
+  margin-bottom: 40px;
+}
+
 .filter-title {
   color: rgba(1, 1, 1, 0.3);
   font-size: 14px;
@@ -129,10 +133,28 @@ h2 {
   .img-container {
     width: 296px;
   }
+
+  .filters {
+    display: flex;
+    gap: 8px;
+  }
+
+  .submit-form {
+    width: 269px;
+  }
+
+  .categories {
+    width: 169px;
+  }
 }
+
 @media only screen and (min-width: 1440px) {
   .img-container {
     width: 255px;
+  }
+
+  .filters {
+    margin-bottom: 60px;
   }
 }
 
