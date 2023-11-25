@@ -1,44 +1,30 @@
-// import './food-api-service';
-// import { foodService } from './mainSection';
+import './food-api-service';
+import { foodService } from './mainSection';
 
-// document.addEventListener('DOMContentLoaded', function (event) {
-//   const modal = document.querySelector('.modal');
-//   const listItems = document.querySelectorAll('.main-products');
-//   console.log(event);
-//   listItems.forEach(function (item) {
-//     item.addEventListener('click', async function () {
-//       const productId = parseInt(item.dataset.id);
-//       console.log(productId);
-//       try {
-//         const product = await foodService.getProductById(productId);
+const modal = document.querySelector('.modal');
+const listItems = document.querySelector('.main-products');
+listItems.addEventListener('click', onCardClick);
 
-//         modal.innerHTML = `
-//               <img src="${product.img}" alt="${product.name}" class="modal-image" />
-//               <p>Name: ${product.name}</p>
-//               <p>Category: ${product.category}</p>
-//               <p>Size: ${product.size}</p>
-//               <p>Popularity: ${product.popularity}</p>
-//               <p>Price: $${product.price}</p>
-//               <button class="add-to-cart-btn">Add to Cart</button>
-//               <svg class='close-sharp' width='28' height='28'>
-//                 <use href='#'></use>
-//               </svg>
-//             `;
+async function onCardClick(e) {
+  const card = e.target.closest('li');
+  if (card) {
+    const data = await foodService.findProductById(card.dataset.id);
+    console.log(data);
+    modal.innerHTML = makeModalMarkup(data);
+  }
+  modal.style.display = 'block';
+}
 
-//         modal.style.display = 'block';
-
-//         const closeIcon = modal.querySelector('.close-sharp');
-//         closeIcon.addEventListener('click', function () {
-//           modal.style.display = 'none';
-//         });
-
-//         //
-//         //    const addToCartBtn = modal.querySelector('.add-to-cart-btn');
-//         // addToCartBtn.addEventListener('click', function () {
-//         //   modal.style.display = 'none'; });
-//       } catch (error) {
-//         console.error('Error fetching product data:', error);
-//       }
-//     });
-//   });
-// });
+function makeModalMarkup(product) {
+  return `<img src="${product.img}" alt="${product.name}" class="modal-image" />
+              <p>Name: ${product.name}</p>
+              <p>Category: ${product.category}</p>
+              <p>Size: ${product.size}</p>
+              <p>Popularity: ${product.popularity}</p>
+              <p>${product.desc}</p>
+              <p>Price: $${product.price}</p>
+              <button class="add-to-cart-btn">Add to Cart</button>
+              <svg class='close-sharp' width='28' height='28'>
+                <use href='#'></use>
+              </svg>`;
+}

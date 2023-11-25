@@ -1,4 +1,4 @@
-/* .modal {
+.modal {
   display: none;
   position: fixed;
   top: 50%;
@@ -50,10 +50,10 @@
 
 .close-btn:hover {
   color: #000;
-} */
+}
 
 /* styles.css */
-.modal {
+/* .modal {
   display: none;
   position: fixed;
   top: 0;
@@ -71,4 +71,4 @@
   background-color: #fff;
   padding: 20px;
   text-align: center;
-}
+} */
