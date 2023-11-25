@@ -463,29 +463,32 @@ h2 {
     margin-left: auto; 
   }*/
 
-.filter-box__list {
-  grid-template-columns: 1fr 1fr;
-}
-.popular-discount-box {
-  display: flex;
-  flex-direction: column;
-}
-
-@media only screen and (min-width: 768px) {
-  .popular-discount-box {
+  .filter-box__list{
+  grid-template-columns:1fr 1fr;
+ 
+ }
+  .popular-discount-box{
     margin-bottom: 100px;
-  }
+    display: flex;
+    flex-direction: column;
 }
 
-.discount-products__list {
-  margin-bottom: 80px;
-}
+ @media only screen and (min-width: 768px) {
+    .popular-discount-box {
+     margin-bottom: 0px;
+   }
+ }
 
 @media only screen and (min-width: 768px) {
   .discount-products__list {
     display: flex;
     flex-wrap: wrap;
     gap: 32px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .discount-products__list {
+    display: block;
   }
 }
 
