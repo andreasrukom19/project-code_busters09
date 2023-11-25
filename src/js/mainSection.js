@@ -33,6 +33,7 @@ export function mainContentDrawer() {
   foodService
     .getBasicFoodList()
     .then(data => {
+      console.log(data);
       filterBoxList.innerHTML = createProductsMarkup(data.results);
       storage.saveAllToLocalStorage(data.results);
       storage.defaulApiOptions();
@@ -102,7 +103,7 @@ export function createProductsMarkup(arr) {
         popularity,
         size,
         is10PercentOff,
-      }) => `<li class="product-card data-id="${_id}">
+      }) => `<li class="product-card" data-id=${_id}>
         ${
           is10PercentOff
             ? '<img class="discount-icon-products" src="../../assets/discount.svg" alt="Discount" />'
