@@ -115,7 +115,7 @@ function createPopularMarkup(arr) {
           : '<img class="popular-cart-img" src="./img/cartLight.svg" alt="cart" />'
       }
        
-      <div class="popular-img-container"><a href="${img}"><img class="popular-item__img" src="${img}" alt="${name}" loading="lazy" /></a>
+      <div class="popular-img-container"><img class="popular-item__img" src="${img}" alt="${name}" loading="lazy" />
       </div>
       <div class="popular-info">
         <h3 class="popular-info__title">${name}</h3>
