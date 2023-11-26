@@ -91,10 +91,6 @@ export function discountContentDrawer() {
     });
 }
 
-const imgElement = document.createElement('img');
-imgElement.src = cartImgURL;
-document.body.appendChild(imgElement);
-
 export function createProductsMarkup(arr) {
   return arr
     .map(
@@ -108,15 +104,15 @@ export function createProductsMarkup(arr) {
         size,
         is10PercentOff,
       }) => {
-        const imgElement = document.createElement('img');
-        imgElement.src = cartImgURL;
+        const cartImg =
+          '<img src="./img/cart.svg" alt="cart" class="main-cart-icon"/>';
+        const cartDiscountImg =
+          '<img class="discount-icon-products" src="../img/discount.svg" alt="Discount" />';
+
+        const imgToInsert = is10PercentOff ? `${cartDiscountImg}` : '';
 
         return `<li class="product-card" data-id=${_id}>
-          ${
-            is10PercentOff
-              ? '<img class="discount-icon-products" src="../../assets/discount.svg" alt="Discount" />'
-              : ''
-          }
+        ${imgToInsert}
           <div class="img-container"><a href="${img}"><img class="product-card__img" src="${img}" alt="${name}" loading="lazy" /></a>
           </div>
           <div class="info">      
@@ -128,7 +124,7 @@ export function createProductsMarkup(arr) {
             </div>
             <div class="info-wrapper__price-container" >
               <p class="info__price">$${price}</p> 
-              ${imgElement.outerHTML}
+              ${cartImg}
             </div>     
           </div>
         </li>`;
@@ -139,57 +135,61 @@ export function createProductsMarkup(arr) {
 
 export function createPopularMarkup(arr) {
   return arr
-    .map(
-      ({
-        _id,
-        name,
-        img,
-        category,
-        popularity,
-        size,
-        is10PercentOff,
-      }) => `      
-      <li class="popular-item" data-id="${_id}">
-      ${
-        is10PercentOff
-          ? '<img class="discount-icon-popular" src="./img/discount.svg" alt="Discount" />  <img class="popular-cart-img-down" src="./img/cartLight.svg" alt="cart" />'
-          : '<img class="popular-cart-img" src="./img/cartLight.svg" alt="cart" />'
-      }
-       
-      <div class="popular-img-container"><img class="popular-item__img" src="${img}" alt="${name}" loading="lazy" />
-      </div>
-      <div class="popular-info">
-        <h3 class="popular-info__title">${name}</h3>
-        <div class="info-wrapper">
-        <p class="info-wrapper__product">Category:<span>${category}</span></p>
-        <p class="info-wrapper__product">Size:<span>${size}</span></p>
-        <p class="info-wrapper__product">Popularity:<span>${popularity}</span></p>
-        </div>             
-      </div>
-    </li>`
-    )
+    .map(({ _id, name, img, category, popularity, size, is10PercentOff }) => {
+      const imgElement =
+        '<img class="popular-cart-img" src="./img/cartLight.svg" alt="cart" />';
+
+      const imgElementDown =
+        '<img class="popular-cart-img-down" src="./img/cartLight.svg" alt="cart" />';
+
+      const discountImg =
+        '<img class="discount-icon-popular" src="./img/discount.svg" alt="Discount" />';
+
+      const imgToInsert = is10PercentOff
+        ? `${discountImg}${imgElementDown}`
+        : `${imgElement}`;
+
+      return `      
+        <li class="popular-item" data-id="${_id}">
+          ${imgToInsert}
+          <div class="popular-img-container"><img class="popular-item__img" src="${img}" alt="${name}" loading="lazy" /></div>
+          <div class="popular-info">
+            <h3 class="popular-info__title">${name}</h3>
+            <div class="info-wrapper">
+              <p class="info-wrapper__product">Category:<span>${category}</span></p>
+              <p class="info-wrapper__product">Size:<span>${size}</span></p>
+              <p class="info-wrapper__product">Popularity:<span>${popularity}</span></p>
+            </div>             
+          </div>
+        </li>`;
+    })
     .slice(0, 5)
     .join('');
 }
 
 export function createDiscountMarkup(arr) {
-  // arr.slice(0, 5);
   return arr
-    .map(
-      ({ _id, name, img, price }) => `      
+    .map(({ _id, name, img, price }) => {
+      const discountImg =
+        '<img class="discount-cheap" src="./img/discount.svg" alt="Discount" />';
+      const cartImg =
+        ' <img class="cart-img-products" src="./img/cart.svg" alt="cart" />';
+
+      return `      
       <li class="discount-item" data-id="${_id}">
-       <img class="discount-cheap" src="./img/discount.svg" alt="cart" />  
+   
+       ${discountImg} 
       <div class="discount-img-container"><a href="${img}"><img class="discount-item__img" src="${img}" alt="${name}" loading="lazy" /></a>
       </div>
       <div class="discount-info">
         <h3 class="discount-info__title">${name}</h3>
         <div class="discount-img-wrapper">
         <p class="discount-info__price">$${price}</p>
-         <img class="cart-img-products" src="./img/cart.svg" alt="cart" />      
+        ${cartImg} 
         </div>        
       </div>
-    </li>`
-    )
+    </li>`;
+    })
     .slice(0, 2)
     .join('');
 }
