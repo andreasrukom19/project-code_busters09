@@ -9,14 +9,15 @@ listItems.addEventListener('click', onCardClick);
 
 async function onCardClick(e) {
   if (e.target.classList.contains('main-cart-icon')) return;
+
   const card = e.target.closest('li');
-  if (card) {
-    const data = await foodService.findProductById(card.dataset.id);
-    modalContent.innerHTML = makeModalMarkup(data);
-  }
+  if (!card) return;
+
+  const data = await foodService.findProductById(card.dataset.id);
+  modalContent.innerHTML = makeModalMarkup(data);
+
   modal.style.display = 'block';
   document.body.classList.add('no-scroll');
-
   document.addEventListener('keydown', onEscCloseModal);
   window.addEventListener('click', onClickCloseModal);
 }
