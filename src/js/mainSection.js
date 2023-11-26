@@ -36,7 +36,7 @@ export function mainContentDrawer() {
       console.log(data);
       filterBoxList.innerHTML = createProductsMarkup(data.results);
       storage.saveAllToLocalStorage(data.results);
-      storage.defaulApiOptions();
+      storage.defaultApiOptions();
     })
     .catch(error => {
       // TODO ADD NOTIFLIX
@@ -46,9 +46,25 @@ export function mainContentDrawer() {
     });
 }
 
+// export function contentByOptionsDrawer() {
+//   foodService
+//     .getFoodListWithOptions()
+//     .then(data => {
+//       filterBoxList.innerHTML = createProductsMarkup(data.results);
+//       storage.saveAllToLocalStorage(data.results);
+//     })
+//     .catch(error => {
+//       // TODO ADD NOTIFLIX
+//       // Notify.failure(
+//       //   "Error"
+//       // );
+//     });
+// }
 export function contentByOptionsDrawer() {
+  const savedOptions = storage.getApiOptions();
+
   foodService
-    .getFoodListWithOptions()
+    .getFoodListWithOptions(savedOptions)
     .then(data => {
       filterBoxList.innerHTML = createProductsMarkup(data.results);
       storage.saveAllToLocalStorage(data.results);
