@@ -1,44 +1,28 @@
 import { foodService } from './mainSection';
 
 export class LocalStorage {
-  constructor() {}
+    constructor() { }
 
-  saveInStorage(key, data) {
-    localStorage.setItem(key, JSON.stringify(data));
-  }
+    createAndSaveInStorage (key, data) {
+        localStorage.setItem(`${key}`, JSON.stringify(data));
+    }
 
-    getFromStorage(item) {
+    getFromStorage (item) {
         return JSON.parse(localStorage.getItem(`${item}`));
     }
 
-    saveAllToLocalStorage(data) {
+    saveCardsToLocalStorage(data) {
         localStorage.setItem('products', JSON.stringify(data))
-        // якщо треба додати нові продукти в масив
-        // const products = localStorage.getItem('products')
-
-        // if (products) {
-        //     const addProducts = JSON.parse(localStorage.getItem(products)).push(data);
-        //     return localStorage.setItem('products', JSON.stringify(addProducts))
-        // }  
-        }
-
-
-  saveCategories() {
-    if (!localStorage.getItem('categories')) {
-      return foodService.getCategories().then(resp => {
-        console.log(resp);
-        localStorage.setItem('categories', JSON.stringify(resp));
-      });
     }
-  }
 
-
-    // setApiOptions(key, value) { 
-    //     // передавати значення у форматі рядку //
-    //     // const options = JSON.parse(localStorage.getItem('options'));
-    //     // ??? //
-    //     // console.log(options);
-    //     options[key] = `${value}`;
+    saveCategories() {
+        if (!localStorage.getItem('categories')) {
+            return foodService.getCategories().then(resp => {
+                console.log(resp);
+                localStorage.setItem('categories', JSON.stringify(resp));
+            });
+        }
+    }
         
   defaultApiOptions() {
     const defaultOptions = {
@@ -47,11 +31,19 @@ export class LocalStorage {
       page: 1,
       limit: 6,
     };
-
+      
     localStorage.setItem('options', JSON.stringify(defaultOptions));
   }
+    
+    setApiOptions(key, value) { 
+        // приймає аргументи у форматі рядків: ('keyword', 'ginger')/ ('keyword', 'vegetables')
+        const options = JSON.parse(localStorage.getItem('options'));
+        options[key] = value;
+        console.log(options);
+    }
 
     addToCart(id) {
+        // приймає рядок
         
         const products = JSON.parse(localStorage.getItem('products'));
 
@@ -69,6 +61,7 @@ export class LocalStorage {
     }
 
     removeFromCart(id) { 
+        // приймає рядок
 
         const cart = JSON.parse(localStorage.getItem('cart'));
 
@@ -79,21 +72,14 @@ export class LocalStorage {
         return localStorage.setItem('cart', JSON.stringify(cart));
 
     }
-  }
 
-  getFromStorage(item) {
-    return JSON.parse(localStorage.getItem(`${item}`));
-  }
+    clearCart() { 
+        localStorage.removeItem('cart')
+    }
 
-  removeFromCart(id) {
-    // test
-    const products = localStorage.getItem('products');
-    // test
-
-    JSON.parce(localStorage.getItem('cart'));
-  }
-
-  clearCart() {}
+    getFromStorage(item) {
+        return JSON.parse(localStorage.getItem(`${item}`));
+        }
 
   saveOptionsToFoodService(options) {
     foodService.perPage = options.limit;
