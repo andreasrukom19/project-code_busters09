@@ -13,9 +13,6 @@
   line-height: 1.42em;
   top: 50%;
 }
-.pagination {
-  list-style: none;
-}
 
 .pag-btn {
   background-color: var(--backgroup-light);
