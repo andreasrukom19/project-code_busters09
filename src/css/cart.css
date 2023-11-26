@@ -4,7 +4,6 @@
     align-items: center;
     gap: 14px;
     padding-top: 86px;
-    padding-left: 20px;
 }
 .cart-quentity {
     padding-top: 5px;
@@ -163,6 +162,7 @@
     border: 1px solid rgba(1, 1, 1, 0.30);
     background: var(--light-green);
     width: 335px;
+    padding-left: 60px; 
 }
 .cart_products_list {
     display: flex;
@@ -190,7 +190,6 @@
   }
   
   .cart-email::placeholder { 
-    padding-left: 60px; 
     color: var(--font-color); 
     font-size: 18px; 
     font-weight: 400; 
@@ -211,7 +210,6 @@
 @media (min-width: 768px) {
     .icon-cart {
         padding-top: 116px;
-        padding-left: 20px;
     }
     .cart-quentity {
         font-size: 32px;
@@ -294,7 +292,6 @@
 @media (min-width: 1440px) {
     .icon-cart {
         padding-top: 94px;
-        padding-left: 100px;
     }
     .cart-img {
         padding-top: 155px;
