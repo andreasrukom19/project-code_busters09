@@ -1,9 +1,12 @@
 import { foodService } from './mainSection';
+import { storage } from './mainSection';
 import iconUrl from '../img/icons.svg';
 
 const modal = document.querySelector('.modal');
 const modalContent = document.querySelector('.modal-content');
 const listItems = document.querySelector('.main-products');
+
+let cardData;
 
 listItems.addEventListener('click', onCardClick);
 
@@ -19,9 +22,8 @@ async function onCardClick(e) {
   const card = e.target.closest('li');
   if (!card) return;
 
-  const data = await foodService.findProductById(card.dataset.id);
-  console.log('ID', data);
-  modalContent.innerHTML = makeModalMarkup(data);
+  cardData = await foodService.findProductById(card.dataset.id);
+  modalContent.innerHTML = makeModalMarkup(cardData);
 
   openModal();
 
@@ -31,6 +33,8 @@ async function onCardClick(e) {
 
 function onAddToCartBtnClick() {
   this.firstChild.textContent = 'Added to';
+  console.log(cardData);
+  storage.addProductToCart(cardData);
 }
 
 function makeModalMarkup(product) {
