@@ -12,16 +12,19 @@
   font-weight: 500;
   line-height: 1.42em;
   top: 50%;
+  border-color: transparent;
 }
-
+.pagination {
+  padding-left: 30%;
+}
 .pag-btn {
-  background-color: var(--backgroup-light);
+  background-color: white;
   padding: 8px;
 }
 
 .pag-item:hover {
-  background-color: var(--main-green);
-  color: var(--backgroup-light);
+  background-color: var(--dark-green);
+  color: white;
 }
 
 .pag-item:hover .arrow-icon {
@@ -29,7 +32,7 @@
 }
 .pag-active {
   color: white;
-  background-color: var(--main-green);
+  background-color: var(--dark-green);
   border-radius: 50%;
 }
 
@@ -47,6 +50,16 @@
   display: flex;
   max-width: 334px;
   justify-content: space-between;
+  padding-top: 40px;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.pag-inactive {
+  pointer-events: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -56,11 +69,13 @@
 
   .pag-ribbon {
     max-width: 472px;
+    padding-top: 50px;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .pag-ribbon {
     max-width: 472px;
+    padding-top: 40px;
   }
 }
