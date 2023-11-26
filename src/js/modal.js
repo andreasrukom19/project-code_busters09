@@ -1,4 +1,5 @@
 import { foodService } from './mainSection';
+import iconUrl from '../img/icons.svg';
 
 const modal = document.querySelector('.modal');
 const modalContent = document.querySelector('.modal-content');
@@ -24,7 +25,7 @@ function makeModalMarkup(product) {
   return `
   <button class="modal-btn-close">
   <svg class="close-sharp" width="16" height="16">
-    <use href="./img/icons.svg#icon-ion_close-sharp"></use>
+    <use href="${iconUrl}#icon-ion_close-sharp"></use>
   </svg>
 </button>
 <div class="modal-img-container">
@@ -43,7 +44,7 @@ function makeModalMarkup(product) {
 <button class="add-to-cart-btn">
   Add to
   <svg class="modal-cart" width="18" height="18">
-    <use href="./img/icons.svg#icon-heroicons-solid_shopping-cart"></use>
+    <use href="${iconUrl}#icon-heroicons-solid_shopping-cart"></use>
   </svg>
 </button>
 `;
