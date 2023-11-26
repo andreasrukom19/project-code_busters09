@@ -3,6 +3,8 @@
 import { LocalStorage } from './local-storages';
 import { FoodService } from './food-api-service';
 import cartImgURL from '../img/cart.svg';
+import cartLightImgURL from '../img/cartLight.svg';
+import discountImgURL from '../img/discount.svg';
 const filterBoxList = document.querySelector('.filter-box__list');
 const popularProductsList = document.querySelector('.popular-products__list');
 const discountProductsList = document.querySelector('.discount-products__list');
@@ -104,12 +106,17 @@ export function createProductsMarkup(arr) {
         size,
         is10PercentOff,
       }) => {
-        const cartImg =
-          '<img src="./img/cart.svg" alt="cart" class="main-cart-icon"/>';
-        const cartDiscountImg =
-          '<img class="discount-icon-products" src="../img/discount.svg" alt="Discount" />';
+        const cartElement = document.createElement('img');
+        cartElement.src = cartImgURL;
+        cartElement.classList.add('main-cart-icon');
 
-        const imgToInsert = is10PercentOff ? `${cartDiscountImg}` : '';
+        const discountElement = document.createElement('img');
+        discountElement.src = discountImgURL;
+        discountElement.classList.add('discount-icon-products');
+
+        const imgToInsert = is10PercentOff
+          ? `${discountElement.outerHTML}`
+          : '';
 
         return `<li class="product-card" data-id=${_id}>
         ${imgToInsert}
@@ -124,7 +131,7 @@ export function createProductsMarkup(arr) {
             </div>
             <div class="info-wrapper__price-container" >
               <p class="info__price">$${price}</p> 
-              ${cartImg}
+               ${cartElement.outerHTML}
             </div>     
           </div>
         </li>`;
@@ -136,18 +143,21 @@ export function createProductsMarkup(arr) {
 export function createPopularMarkup(arr) {
   return arr
     .map(({ _id, name, img, category, popularity, size, is10PercentOff }) => {
-      const imgElement =
-        '<img class="popular-cart-img" src="./img/cartLight.svg" alt="cart" />';
+      const imgElement = document.createElement('img');
+      imgElement.src = cartLightImgURL;
+      imgElement.classList.add('popular-cart-img');
 
-      const imgElementDown =
-        '<img class="popular-cart-img-down" src="./img/cartLight.svg" alt="cart" />';
+      const imgElementDown = document.createElement('img');
+      imgElementDown.src = cartLightImgURL;
+      imgElementDown.classList.add('popular-cart-img-down');
 
-      const discountImg =
-        '<img class="discount-icon-popular" src="./img/discount.svg" alt="Discount" />';
+      const discountImgElement = document.createElement('img');
+      discountImgElement.src = discountImgURL;
+      discountImgElement.classList.add('discount-icon-popular');
 
       const imgToInsert = is10PercentOff
-        ? `${discountImg}${imgElementDown}`
-        : `${imgElement}`;
+        ? `${discountImgElement.outerHTML}${imgElementDown.outerHTML}`
+        : `${imgElement.outerHTML}`;
 
       return `      
         <li class="popular-item" data-id="${_id}">
@@ -170,22 +180,25 @@ export function createPopularMarkup(arr) {
 export function createDiscountMarkup(arr) {
   return arr
     .map(({ _id, name, img, price }) => {
-      const discountImg =
-        '<img class="discount-cheap" src="./img/discount.svg" alt="Discount" />';
-      const cartImg =
-        ' <img class="cart-img-products" src="./img/cart.svg" alt="cart" />';
+      const imgElement = document.createElement('img');
+      imgElement.src = cartImgURL;
+      imgElement.classList.add('cart-img-products');
+
+      const discountImgElement = document.createElement('img');
+      discountImgElement.src = discountImgURL;
+      discountImgElement.classList.add('discount-cheap');
 
       return `      
       <li class="discount-item" data-id="${_id}">
    
-       ${discountImg} 
+       ${discountImgElement.outerHTML} 
       <div class="discount-img-container"><a href="${img}"><img class="discount-item__img" src="${img}" alt="${name}" loading="lazy" /></a>
       </div>
       <div class="discount-info">
         <h3 class="discount-info__title">${name}</h3>
         <div class="discount-img-wrapper">
         <p class="discount-info__price">$${price}</p>
-        ${cartImg} 
+        ${imgElement.outerHTML} 
         </div>        
       </div>
     </li>`;
