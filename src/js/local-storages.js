@@ -10,6 +10,10 @@ export class LocalStorage {
         localStorage.setItem(key, JSON.stringify(data))
     }
 
+    getFromStorage(item) {
+        return JSON.parse(localStorage.getItem(`${item}`));
+    }
+
     saveAllToLocalStorage(data) {
         localStorage.setItem('products', JSON.stringify(data))
         // якщо треба додати нові продукти в масив
@@ -39,41 +43,42 @@ export class LocalStorage {
         return JSON.parse(localStorage.getItem('options'));
     }
 
-    setApiOptions(key, value) { 
-        const filter = JSON.parse(localStorage.getItem('options'));
-        // ??? //
-        filter.key = value;
-    }
+    // setApiOptions(key, value) { 
+    //     // передавати значення у форматі рядку //
+    //     // const options = JSON.parse(localStorage.getItem('options'));
+    //     // ??? //
+    //     // console.log(options);
+    //     options[key] = `${value}`;
+        
+    //     localStorage.setItem(options)
+    // }
 
     addToCart(id) {
-        // test
+        
         const products = JSON.parse(localStorage.getItem('products'));
-        // test
 
         const item = products.find(item => item._id === id);
-        console.log(item);
 
         if (!localStorage.getItem('cart')) {
-            
-            return localStorage.setItem('cart', JSON.stringify(item))
+
+            return localStorage.setItem('cart', JSON.stringify([item]))
         }
         else {
             const cart = JSON.parse(localStorage.getItem('cart'));
+            cart.push(item);
             return localStorage.setItem('cart', JSON.stringify(cart))
         }
     }
-    
-    getFromStorage(item) {
-        return JSON.parse(localStorage.getItem(`${item}`));
-    }
 
     removeFromCart(id) { 
-        // test
-        const products = localStorage.getItem('products');
-        // test
 
-        JSON.parce(localStorage.getItem('cart'));
+        const cart = JSON.parse(localStorage.getItem('cart'));
 
+        const item = cart.find(item => item._id === id);
+        const index = cart.indexOf(item)
+        cart.splice(index, 1);
+        console.log(cart);
+        return localStorage.setItem('cart', JSON.stringify(cart));
     }
 
     clearCart() { 
