@@ -1,27 +1,32 @@
 
-import  {LocalStorage}  from './local-storages';
-
+import  { storage }  from './js/mainSection';
+import imgURLdesc from './img/yellow_basket_desctop_1x-min.png';
+import imgURLtablet from './img/yellow_basket_tablet_1x-min.png';
+import imgURLmob from './img/yellow_basket_mobile_1x-min.png';
+import imgURLdesc2x from './img/yellow_basket_desctop_2x-min.png';
+import imgURLtab2x from './img/yellow_basket_tablet_2x-min.png';
+import imgURLmob2x from './img/yellow_basket_mobile_2x-min.png';
 
 const deleteBtn = document.querySelector(".cart-delete_all-button");
 const deleteAllBtn = document.querySelector(".cart_close_all");
 const cartContent = document.getElementById("cart-content");
 const cartProductsList = document.querySelector(".cart_products_list");
 const cartProductsContainer = document.querySelector('.cart_products_container');
+console.log(cartContent);
 
-const storage = new LocalStorage();
-deleteBtn.addEventListener('click', storage.removeFromCart());
+// const storage = new LocalStorage();
+// deleteBtn.addEventListener('click', storage.removeFromCart());
 
-deleteAllBtn.addEventListener('click', function() {
-  storage.removeFromCart();
-  cartContent.innerHTML = createCartMarkupDefault();;
-});
-
+// deleteAllBtn.addEventListener('click', function() {
+//   storage.removeFromCart();
+//   cartContent.innerHTML = createCartMarkupDefault();;
+// });
 
 
 //функція загальної кількості продуктів, доданих у кошик
 
 function totalQuantity() {
-    const items = LocalStorage.getFromStorage();
+    const items = storage.getFromStorage();
     const totalCount = items.reduce((total, currentItem) => (
     total + currentItem
 ), 0)
@@ -31,8 +36,10 @@ function totalQuantity() {
 // Функція для розрахунку загальної вартості продуктів
 
 function calculateTotalPrice() {
-  storage.getFromStorage();
-    const cartSumNumber = document.querySelector(".cart_sum_number");
+  const products = storage.getFromStorage('cart');
+  console.log(products);
+  const cartSumNumber = document.querySelector(".cart-sum-number");
+  console.log(cartSumNumber);
     let totalPrice = 0;
     for (let i = 0; i < products.length; i++) {
         totalPrice += products[i].price;
@@ -40,24 +47,24 @@ function calculateTotalPrice() {
     cartSumNumber.textContent = `${totalPrice}`;
 }
 
-calculateTotalPrice();
+// calculateTotalPrice();
 
 
 
-
- function checkLocalStorage() {
+function checkLocalStorage() {
   
-    const cart = storage.getFromStorage("item"); 
-    if (cart !== 0)  {
-      cartContent.innerHTML = createCartMarkup(cart);
-      cartProductsList.innerHTML = createCartMarkupProducts(cart.products);
+  const cart = storage.getFromStorage('cart');
+  console.log(cart);
+    if (!cart)  {
+      cartContent.innerHTML = createCartMarkup();
+      cartProductsList.innerHTML = createCartMarkupProducts(cart);
     } else {
       cartContent.innerHTML = createCartMarkupDefault();
     }
   
 }
 
-
+checkLocalStorage();
 
 function createCartMarkup () {
   return `<div class="products_container">
@@ -100,8 +107,8 @@ function createCartMarkup () {
         </label>
       </div>
       <div class="cart-btn">
-      <button type="submit" class="cart-checkout-button">Checkout</button>
-    </div>
+        <button type="submit" class="cart-checkout-button">Checkout</button>
+      </div>
     </form>
     
   </div>`
@@ -118,7 +125,7 @@ function createCartMarkupProducts(products) {
           <div class="add-img-info">
               <button class="cart-delete-button">
                 <svg class="cart_close_all" width="18" height="18">
-                   <use xlink:href="../img/icons.svg#icon-ion_close-sharp"></use>
+                    <use xlink:href="../img/icons.svg#icon-ion_close-sharp"></use>
                 </svg>
               </button>
             <h2 class="product-name">${name}</h2>
@@ -136,18 +143,18 @@ function createCartMarkupDefault() {
   <div class="cart-img">
     <picture>
       <source media="(min-width: 1440px)" srcset="
-          ./img/yellow_basket_desctop_1x-min.png 1x,
-          ./img/yellow_basket_desctop_2x-min.png 2x
+          ${imgURLdesc} 1x,
+          ${imgURLdesc2x} 2x
         " type="image/png" />
       <source media="(min-width: 768px)" srcset="
-          ./img/yellow_basket_tablet_1x-min.png 1x,
-          ./img/yellow_basket_tablet_2x-min.png 2x
+          ${imgURLtablet} 1x,
+          ${imgURLtab2x} 2x
         " type="image/png" />
       <source media="(min-width: 320px)" srcset="
-          ./img/yellow_basket_mobile_1x-min.png 1x,
-          ./img/yellow_basket_mobile_2x-min.png 2x
+          ${imgURLmob} 1x,
+          ${imgURLmob2x} 2x
         " type="image/png" />
-      <img class="cart-img" src="./img/yellow_basket_desctop_1x-min.png" alt="basket" />
+      <img class="cart-img" src="${imgURLdesc}" alt="basket" />
     </picture>
   </div>
   <div class="cart-empty">
@@ -163,22 +170,19 @@ function createCartMarkupDefault() {
 };
 
 //scroll
-if (localStorage.getFromStorage('cart_products_list')) {
-const products = JSON.parse(localStorage.getFromStorage('cart_products_list'));
-if (products.length > 3) {
-
-
-
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {    
-      if (entry.isIntersecting) {
-          cartProductsContainer.classList.add('scroll');
-      } else {
-          cartProductsContainer.classList.remove('scroll');
-        }
-});
-});
-observer.observe(cartProductsList);
-}
-}
+// if (storage.getFromStorage('cart')) {
+//   const products = storage.getFromStorage('cart');
+// if (products.length > 3) {
+//   const observer = new IntersectionObserver(entries => {
+//     entries.forEach(entry => {    
+//       if (entry.isIntersecting) {
+//           cartProductsContainer.classList.add('scroll');
+//       } else {
+//           cartProductsContainer.classList.remove('scroll');
+//         }
+//   });
+// });
+//   observer.observe(cartProductsList);
+// }
+// }
 
