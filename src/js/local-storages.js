@@ -1,13 +1,13 @@
 import { foodService } from './mainSection';
 
 export class LocalStorage {
-  constructor() {}
-
+    constructor() { }
+  
   createAndSave(key, data) {
     localStorage.setItem(key, JSON.stringify(data));
     }
 
-    getFromStorage(item) {
+    getFromStorage (item) {
         return JSON.parse(localStorage.getItem(`${item}`));
     }
 
@@ -32,7 +32,7 @@ export class LocalStorage {
       page: 1,
       limit: 6,
     };
-
+      
     localStorage.setItem('options', JSON.stringify(defaultOptions));
   }
     
