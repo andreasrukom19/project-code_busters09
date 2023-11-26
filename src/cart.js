@@ -11,10 +11,10 @@ import imgURLmob2x from './img/yellow_basket_mobile_2x-min.png';
 const deleteBtn = document.querySelector(".cart-delete_all-button");
 const deleteAllBtn = document.querySelector(".cart_close_all");
 const cartContent = document.getElementById("cart-content");
-const cartProductsList = document.querySelector(".cart_products_list");
+
 const cartProductsContainer = document.querySelector('.cart_products_container');
 const cartHeader = document.querySelector('.cart-quentity');
-const cartSumNumber = document.querySelector(".cart-sum-number");
+
 // console.log(cartContent);
 
 // const storage = new LocalStorage();
@@ -44,20 +44,21 @@ function calculateTotalPrice() {
   let total = 0;
   if (products) {
     products.forEach(product => {
-      total + product.price;
+      total += product.price;
       return cartSumNumber.textContent = `${total}`;
     });
   }
 }
-calculateTotalPrice() 
+// calculateTotalPrice() 
 
 function checkLocalStorage() {
 
   const cart = storage.getFromStorage('cart');
   console.log(cart);
 
-    if (cart)  {
-      cartContent.innerHTML = createCartMarkup();
+  if (cart) {
+    cartContent.innerHTML = createCartMarkup(cart);
+    const cartProductsList = cartContent.querySelector('.cart_products_list');
       cartProductsList.innerHTML = createCartMarkupProducts(cart);
     } else {
       cartContent.innerHTML = createCartMarkupDefault();
@@ -77,9 +78,9 @@ function createCartMarkup () {
       </button>          
     </div>        
     <div class="cart_products_container">       
-      <div class="cart_products_list">                        
+      <ul class="cart_products_list">                        
         <!-- Add your products here -->            
-      </div>          
+      </ul>          
     </div>      
   </div>      
   <div class="products_order_container">      
@@ -136,7 +137,7 @@ function createCartMarkupProducts(products) {
             <p class="product-price">${price}</p>
           </div>
           </li>`
-  })  .join('');};
+  })  .join('')}
 
 function createCartMarkupDefault() {
   return `  
