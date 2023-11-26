@@ -55,7 +55,7 @@ function checkLocalStorage() {
   
   const cart = storage.getFromStorage('cart');
   console.log(cart);
-    if (!cart)  {
+    if (cart)  {
       cartContent.innerHTML = createCartMarkup();
       cartProductsList.innerHTML = createCartMarkupProducts(cart);
     } else {
