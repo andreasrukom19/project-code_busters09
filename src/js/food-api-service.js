@@ -1,69 +1,80 @@
 import axios from 'axios';
+import { storage } from './mainSection';
 
 export class FoodService {
   constructor() {
     this.URL = `https://food-boutique.b.goit.study/api`;
-    this.currentPage = 1;
-    this.perPage = 6;
-    this.searchQuerry = '';
-    this.category = '';
+    // this.currentPage = 1;
+    // this.perPage = 6;
+    // this.searchQuerry = '';
+    // this.category = '';
   }
 
-  getBasicFoodList() {
-    if (window.innerWidth >= 768 && window.innerWidth < 1440) {
-      this.perPage = 8;
-    } else if (window.innerWidth >= 1440) {
-      this.perPage = 9;
-    }
-    return axios
-      .get(`${this.URL}/products?limit=${this.perPage}`)
-      .then(response => {
-        return response.data;
-      });
-  }
+  // getBasicFoodList() {
+  //   if (window.innerWidth >= 768 && window.innerWidth < 1440) {
+  //     this.perPage = 8;
+  //   } else if (window.innerWidth >= 1440) {
+  //     this.perPage = 9;
+  //   }
+  //   return axios
+  //     .get(`${this.URL}/products?limit=${this.perPage}`)
+  //     .then(response => {
+  //       return response.data;
+  //     });
+  // }
 
-  getBasicFoodList2(obj) {
-    if (window.innerWidth >= 768 && window.innerWidth < 1440) {
-      this.perPage = 8;
-    } else if (window.innerWidth >= 1440) {
-      this.perPage = 9;
-    }
-    return axios
-      .get(`${this.URL}/products?limit=${obj.limit}`)
-      .then(response => {
-        return response.data;
-      });
-  }
+  // getBasicFoodList2(obj) {
+  //   if (window.innerWidth >= 768 && window.innerWidth < 1440) {
+  //     this.perPage = 8;
+  //   } else if (window.innerWidth >= 1440) {
+  //     this.perPage = 9;
+  //   }
+  //   return axios
+  //     .get(`${this.URL}/products?limit=${obj.limit}`)
+  //     .then(response => {
+  //       return response.data;
+  //     });
+  // }
 
   getFoodListWithOptions2(obj) {
     if (window.innerWidth >= 768 && window.innerWidth < 1440) {
-      this.perPage = 8;
+      obj.limit = 8;
+      storage.setOptions(obj);
     } else if (window.innerWidth >= 1440) {
-      this.perPage = 9;
+      obj.limit = 9;
+      storage.setOptions(obj);
     }
-    return axios
-      .get(
-        `${this.URL}/products?page=${obj.page}&limit=${obj.limit}&keyword=${obj.keyword}&category=${obj.category}`
-      )
-      .then(response => {
-        return response.data;
-      });
+
+    const params = {
+      page: obj.page,
+      limit: obj.limit,
+      keyword: obj.keyword !== null ? obj.keyword : undefined, //міняємо null на undefined
+      category: obj.category !== null ? obj.category : undefined, //міняємо null на undefined
+    };
+
+    Object.keys(params).forEach(
+      key => params[key] === undefined && delete params[key] // видалення, якщо в пошуках та категорії - undefined
+    );
+
+    return axios.get(`${this.URL}/products`, { params }).then(response => {
+      return response.data;
+    });
   }
 
-  getFoodListWithOptions() {
-    if (window.innerWidth >= 768 && window.innerWidth < 1440) {
-      this.perPage = 8;
-    } else if (window.innerWidth >= 1440) {
-      this.perPage = 9;
-    }
-    return axios
-      .get(
-        `${this.URL}/products?page=${this.currentPage}&limit=${this.perPage}&keyword=${this.searchQuerry}&category=${this.category}`
-      )
-      .then(response => {
-        return response.data;
-      });
-  }
+  // getFoodListWithOptions() {
+  //   if (window.innerWidth >= 768 && window.innerWidth < 1440) {
+  //     this.perPage = 8;
+  //   } else if (window.innerWidth >= 1440) {
+  //     this.perPage = 9;
+  //   }
+  //   return axios
+  //     .get(
+  //       `${this.URL}/products?page=${this.currentPage}&limit=${this.perPage}&keyword=${this.searchQuerry}&category=${this.category}`
+  //     )
+  //     .then(response => {
+  //       return response.data;
+  //     });
+  // }
 
   findProductById(id) {
     return axios.get(`${this.URL}/products/${id}`).then(response => {
@@ -89,21 +100,21 @@ export class FoodService {
     });
   }
 
-  resetPageCounter() {
-    this.currentPage = 1;
-  }
+  // resetPageCounter() {
+  //   this.currentPage = 1;
+  // }
 
-  incrementPage() {
-    this.currentPage += 1;
-  }
+  // incrementPage() {
+  //   this.currentPage += 1;
+  // }
 
-  resetSearchQuerry() {
-    this.searchQuerry = '';
-  }
+  // resetSearchQuerry() {
+  //   this.searchQuerry = '';
+  // }
 
-  resetCategory() {
-    this.category = '';
-  }
+  // resetCategory() {
+  //   this.category = '';
+  // }
 
   //* POST => //
 

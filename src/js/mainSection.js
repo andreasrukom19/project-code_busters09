@@ -24,7 +24,8 @@ document.addEventListener('click', function (event) {
   }
 });
 storage.defaultApiOptions();
-mainContentDrawer();
+// mainContentDrawer();
+contentByOptionsDrawer();
 popularContentDrawer();
 discountContentDrawer();
 changeCardIconOnClick();
@@ -32,7 +33,7 @@ changeCardIconOnClick();
 export function mainContentDrawer() {
   const options = JSON.parse(localStorage.getItem('options'));
   foodService
-    .getBasicFoodList2(options)
+    .getFoodListWithOptions2(options)
     .then(data => {
       console.log(data);
       filterBoxList.innerHTML = createProductsMarkup(data.results);
@@ -47,10 +48,10 @@ export function mainContentDrawer() {
 }
 
 export function contentByOptionsDrawer() {
-  const savedOptions = storage.getApiOptions();
+  const options = JSON.parse(localStorage.getItem('options'));
 
   foodService
-    .getFoodListWithOptions(savedOptions)
+    .getFoodListWithOptions2(options)
     .then(data => {
       filterBoxList.innerHTML = createProductsMarkup(data.results);
       storage.saveCardsToLocalStorage(data.results);
