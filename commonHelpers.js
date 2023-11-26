@@ -1,4 +1,4 @@
-import{s as l}from"./assets/mainSection-846c0ad1.js";import"./assets/vendor-a61d8330.js";document.querySelector(".cart-delete_all-button");document.querySelector(".cart_close_all");const e=document.getElementById("cart-content"),n=document.querySelector(".cart_products_list");document.querySelector(".cart_products_container");console.log(e);function d(){const t=l.getFromStorage("cart");console.log(t),t?e.innerHTML=m():(e.innerHTML=p(),n.innerHTML=u(t))}d();function p(){return`<div class="products_container">
+import{s as d}from"./assets/mainSection-846c0ad1.js";import"./assets/vendor-a61d8330.js";const e="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",n="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",p="/project-code_busters09/assets/yellow_basket_mobile_1x-min-195418a1.png",u="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",m="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",g="/project-code_busters09/assets/yellow_basket_mobile_2x-min-566aede4.png";document.querySelector(".cart-delete_all-button");document.querySelector(".cart_close_all");const s=document.getElementById("cart-content"),_=document.querySelector(".cart_products_list");document.querySelector(".cart_products_container");console.log(s);function v(){const t=d.getFromStorage("cart");console.log(t),t?s.innerHTML=h():(s.innerHTML=b(),_.innerHTML=y(t))}v();function b(){return`<div class="products_container">
   <div class="cart-add-products">      
     <div class="delete-all">        
       <button type="submit" class="cart-delete-all-button">Delete all            
@@ -42,10 +42,10 @@ import{s as l}from"./assets/mainSection-846c0ad1.js";import"./assets/vendor-a61d
       </div>
     </form>
     
-  </div>`}function u(t){return t.map(({_id:s,name:a,img:c,category:r,size:i,price:o})=>`      
-    <li class="discount-item" data-id="${s}">
+  </div>`}function y(t){return t.map(({_id:c,name:a,img:o,category:r,size:i,price:l})=>`      
+    <li class="discount-item" data-id="${c}">
     <div class="add-img">
-              <img src="${c}" alt="Product Image" class="product-image">
+              <img src="${o}" alt="Product Image" class="product-image">
           </div>
           <div class="add-img-info">
               <button class="cart-delete-button">
@@ -58,24 +58,24 @@ import{s as l}from"./assets/mainSection-846c0ad1.js";import"./assets/vendor-a61d
                     <p class="product-category">Category: ${r}</p>
                     <p class="product-size">Size: ${i}</p>
                 </div>
-            <p class="product-price">${o}</p>
+            <p class="product-price">${l}</p>
           </div>
-          </li>`).join("")}function m(){return`  
+          </li>`).join("")}function h(){return`  
   <div class="cart-img">
     <picture>
       <source media="(min-width: 1440px)" srcset="
-          ./img/yellow_basket_desctop_1x-min.png 1x,
-          ./img/yellow_basket_desctop_2x-min.png 2x
+          ${e} 1x,
+          ${u} 2x
         " type="image/png" />
       <source media="(min-width: 768px)" srcset="
-          ./img/yellow_basket_tablet_1x-min.png 1x,
-          ./img/yellow_basket_tablet_2x-min.png 2x
+          ${n} 1x,
+          ${m} 2x
         " type="image/png" />
       <source media="(min-width: 320px)" srcset="
-          ./img/yellow_basket_mobile_1x-min.png 1x,
-          ./img/yellow_basket_mobile_2x-min.png 2x
+          ${p} 1x,
+          ${g} 2x
         " type="image/png" />
-      <img class="cart-img" src="./img/yellow_basket_desctop_1x-min.png" alt="basket" />
+      <img class="cart-img" src="${e}" alt="basket" />
     </picture>
   </div>
   <div class="cart-empty">
