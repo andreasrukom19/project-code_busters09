@@ -6,7 +6,7 @@ export function changeCardIconOnClick() {
       event.target.classList.contains('popular-cart-img')
     ) {
       const currentImage = event.target;
-      const newImagePath = '../img/checked.svg';
+      const newImagePath = './img/checked.svg';
       currentImage.src = newImagePath;
     }
   });
