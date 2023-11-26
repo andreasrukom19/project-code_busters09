@@ -7,16 +7,21 @@ export class LocalStorage {
     localStorage.setItem(key, JSON.stringify(data));
   }
 
-  saveAllToLocalStorage(data) {
-    localStorage.setItem('products', JSON.stringify(data));
-    // якщо треба додати нові продукти в масив
-    // const products = localStorage.getItem('products')
+    getFromStorage(item) {
+        return JSON.parse(localStorage.getItem(`${item}`));
+    }
 
-    // if (products) {
-    //     const addProducts = JSON.parse(localStorage.getItem(products)).push(data);
-    //     return localStorage.setItem('products', JSON.stringify(addProducts))
-    // }
-  }
+    saveAllToLocalStorage(data) {
+        localStorage.setItem('products', JSON.stringify(data))
+        // якщо треба додати нові продукти в масив
+        // const products = localStorage.getItem('products')
+
+        // if (products) {
+        //     const addProducts = JSON.parse(localStorage.getItem(products)).push(data);
+        //     return localStorage.setItem('products', JSON.stringify(addProducts))
+        // }  
+        }
+
 
   saveCategories() {
     if (!localStorage.getItem('categories')) {
@@ -27,12 +32,14 @@ export class LocalStorage {
     }
   }
 
-  //   defaultApiOptions() {
-  //     localStorage.setItem(
-  //       'options',
-  //       '{keyword:null, category: null, page: 1, limit: 6}'
-  //     );
-  //   }
+
+    // setApiOptions(key, value) { 
+    //     // передавати значення у форматі рядку //
+    //     // const options = JSON.parse(localStorage.getItem('options'));
+    //     // ??? //
+    //     // console.log(options);
+    //     options[key] = `${value}`;
+        
   defaultApiOptions() {
     const defaultOptions = {
       keyword: null,
@@ -44,29 +51,33 @@ export class LocalStorage {
     localStorage.setItem('options', JSON.stringify(defaultOptions));
   }
 
-  getApiOptions() {
-    return JSON.parse(localStorage.getItem('options'));
-  }
+    addToCart(id) {
+        
+        const products = JSON.parse(localStorage.getItem('products'));
 
-  setApiOptions(key, value) {
-    const filter = JSON.parse(localStorage.getItem('options'));
-    // ??? //
-    options[key] = value;
-  }
+        const item = products.find(item => item._id === id);
 
-  addToCart(id) {
-    // test
-    const products = JSON.parse(localStorage.getItem('products'));
-    // test
+        if (!localStorage.getItem('cart')) {
 
-    const item = products.find(item => item._id === id);
-    console.log(item);
+            return localStorage.setItem('cart', JSON.stringify([item]))
+        }
+        else {
+            const cart = JSON.parse(localStorage.getItem('cart'));
+            cart.push(item);
+            return localStorage.setItem('cart', JSON.stringify(cart))
+        }
+    }
 
-    if (!localStorage.getItem('cart')) {
-      return localStorage.setItem('cart', JSON.stringify(item));
-    } else {
-      const cart = JSON.parse(localStorage.getItem('cart'));
-      return localStorage.setItem('cart', JSON.stringify(cart));
+    removeFromCart(id) { 
+
+        const cart = JSON.parse(localStorage.getItem('cart'));
+
+        const item = cart.find(item => item._id === id);
+        const index = cart.indexOf(item)
+        cart.splice(index, 1);
+        console.log(cart);
+        return localStorage.setItem('cart', JSON.stringify(cart));
+
     }
   }
 
