@@ -1,3 +1,5 @@
+import checkedImage from '/img/checked.svg';
+
 export function changeCardIconOnClick() {
   document.addEventListener('click', function (event) {
     if (
@@ -6,8 +8,7 @@ export function changeCardIconOnClick() {
       event.target.classList.contains('popular-cart-img')
     ) {
       const currentImage = event.target;
-      const newImagePath = './img/checked.svg';
-      currentImage.src = newImagePath;
+      currentImage.src = checkedImage;
     }
   });
 }
