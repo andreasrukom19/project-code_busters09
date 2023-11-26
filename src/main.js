@@ -6,3 +6,4 @@ import './js/pagination.js';
 import './js/footer-send.js';
 import './js/mainSection.js';
 import './js/modal.js';
+import './js/header.js';
