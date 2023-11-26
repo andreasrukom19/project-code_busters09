@@ -1,17 +1,18 @@
 
-import  LocalStorage  from './local-storages';
+import  {LocalStorage}  from './local-storages';
 
-let cartItemCount = 0;
+
 const deleteBtn = document.querySelector(".cart-delete_all-button");
 const deleteAllBtn = document.querySelector(".cart_close_all");
 const cartContent = document.getElementById("cart-content");
 const cartProductsList = document.querySelector(".cart_products_list");
 const cartProductsContainer = document.querySelector('.cart_products_container');
 
+const storage = new LocalStorage();
+deleteBtn.addEventListener('click', storage.removeFromCart());
 
-deleteBtn.addEventListener('click', removeFromCart());
 deleteAllBtn.addEventListener('click', function() {
-  removeFromCart();
+  storage.removeFromCart();
   cartContent.innerHTML = createCartMarkupDefault();;
 });
 
@@ -22,7 +23,7 @@ deleteAllBtn.addEventListener('click', function() {
 function totalQuantity() {
     const items = LocalStorage.getFromStorage();
     const totalCount = items.reduce((total, currentItem) => (
-    total + currentItem.cant
+    total + currentItem
 ), 0)
     document.querySelector('h1').textContent = `Cart (${totalCount})`;
 }
@@ -30,7 +31,7 @@ function totalQuantity() {
 // Функція для розрахунку загальної вартості продуктів
 
 function calculateTotalPrice() {
-  getFromStorage();
+  storage.getFromStorage();
     const cartSumNumber = document.querySelector(".cart_sum_number");
     let totalPrice = 0;
     for (let i = 0; i < products.length; i++) {
@@ -44,18 +45,16 @@ calculateTotalPrice();
 
 
 
-async function checkLocalStorage() {
-  try {
-    const cart = LocalStorage.getFromStorage(); 
-    if (cart) {
+ function checkLocalStorage() {
+  
+    const cart = storage.getFromStorage("item"); 
+    if (cart !== 0)  {
       cartContent.innerHTML = createCartMarkup(cart);
-     cartProductsList.innerHTML = createCartMarkupProducts(cart.products);
+      cartProductsList.innerHTML = createCartMarkupProducts(cart.products);
     } else {
       cartContent.innerHTML = createCartMarkupDefault();
     }
-  } catch (error) {
-    console.error(error);
-  }
+  
 }
 
 
@@ -108,10 +107,10 @@ function createCartMarkup () {
   </div>`
 }
 
+
 function createCartMarkupProducts(products) {
-  return products
-  .map(
-    ({ _id, name, img, category, size, price }) => `      
+  return  products.map(({ _id, name, img, category, size, price }) => {
+  return `      
     <li class="discount-item" data-id="${_id}">
     <div class="add-img">
               <img src="${img}" alt="Product Image" class="product-image">
@@ -130,7 +129,8 @@ function createCartMarkupProducts(products) {
             <p class="product-price">${price}</p>
           </div>
           </li>`
-)};
+  })  .join('');};
+
 function createCartMarkupDefault() {
   return `  
   <div class="cart-img">
@@ -181,3 +181,4 @@ const observer = new IntersectionObserver(entries => {
 observer.observe(cartProductsList);
 }
 }
+
