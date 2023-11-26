@@ -18,6 +18,12 @@ const discountProductsListResp = document.querySelector(
 export const storage = new LocalStorage();
 export const foodService = new FoodService();
 
+document.addEventListener('click', function (event) {
+  if (event.target.tagName === 'IMG') {
+    event.preventDefault(); 
+  }
+});
+
 mainContentDrawer();
 popularContentDrawer();
 discountContentDrawer();
