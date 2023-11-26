@@ -11,7 +11,7 @@ const filterBoxList = document.querySelector('.filter-box__list');
 
 document.addEventListener('DOMContentLoaded', function () {
   // Скинути значення інпуту
-  submitForm.elements.search.value = '';
+  // submitForm.elements.search.value = '';
   // Скинути значення select
   select.value = '';
 });
@@ -21,8 +21,8 @@ submitForm.addEventListener('submit', event => {
   event.preventDefault();
   //const selectedItem = select.value; //===============================================================
   const searchValue = event.target.elements.search.value;
-  foodService.searchQuerry = searchValue;
-  const savedOptions = storage.getApiOptions();
+  //foodService.searchQuerry = searchValue;
+  const savedOptions = storage.getFromStorage('options');
   savedOptions.keyword = searchValue ? searchValue : null;
 
   localStorage.setItem('options', JSON.stringify(savedOptions));
@@ -40,12 +40,13 @@ select.addEventListener('change', function () {
   //submitForm.elements.search.value = '';
   const selectedItem = select.value;
   //const searchValue = event.target.elements.search.value; //================================================================================
-  const savedOptions = storage.getApiOptions();
+  const savedOptions = storage.getFromStorage('options');
 
   savedOptions.category = selectedItem ? selectedItem : null;
   localStorage.setItem('options', JSON.stringify(savedOptions));
   if (select.value === 'show-all') {
     filterBoxList.innerHTML = '';
+    storage.defaultApiOptions();
     mainContentDrawer();
   } else {
     foodService.category = selectedItem;
