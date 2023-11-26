@@ -35,7 +35,7 @@ export function mainContentDrawer() {
     .then(data => {
       filterBoxList.innerHTML = createProductsMarkup(data.results);
       storage.saveAllToLocalStorage(data.results);
-      storage.defaulApiOptions();
+      storage.defaultApiOptions();
     })
     .catch(error => {
       // TODO ADD NOTIFLIX
@@ -45,9 +45,25 @@ export function mainContentDrawer() {
     });
 }
 
+// export function contentByOptionsDrawer() {
+//   foodService
+//     .getFoodListWithOptions()
+//     .then(data => {
+//       filterBoxList.innerHTML = createProductsMarkup(data.results);
+//       storage.saveAllToLocalStorage(data.results);
+//     })
+//     .catch(error => {
+//       // TODO ADD NOTIFLIX
+//       // Notify.failure(
+//       //   "Error"
+//       // );
+//     });
+// }
 export function contentByOptionsDrawer() {
+  const savedOptions = storage.getApiOptions();
+
   foodService
-    .getFoodListWithOptions()
+    .getFoodListWithOptions(savedOptions)
     .then(data => {
       filterBoxList.innerHTML = createProductsMarkup(data.results);
       storage.saveAllToLocalStorage(data.results);
@@ -102,7 +118,7 @@ export function createProductsMarkup(arr) {
         popularity,
         size,
         is10PercentOff,
-      }) => `<li class="product-card data-id="${_id}">
+      }) => `<li class="product-card" data-id="${_id}">
         ${
           is10PercentOff
             ? '<img class="discount-icon-products" src="../../assets/discount.svg" alt="Discount" />'

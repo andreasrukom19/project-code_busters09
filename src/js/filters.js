@@ -1,4 +1,9 @@
-import { foodService, storage, createProductsMarkup } from './mainSection.js';
+import {
+  foodService,
+  mainContentDrawer,
+  contentByOptionsDrawer,
+  storage,
+} from './mainSection.js';
 
 const submitForm = document.querySelector('.submit-form');
 const select = document.querySelector('.categories');
@@ -14,41 +19,38 @@ document.addEventListener('DOMContentLoaded', function () {
 submitForm.addEventListener('submit', event => {
   //select.value = '';
   event.preventDefault();
-
+  //const selectedItem = select.value; //===============================================================
   const searchValue = event.target.elements.search.value;
   foodService.searchQuerry = searchValue;
+  const savedOptions = storage.getApiOptions();
+  savedOptions.keyword = searchValue ? searchValue : null;
 
-  foodService
-    .getFoodList()
-    .then(data => {
-      filterBoxList.innerHTML = createProductsMarkup(data.results);
-    })
-    .catch(error => {
-      console.error('Error fetching food list:', error.message);
-      throw error;
-    });
+  localStorage.setItem('options', JSON.stringify(savedOptions));
+  // storage.updateFoodService(savedOptions);
+
+  if (searchValue) {
+    contentByOptionsDrawer();
+  } else {
+    foodService.resetSearchQuerry();
+    mainContentDrawer();
+  }
 });
 
 select.addEventListener('change', function () {
   //submitForm.elements.search.value = '';
   const selectedItem = select.value;
+  //const searchValue = event.target.elements.search.value; //================================================================================
+  const savedOptions = storage.getApiOptions();
+
+  savedOptions.category = selectedItem ? selectedItem : null;
+  localStorage.setItem('options', JSON.stringify(savedOptions));
   if (select.value === 'show-all') {
     filterBoxList.innerHTML = '';
-    foodService.getFoodList().then(data => {
-      filterBoxList.innerHTML = createProductsMarkup(data.results);
-    });
+    mainContentDrawer();
   } else {
     foodService.category = selectedItem;
     filterBoxList.innerHTML = '';
-    foodService
-      .getFoodList()
-      .then(data => {
-        filterBoxList.innerHTML = createProductsMarkup(data.results);
-      })
-      .catch(error => {
-        filterBoxList.innerHTML = '';
-      })
-      .finally(() => {});
+    contentByOptionsDrawer();
   }
 });
 
@@ -77,5 +79,6 @@ function createShowAllOption() {
   const showAllOption = document.createElement('option');
   showAllOption.textContent = 'Show All';
   showAllOption.value = 'show-all';
+  //resetCategory();
   return showAllOption;
 }
