@@ -20,23 +20,23 @@ export const foodService = new FoodService();
 
 document.addEventListener('click', function (event) {
   if (event.target.tagName === 'IMG') {
-    event.preventDefault(); 
+    event.preventDefault();
   }
 });
-
+storage.defaultApiOptions();
 mainContentDrawer();
 popularContentDrawer();
 discountContentDrawer();
 changeCardIconOnClick();
 
 export function mainContentDrawer() {
+  const options = JSON.parse(localStorage.getItem('options'));
   foodService
-    .getBasicFoodList()
+    .getBasicFoodList2(options)
     .then(data => {
       console.log(data);
       filterBoxList.innerHTML = createProductsMarkup(data.results);
       storage.saveCardsToLocalStorage(data.results);
-      storage.defaultApiOptions();
     })
     .catch(error => {
       // TODO ADD NOTIFLIX

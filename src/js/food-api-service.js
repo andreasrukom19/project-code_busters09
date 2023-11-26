@@ -22,6 +22,34 @@ export class FoodService {
       });
   }
 
+  getBasicFoodList2(obj) {
+    if (window.innerWidth >= 768 && window.innerWidth < 1440) {
+      this.perPage = 8;
+    } else if (window.innerWidth >= 1440) {
+      this.perPage = 9;
+    }
+    return axios
+      .get(`${this.URL}/products?limit=${obj.limit}`)
+      .then(response => {
+        return response.data;
+      });
+  }
+
+  getFoodListWithOptions2(obj) {
+    if (window.innerWidth >= 768 && window.innerWidth < 1440) {
+      this.perPage = 8;
+    } else if (window.innerWidth >= 1440) {
+      this.perPage = 9;
+    }
+    return axios
+      .get(
+        `${this.URL}/products?page=${obj.page}&limit=${obj.limit}&keyword=${obj.keyword}&category=${obj.category}`
+      )
+      .then(response => {
+        return response.data;
+      });
+  }
+
   getFoodListWithOptions() {
     if (window.innerWidth >= 768 && window.innerWidth < 1440) {
       this.perPage = 8;
