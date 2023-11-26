@@ -1,6 +1,7 @@
 import { foodService } from './mainSection';
 import { storage } from './mainSection';
 import iconUrl from '../img/icons.svg';
+import { updateCartCountTitle } from "./header";
 
 const modal = document.querySelector('.modal');
 const modalContent = document.querySelector('.modal-content');
@@ -35,6 +36,7 @@ function onAddToCartBtnClick() {
   this.firstChild.textContent = 'Added to';
   console.log(cardData);
   storage.addProductToCart(cardData);
+  updateCartCountTitle();
 }
 
 function makeModalMarkup(product) {
