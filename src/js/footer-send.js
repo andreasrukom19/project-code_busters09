@@ -1,23 +1,26 @@
-const form = document.getElementById('subscriptionForm');
-const emailInput = document.getElementById('emailInput');
+import {foodService} from './mainSection.js';
+const subscriptionForm = document.getElementById('subscriptionForm');
 
 function sendFormData(event) {
   event.preventDefault();
 
-  if (emailInput.checkValidity()) {
-    const formData = new FormData(form);
+  const emailInput = document.getElementById('emailInput');
 
-    axios.post('https://food-boutique.b.goit.study/api/subscription', formData)
+  if (emailInput.checkValidity()) {
+    const email = emailInput.value;
+
+    foodService.subscribe(email)
       .then(response => {
-        console.log('Дані успішно відправлені на сервер:', response.data);
-        emailInput.value = '';
+        console.log('Subscription successful:', response);
       })
       .catch(error => {
-        console.error('Помилка відправки даних на сервер:', error);
+        console.error('Error subscribing:', error);
+    
       });
   } else {
-    console.log('Невірний формат електронної пошти');
+    console.log('Invalid email format');
   }
 }
 
-form.addEventListener('submit', sendFormData);
+
+subscriptionForm.addEventListener('submit', sendFormData);
