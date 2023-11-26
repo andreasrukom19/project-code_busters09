@@ -3,27 +3,20 @@ import { foodService } from './mainSection';
 export class LocalStorage {
   constructor() {}
 
-  saveInStorage(key, data) {
+  createAndSave(key, data) {
     localStorage.setItem(key, JSON.stringify(data));
-  }
+    }
 
     getFromStorage(item) {
         return JSON.parse(localStorage.getItem(`${item}`));
     }
 
-    saveAllToLocalStorage(data) {
+    saveCardsToLocalStorage(data) {
         localStorage.setItem('products', JSON.stringify(data))
-        // якщо треба додати нові продукти в масив
-        // const products = localStorage.getItem('products')
-
-        // if (products) {
-        //     const addProducts = JSON.parse(localStorage.getItem(products)).push(data);
-        //     return localStorage.setItem('products', JSON.stringify(addProducts))
-        // }  
         }
 
 
-  saveCategories() {
+    saveCategories() {
     if (!localStorage.getItem('categories')) {
       return foodService.getCategories().then(resp => {
         console.log(resp);
@@ -31,15 +24,6 @@ export class LocalStorage {
       });
     }
   }
-
-
-    // setApiOptions(key, value) { 
-    //     // передавати значення у форматі рядку //
-    //     // const options = JSON.parse(localStorage.getItem('options'));
-    //     // ??? //
-    //     // console.log(options);
-    //     options[key] = `${value}`;
-    // }
         
   defaultApiOptions() {
     const defaultOptions = {
@@ -51,8 +35,16 @@ export class LocalStorage {
 
     localStorage.setItem('options', JSON.stringify(defaultOptions));
   }
+    
+    setApiOptions(key, value) { 
+        // приймає аргументи у форматі рядків: ('keyword', 'ginger')/ ('keyword', 'vegetables')
+        const options = JSON.parse(localStorage.getItem('options'));
+        options[key] = value;
+        localStorage.setItem('options', JSON.stringify(options));
+    }
 
     addToCart(id) {
+        // приймає рядок
         
         const products = JSON.parse(localStorage.getItem('products'));
 
@@ -69,8 +61,16 @@ export class LocalStorage {
         }
     }
 
-    removeFromCart(id) { 
+    addProductToCart(obj) { 
+        const cart = JSON.parse(localStorage.getItem('cart'));
+        cart.push(obj);
+        return localStorage.setItem('cart', JSON.stringify(cart))
+    }
 
+
+    removeFromCart(id) { 
+        // приймає рядок
+        
         const cart = JSON.parse(localStorage.getItem('cart'));
 
         const item = cart.find(item => item._id === id);
@@ -81,7 +81,9 @@ export class LocalStorage {
 
     }
 
-    clearCart() {}
+    clearCart() {
+        localStorage.removeItem('cart');
+    }
 
   saveOptionsToFoodService(options) {
     foodService.perPage = options.limit;
