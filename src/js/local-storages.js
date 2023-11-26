@@ -39,6 +39,7 @@ export class LocalStorage {
     //     // ??? //
     //     // console.log(options);
     //     options[key] = `${value}`;
+    // }
         
   defaultApiOptions() {
     const defaultOptions = {
@@ -79,21 +80,8 @@ export class LocalStorage {
         return localStorage.setItem('cart', JSON.stringify(cart));
 
     }
-  }
 
-  getFromStorage(item) {
-    return JSON.parse(localStorage.getItem(`${item}`));
-  }
-
-  removeFromCart(id) {
-    // test
-    const products = localStorage.getItem('products');
-    // test
-
-    JSON.parce(localStorage.getItem('cart'));
-  }
-
-  clearCart() {}
+    clearCart() {}
 
   saveOptionsToFoodService(options) {
     foodService.perPage = options.limit;
