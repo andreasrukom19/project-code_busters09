@@ -5,6 +5,7 @@ import { FoodService } from './food-api-service';
 import cartImgURL from '../img/cart.svg';
 import cartLightImgURL from '../img/cartLight.svg';
 import discountImgURL from '../img/discount.svg';
+import { changeCardIconOnClick } from './changeCardIconOnClick';
 const filterBoxList = document.querySelector('.filter-box__list');
 const popularProductsList = document.querySelector('.popular-products__list');
 const discountProductsList = document.querySelector('.discount-products__list');
@@ -17,20 +18,10 @@ const discountProductsListResp = document.querySelector(
 export const storage = new LocalStorage();
 export const foodService = new FoodService();
 
-document.addEventListener('click', function (event) {
-  if (event.target.classList.contains('cart-img-products')) {
-    const currentImage = event.target;
-    const newImagePath = '../img/checked.svg';
-    currentImage.src = newImagePath;
-  }
-});
-
-// console.log(foodService.options);
-
 mainContentDrawer();
 popularContentDrawer();
 discountContentDrawer();
-
+changeCardIconOnClick();
 export function mainContentDrawer() {
   foodService
     .getBasicFoodList()
