@@ -1,4 +1,4 @@
-import{s as d}from"./assets/mainSection-939916f6.js";import"./assets/vendor-a61d8330.js";const e="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",n="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",p="/project-code_busters09/assets/yellow_basket_mobile_1x-min-195418a1.png",u="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",m="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",g="/project-code_busters09/assets/yellow_basket_mobile_2x-min-566aede4.png";document.querySelector(".cart-delete_all-button");document.querySelector(".cart_close_all");const s=document.getElementById("cart-content"),_=document.querySelector(".cart_products_list");document.querySelector(".cart_products_container");console.log(s);function v(){const t=d.getFromStorage("cart");console.log(t),t?(s.innerHTML=b(),_.innerHTML=y(t)):s.innerHTML=h()}v();function b(){return`<div class="products_container">
+import{s as c}from"./assets/mainSection-939916f6.js";import"./assets/vendor-a61d8330.js";const a="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",u="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",p="/project-code_busters09/assets/yellow_basket_mobile_1x-min-195418a1.png",m="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",g="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",_="/project-code_busters09/assets/yellow_basket_mobile_2x-min-566aede4.png";document.querySelector(".cart-delete_all-button");document.querySelector(".cart_close_all");const r=document.getElementById("cart-content"),b=document.querySelector(".cart_products_list");document.querySelector(".cart_products_container");const v=document.querySelector(".cart-quentity"),y=document.querySelector(".cart-sum-number"),e=c.getFromStorage("cart");c.getFromStorage("cart");function h(){if(e){const t=e.length;v.textContent=`Cart (${t})`}}h();function x(){let t=0;e&&e.forEach(s=>(t+s.price,y.textContent=`${t}`))}x();function f(){const t=c.getFromStorage("cart");console.log(t),t?(r.innerHTML=k(),b.innerHTML=$(t)):r.innerHTML=S()}f();function k(){return`<div class="products_container">
   <div class="cart-add-products">      
     <div class="delete-all">        
       <button type="submit" class="cart-delete-all-button">Delete all            
@@ -42,10 +42,10 @@ import{s as d}from"./assets/mainSection-939916f6.js";import"./assets/vendor-a61d
       </div>
     </form>
     
-  </div>`}function y(t){return t.map(({_id:c,name:a,img:o,category:r,size:i,price:l})=>`      
-    <li class="discount-item" data-id="${c}">
+  </div>`}function $(t){return t.map(({_id:s,name:o,img:i,category:l,size:n,price:d})=>`      
+    <li class="discount-item" data-id="${s}">
     <div class="add-img">
-              <img src="${o}" alt="Product Image" class="product-image">
+              <img src="${i}" alt="Product Image" class="product-image">
           </div>
           <div class="add-img-info">
               <button class="cart-delete-button">
@@ -53,29 +53,29 @@ import{s as d}from"./assets/mainSection-939916f6.js";import"./assets/vendor-a61d
                     <use xlink:href="../img/icons.svg#icon-ion_close-sharp"></use>
                 </svg>
               </button>
-            <h2 class="product-name">${a}</h2>
+            <h2 class="product-name">${o}</h2>
                 <div class="product-category-size">
-                    <p class="product-category">Category: ${r}</p>
-                    <p class="product-size">Size: ${i}</p>
+                    <p class="product-category">Category: ${l}</p>
+                    <p class="product-size">Size: ${n}</p>
                 </div>
-            <p class="product-price">${l}</p>
+            <p class="product-price">${d}</p>
           </div>
-          </li>`).join("")}function h(){return`  
+          </li>`).join("")}function S(){return`  
   <div class="cart-img">
     <picture>
       <source media="(min-width: 1440px)" srcset="
-          ${e} 1x,
-          ${u} 2x
+          ${a} 1x,
+          ${m} 2x
         " type="image/png" />
       <source media="(min-width: 768px)" srcset="
-          ${n} 1x,
-          ${m} 2x
+          ${u} 1x,
+          ${g} 2x
         " type="image/png" />
       <source media="(min-width: 320px)" srcset="
           ${p} 1x,
-          ${g} 2x
+          ${_} 2x
         " type="image/png" />
-      <img class="cart-img" src="${e}" alt="basket" />
+      <img class="cart-img" src="${a}" alt="basket" />
     </picture>
   </div>
   <div class="cart-empty">
