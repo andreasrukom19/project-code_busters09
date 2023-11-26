@@ -22,6 +22,7 @@ mainContentDrawer();
 popularContentDrawer();
 discountContentDrawer();
 changeCardIconOnClick();
+
 export function mainContentDrawer() {
   foodService
     .getBasicFoodList()
