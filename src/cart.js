@@ -1,5 +1,6 @@
 
 import  { storage }  from './js/mainSection';
+
 import imgURLdesc from './img/yellow_basket_desctop_1x-min.png';
 import imgURLtablet from './img/yellow_basket_tablet_1x-min.png';
 import imgURLmob from './img/yellow_basket_mobile_1x-min.png';
@@ -12,7 +13,9 @@ const deleteAllBtn = document.querySelector(".cart_close_all");
 const cartContent = document.getElementById("cart-content");
 const cartProductsList = document.querySelector(".cart_products_list");
 const cartProductsContainer = document.querySelector('.cart_products_container');
-console.log(cartContent);
+const cartHeader = document.querySelector('.cart-quentity');
+const cartSumNumber = document.querySelector(".cart-sum-number");
+// console.log(cartContent);
 
 // const storage = new LocalStorage();
 // deleteBtn.addEventListener('click', storage.removeFromCart());
@@ -24,44 +27,41 @@ console.log(cartContent);
 
 
 //функція загальної кількості продуктів, доданих у кошик
+const products = storage.getFromStorage('cart');
+const cart = storage.getFromStorage('cart');
 
 function totalQuantity() {
-    const items = storage.getFromStorage();
-    const totalCount = items.reduce((total, currentItem) => (
-    total + currentItem
-), 0)
-    document.querySelector('h1').textContent = `Cart (${totalCount})`;
+  if (products) {
+    const totalCount = products.length;
+    cartHeader.textContent = `Cart (${totalCount})`;
+  }
 }
+totalQuantity()
 
 // Функція для розрахунку загальної вартості продуктів
 
 function calculateTotalPrice() {
-  const products = storage.getFromStorage('cart');
-  console.log(products);
-  const cartSumNumber = document.querySelector(".cart-sum-number");
-  console.log(cartSumNumber);
-    let totalPrice = 0;
-    for (let i = 0; i < products.length; i++) {
-        totalPrice += products[i].price;
-      }
-    cartSumNumber.textContent = `${totalPrice}`;
+  let total = 0;
+  if (products) {
+    products.forEach(product => {
+      total + product.price;
+      return cartSumNumber.textContent = `${total}`;
+    });
+  }
 }
-
-// calculateTotalPrice();
-
-
+calculateTotalPrice() 
 
 function checkLocalStorage() {
-  
+
   const cart = storage.getFromStorage('cart');
   console.log(cart);
+
     if (cart)  {
       cartContent.innerHTML = createCartMarkup();
       cartProductsList.innerHTML = createCartMarkupProducts(cart);
     } else {
       cartContent.innerHTML = createCartMarkupDefault();
     }
-  
 }
 
 checkLocalStorage();
