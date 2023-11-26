@@ -1,14 +1,11 @@
-
 import { foodService } from './mainSection';
 
 export class LocalStorage {
-    constructor() { 
+  constructor() {}
 
-    }
-
-    saveInStorage(key, data) { 
-        localStorage.setItem(key, JSON.stringify(data))
-    }
+  saveInStorage(key, data) {
+    localStorage.setItem(key, JSON.stringify(data));
+  }
 
     getFromStorage(item) {
         return JSON.parse(localStorage.getItem(`${item}`));
@@ -25,23 +22,16 @@ export class LocalStorage {
         // }  
         }
 
-    saveCategories() {
-        if (!localStorage.getItem('categories')) {
-            return foodService.getCategories()
-                .then(resp => {
-                    console.log(resp);
-                    localStorage.setItem('categories', JSON.stringify(resp))
-                })
-        }
-    }
-    
-    defaultApiOptions() { 
-        localStorage.setItem('options', '{keyword:null, category: null, page: 1, limit: 6}');
-    }
 
-    getApiOptions() { 
-        return JSON.parse(localStorage.getItem('options'));
+  saveCategories() {
+    if (!localStorage.getItem('categories')) {
+      return foodService.getCategories().then(resp => {
+        console.log(resp);
+        localStorage.setItem('categories', JSON.stringify(resp));
+      });
     }
+  }
+
 
     // setApiOptions(key, value) { 
     //     // передавати значення у форматі рядку //
@@ -50,8 +40,16 @@ export class LocalStorage {
     //     // console.log(options);
     //     options[key] = `${value}`;
         
-    //     localStorage.setItem(options)
-    // }
+  defaultApiOptions() {
+    const defaultOptions = {
+      keyword: null,
+      category: null,
+      page: 1,
+      limit: 6,
+    };
+
+    localStorage.setItem('options', JSON.stringify(defaultOptions));
+  }
 
     addToCart(id) {
         
@@ -79,13 +77,25 @@ export class LocalStorage {
         cart.splice(index, 1);
         console.log(cart);
         return localStorage.setItem('cart', JSON.stringify(cart));
-    }
-
-    clearCart() { 
 
     }
+  }
 
-    saveOptionsToFoodService(options) {
+  getFromStorage(item) {
+    return JSON.parse(localStorage.getItem(`${item}`));
+  }
+
+  removeFromCart(id) {
+    // test
+    const products = localStorage.getItem('products');
+    // test
+
+    JSON.parce(localStorage.getItem('cart'));
+  }
+
+  clearCart() {}
+
+  saveOptionsToFoodService(options) {
     foodService.perPage = options.limit;
     foodService.currentPage = options.page;
     foodService.category = options.category;

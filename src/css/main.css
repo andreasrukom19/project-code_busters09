@@ -121,6 +121,9 @@ h2 {
 .main-products {
   margin-bottom: 40px;
 }
+.main-cart-icon{
+  cursor: pointer;
+}
 
 @media only screen and (min-width: 1440px) {
   .main-products {
@@ -334,6 +337,7 @@ h2 {
   right: 12px;
   width: 20px;
   height: 20px;
+   cursor: pointer;
 }
 .popular-cart-img-down {
   position: absolute;
@@ -341,6 +345,7 @@ h2 {
   right: 9px;
   width: 20px;
   height: 20px;
+   cursor: pointer;
 }
 .popular-img-container {
   display: flex;
@@ -351,6 +356,7 @@ h2 {
   margin-right: 10px;
   background-color: var(--light-green);
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .popular-item__img {
@@ -451,6 +457,7 @@ h2 {
   width: 34px;
   height: 34px;
   display: flex;
+  cursor: pointer;
 }
 .section-products {
   padding: 0 100px;

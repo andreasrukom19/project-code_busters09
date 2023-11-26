@@ -9,7 +9,20 @@ export class FoodService {
     this.category = '';
   }
 
-  getFoodList() {
+  getBasicFoodList() {
+    if (window.innerWidth >= 768 && window.innerWidth < 1440) {
+      this.perPage = 8;
+    } else if (window.innerWidth >= 1440) {
+      this.perPage = 9;
+    }
+    return axios
+      .get(`${this.URL}/products?limit=${this.perPage}`)
+      .then(response => {
+        return response.data;
+      });
+  }
+
+  getFoodListWithOptions() {
     if (window.innerWidth >= 768 && window.innerWidth < 1440) {
       this.perPage = 8;
     } else if (window.innerWidth >= 1440) {
