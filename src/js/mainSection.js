@@ -2,7 +2,7 @@
 // import 'simplelightbox/dist/simple-lightbox.min.css';
 import { LocalStorage } from './local-storages';
 import { FoodService } from './food-api-service';
-import imgURL from '../img/icons.svg';
+import cartImgURL from '../img/cart.svg';
 const filterBoxList = document.querySelector('.filter-box__list');
 const popularProductsList = document.querySelector('.popular-products__list');
 const discountProductsList = document.querySelector('.discount-products__list');
@@ -91,6 +91,10 @@ export function discountContentDrawer() {
     });
 }
 
+const imgElement = document.createElement('img');
+imgElement.src = cartImgURL;
+document.body.appendChild(imgElement);
+
 export function createProductsMarkup(arr) {
   return arr
     .map(
@@ -103,29 +107,32 @@ export function createProductsMarkup(arr) {
         popularity,
         size,
         is10PercentOff,
-      }) => `<li class="product-card" data-id=${_id}>
-        ${
-          is10PercentOff
-            ? '<img class="discount-icon-products" src="../../assets/discount.svg" alt="Discount" />'
-            : ''
-        }
-      <div class="img-container"><a href="${img}"><img class="product-card__img" src="${img}" alt="${name}" loading="lazy" /></a>
-      </div>
-      <div class="info">      
-        <h2 class="info__title">${name}</h2>
-        <div class="info-wrapper">
-        <p class="info-wrapper__product">Category:<span>${category}</span></p>
-        <p class="info-wrapper__product">Size:<span>${size}</span></p>
-        <p class="info-wrapper__product">Popularity:<span>${popularity}</span></p>
-        </div>
-        <div class="info-wrapper__price-container" >
-          <p class="info__price">$${price}</p>       
-          <svg class="cart-img-products" width="34" height="34">
-            <use href="${imgURL}#icon-heroicons-solid_shopping-cart"></use>
-          </svg>
-        </div>     
-      </div>
-    </li>`
+      }) => {
+        const imgElement = document.createElement('img');
+        imgElement.src = cartImgURL;
+
+        return `<li class="product-card" data-id=${_id}>
+          ${
+            is10PercentOff
+              ? '<img class="discount-icon-products" src="../../assets/discount.svg" alt="Discount" />'
+              : ''
+          }
+          <div class="img-container"><a href="${img}"><img class="product-card__img" src="${img}" alt="${name}" loading="lazy" /></a>
+          </div>
+          <div class="info">      
+            <h2 class="info__title">${name}</h2>
+            <div class="info-wrapper">
+              <p class="info-wrapper__product">Category:<span>${category}</span></p>
+              <p class="info-wrapper__product">Size:<span>${size}</span></p>
+              <p class="info-wrapper__product">Popularity:<span>${popularity}</span></p>
+            </div>
+            <div class="info-wrapper__price-container" >
+              <p class="info__price">$${price}</p> 
+              ${imgElement.outerHTML}
+            </div>     
+          </div>
+        </li>`;
+      }
     )
     .join('');
 }
