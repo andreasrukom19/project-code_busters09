@@ -8,5 +8,9 @@ function totalQuantity() {
     return items.length;
 }
 
-let cartCount = totalQuantity();
-cartCountEl.innerHTML = `cart (${cartCount})`;
+export function updateCartCountTitle() {
+    let cartCount = totalQuantity();
+    cartCountEl.innerHTML = `cart (${cartCount})`;
+}
+
+updateCartCountTitle();
