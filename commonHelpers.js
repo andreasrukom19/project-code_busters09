@@ -1,4 +1,4 @@
-import{s as c}from"./assets/mainSection-939916f6.js";import"./assets/vendor-a61d8330.js";const a="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",u="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",p="/project-code_busters09/assets/yellow_basket_mobile_1x-min-195418a1.png",m="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",g="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",_="/project-code_busters09/assets/yellow_basket_mobile_2x-min-566aede4.png";document.querySelector(".cart-delete_all-button");document.querySelector(".cart_close_all");const r=document.getElementById("cart-content"),b=document.querySelector(".cart_products_list");document.querySelector(".cart_products_container");const v=document.querySelector(".cart-quentity"),y=document.querySelector(".cart-sum-number"),e=c.getFromStorage("cart");c.getFromStorage("cart");function h(){if(e){const t=e.length;v.textContent=`Cart (${t})`}}h();function x(){let t=0;e&&e.forEach(s=>(t+s.price,y.textContent=`${t}`))}x();function f(){const t=c.getFromStorage("cart");console.log(t),t?(r.innerHTML=k(),b.innerHTML=$(t)):r.innerHTML=S()}f();function k(){return`<div class="products_container">
+import{s as c}from"./assets/mainSection-939916f6.js";import"./assets/vendor-a61d8330.js";const a="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",u="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",p="/project-code_busters09/assets/yellow_basket_mobile_1x-min-195418a1.png",m="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",g="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",_="/project-code_busters09/assets/yellow_basket_mobile_2x-min-566aede4.png";document.querySelector(".cart-delete_all-button");document.querySelector(".cart_close_all");const s=document.getElementById("cart-content");document.querySelector(".cart_products_container");const b=document.querySelector(".cart-quentity"),o=c.getFromStorage("cart");c.getFromStorage("cart");function v(){if(o){const t=o.length;b.textContent=`Cart (${t})`}}v();function y(){const t=c.getFromStorage("cart");if(console.log(t),t){s.innerHTML=h();const e=s.querySelector(".cart_products_list");e.innerHTML=x(t)}else s.innerHTML=f()}y();function h(){return`<div class="products_container">
   <div class="cart-add-products">      
     <div class="delete-all">        
       <button type="submit" class="cart-delete-all-button">Delete all            
@@ -8,9 +8,9 @@ import{s as c}from"./assets/mainSection-939916f6.js";import"./assets/vendor-a61d
       </button>          
     </div>        
     <div class="cart_products_container">       
-      <div class="cart_products_list">                        
+      <ul class="cart_products_list">                        
         <!-- Add your products here -->            
-      </div>          
+      </ul>          
     </div>      
   </div>      
   <div class="products_order_container">      
@@ -42,8 +42,8 @@ import{s as c}from"./assets/mainSection-939916f6.js";import"./assets/vendor-a61d
       </div>
     </form>
     
-  </div>`}function $(t){return t.map(({_id:s,name:o,img:i,category:l,size:n,price:d})=>`      
-    <li class="discount-item" data-id="${s}">
+  </div>`}function x(t){return t.map(({_id:e,name:r,img:i,category:l,size:n,price:d})=>`      
+    <li class="discount-item" data-id="${e}">
     <div class="add-img">
               <img src="${i}" alt="Product Image" class="product-image">
           </div>
@@ -53,14 +53,14 @@ import{s as c}from"./assets/mainSection-939916f6.js";import"./assets/vendor-a61d
                     <use xlink:href="../img/icons.svg#icon-ion_close-sharp"></use>
                 </svg>
               </button>
-            <h2 class="product-name">${o}</h2>
+            <h2 class="product-name">${r}</h2>
                 <div class="product-category-size">
                     <p class="product-category">Category: ${l}</p>
                     <p class="product-size">Size: ${n}</p>
                 </div>
             <p class="product-price">${d}</p>
           </div>
-          </li>`).join("")}function S(){return`  
+          </li>`).join("")}function f(){return`  
   <div class="cart-img">
     <picture>
       <source media="(min-width: 1440px)" srcset="
