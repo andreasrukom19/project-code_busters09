@@ -73,6 +73,7 @@ export class LocalStorage {
 
     }
 
+
     clearCart() { 
         localStorage.removeItem('cart')
     }
@@ -80,6 +81,7 @@ export class LocalStorage {
     getFromStorage(item) {
         return JSON.parse(localStorage.getItem(`${item}`));
         }
+
 
   saveOptionsToFoodService(options) {
     foodService.perPage = options.limit;

@@ -58,6 +58,8 @@
 
   .modal-info {
     margin-left: 24px;
+    margin-bottom: 30px;
+    overflow: auto;
   }
 
   .modal-title {
@@ -85,9 +87,11 @@
 
   .modal-info-desc {
     margin-top: 24px;
+    margin-bottom: 24px;
     font-size: 16px;
     line-height: 20px;
     color: #010101b2;
+
   }
 
   .modal-price {
@@ -129,7 +133,7 @@
 @media (max-width: 768px) {
   .modal-content {
     width: 335px;
-    height: 535px;
+    height: auto;
     background-color: #fafafa;
     position: fixed;
     top: 50%;
@@ -171,6 +175,7 @@
 
   .modal-info {
     margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   .modal-title {

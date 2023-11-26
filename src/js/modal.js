@@ -8,18 +8,29 @@ const listItems = document.querySelector('.main-products');
 listItems.addEventListener('click', onCardClick);
 
 async function onCardClick(e) {
-  if (e.target.classList.contains('main-cart-icon')) return;
+  if (
+    e.target.classList.contains('main-cart-icon') ||
+    e.target.classList.contains('cart-img-products') ||
+    e.target.classList.contains('popular-cart-img')
+  ) {
+    return;
+  }
 
   const card = e.target.closest('li');
   if (!card) return;
 
   const data = await foodService.findProductById(card.dataset.id);
+  console.log('ID', data);
   modalContent.innerHTML = makeModalMarkup(data);
 
-  modal.style.display = 'block';
-  document.body.classList.add('no-scroll');
-  document.addEventListener('keydown', onEscCloseModal);
-  window.addEventListener('click', onClickCloseModal);
+  openModal();
+
+  const addToCartBtn = document.querySelector('.add-to-cart-btn');
+  addToCartBtn.addEventListener('click', onAddToCartBtnClick);
+}
+
+function onAddToCartBtnClick() {
+  this.firstChild.textContent = 'Added to';
 }
 
 function makeModalMarkup(product) {
@@ -65,6 +76,13 @@ function onClickCloseModal(e) {
     // закриття по кліку по кнопці з класом '.modal-btn-close'
     closeModal();
   }
+}
+
+function openModal() {
+  modal.style.display = 'block';
+  document.body.classList.add('no-scroll');
+  document.addEventListener('keydown', onEscCloseModal);
+  window.addEventListener('click', onClickCloseModal);
 }
 
 function closeModal() {
