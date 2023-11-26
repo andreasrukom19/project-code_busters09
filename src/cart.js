@@ -1,6 +1,11 @@
 
 import  { storage }  from './js/mainSection';
-
+import imgURLdesc from './img/yellow_basket_desctop_1x-min.png';
+import imgURLtablet from './img/yellow_basket_tablet_1x-min.png';
+import imgURLmob from './img/yellow_basket_mobile_1x-min.png';
+import imgURLdesc2x from './img/yellow_basket_desctop_2x-min.png';
+import imgURLtab2x from './img/yellow_basket_tablet_2x-min.png';
+import imgURLmob2x from './img/yellow_basket_mobile_2x-min.png';
 
 const deleteBtn = document.querySelector(".cart-delete_all-button");
 const deleteAllBtn = document.querySelector(".cart_close_all");
@@ -138,18 +143,18 @@ function createCartMarkupDefault() {
   <div class="cart-img">
     <picture>
       <source media="(min-width: 1440px)" srcset="
-          ./img/yellow_basket_desctop_1x-min.png 1x,
-          ./img/yellow_basket_desctop_2x-min.png 2x
+          ${imgURLdesc} 1x,
+          ${imgURLdesc2x} 2x
         " type="image/png" />
       <source media="(min-width: 768px)" srcset="
-          ./img/yellow_basket_tablet_1x-min.png 1x,
-          ./img/yellow_basket_tablet_2x-min.png 2x
+          ${imgURLtablet} 1x,
+          ${imgURLtab2x} 2x
         " type="image/png" />
       <source media="(min-width: 320px)" srcset="
-          ./img/yellow_basket_mobile_1x-min.png 1x,
-          ./img/yellow_basket_mobile_2x-min.png 2x
+          ${imgURLmob} 1x,
+          ${imgURLmob2x} 2x
         " type="image/png" />
-      <img class="cart-img" src="./img/yellow_basket_desctop_1x-min.png" alt="basket" />
+      <img class="cart-img" src="${imgURLdesc}" alt="basket" />
     </picture>
   </div>
   <div class="cart-empty">
