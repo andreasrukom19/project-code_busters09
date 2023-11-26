@@ -61,16 +61,30 @@ export class LocalStorage {
         }
     }
 
-    addProductToCart(obj) { 
-        const cart = JSON.parse(localStorage.getItem('cart'));
-        cart.push(obj);
-        return localStorage.setItem('cart', JSON.stringify(cart))
-    }
+    addProductToCart(obj) {
 
+        if (!localStorage.getItem('cart')) {
+            const cart = [obj];
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+        else (localStorage.getItem('cart'))
+        {
+            const cart = JSON.parse(localStorage.getItem('cart'));
+            
+            if (cart.find(item => obj._id === item._id)) {
+                console.log(obj._id);
+                return
+            }
+            else {
+                cart.push(obj);
+                localStorage.setItem('cart', JSON.stringify(cart));
+            }
+        }
+    }
 
     removeFromCart(id) { 
         // приймає рядок
-        
+
         const cart = JSON.parse(localStorage.getItem('cart'));
 
         const item = cart.find(item => item._id === id);
