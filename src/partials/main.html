@@ -5,7 +5,12 @@
       <div class="filters">
         <form class="submit-form">
           <div class="input-container">
-            <input type="text" name="search" class="search" placeholder="Search for anything" />
+            <input
+              type="text"
+              name="search"
+              class="search"
+              placeholder="Search for anything"
+            />
             <button type="submit" class="search-btn">
               <svg class="search-icon" width="20" height="20">
                 <use href="./img/icons.svg#icon-Vector"></use>
@@ -13,7 +18,6 @@
             </button>
           </div>
         </form>
-
         <div class="input-container">
           <select name="product-categories" class="categories"></select>
           <svg class="chevron-down-icon" width="20" height="20">
@@ -26,11 +30,30 @@
       <div class="main-products">
         <div class="filter-box">
           <ul class="filter-box__list"></ul>
-          <section>PAGINATION</section>
+          <section class="pagination">
+            <div class="pag-ribbon">
+              <button type="button" class="pag-btn pag-item">
+                <svg class="arrow-icon" width="12" height="12">
+                  <use href="./img/icons.svg#icon-caret-small-left"></use>
+                </svg>
+              </button>
+              <ul class="pag-wrapper">
+                <li><button type="button" class="pag-item">1</button></li>
+                <li><button type="button" class="pag-item">2</button></li>
+                <li><button type="button" class="pag-item">...</button></li>
+                <li><button type="button" class="pag-item">7</button></li>
+                <li><button type="button" class="pag-item">8</button></li>
+              </ul>
+              <button type="button" class="pag-btn pag-item">
+                <svg class="arrow-icon" width="12" height="12">
+                  <use href="./img/icons.svg#icon-caret-small-right"></use>
+                </svg>
+              </button>
+            </div>
+          </section>
         </div>
         <div class="popular-discount-box">
           <h2 class="popular__title">Popular products</h2>
-
           <ul class="popular-products__list"></ul>
           <h2 class="discount__title">Discount products</h2>
           <ul class="discount-products__list"></ul>
