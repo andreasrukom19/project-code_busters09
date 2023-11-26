@@ -1,4 +1,4 @@
-export function onClick() {
+export function changeCardIconOnClick() {
   document.addEventListener('click', function (event) {
     if (
       event.target.classList.contains('cart-img-products') ||
