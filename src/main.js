@@ -7,3 +7,4 @@ import './js/footer-send.js';
 import './js/mainSection.js';
 import './js/modal.js';
 import './js/header.js';
+import './js/scrollUp.js'
