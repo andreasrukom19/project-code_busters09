@@ -7,6 +7,7 @@ import imgURLmob from './img/yellow_basket_mobile_1x-min.png';
 import imgURLdesc2x from './img/yellow_basket_desctop_2x-min.png';
 import imgURLtab2x from './img/yellow_basket_tablet_2x-min.png';
 import imgURLmob2x from './img/yellow_basket_mobile_2x-min.png';
+import iconsURL from './img/icons.svg';
 
 const deleteBtn = document.querySelector(".cart-delete_all-button");
 const deleteAllBtn = document.querySelector(".cart_close_all");
@@ -75,7 +76,7 @@ function createCartMarkup() {
     <div class="delete-all">        
       <button type="submit" class="cart-delete-all-button">Delete all            
         <svg class="cart_close_all" width="24" height="24">
-          <use xlink:href="./img/icons.svg#icon-ion_close-sharp"></use>
+          <use xlink:href="${iconsURL}#icon-ion_close-sharp"></use>
         </svg>            
       </button>          
     </div>        
@@ -125,7 +126,7 @@ function createCartMarkupProducts(products) {
     <div class="obj-delete">
 <button class="cart-delete-button">
 <svg class="cart_close_all" width="18" height="18">
-<use xlink:href="../img/icons.svg#icon-ion_close-sharp"></use>
+<use xlink:href=".${iconsURL}#icon-ion_close-sharp"></use>
 </svg>
 </button>
 </div>
