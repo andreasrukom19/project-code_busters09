@@ -119,26 +119,30 @@ function createCartMarkup() {
 
 
 function createCartMarkupProducts(products) {
-  return products.map(({ _id, name, img, category, size, price }) => {
+  return products.map(({ name, img, category, size, price }) => {
     return `      
-    <li class="discount-item" data-id="${_id}">
-    <div class="add-img">
-              <img src="${img}" alt="Product Image" class="product-image">
-          </div>
-          <div class="add-img-info">
-              <button class="cart-delete-button">
-                <svg class="cart_close_all" width="18" height="18">
-                    <use xlink:href="../img/icons.svg#icon-ion_close-sharp"></use>
-                </svg>
-              </button>
-            <h2 class="product-name">${name}</h2>
-                <div class="product-category-size">
-                    <p class="product-category">Category: ${category}</p>
-                    <p class="product-size">Size: ${size}</p>
-                </div>
-            <p class="product-price">${price}</p>
-          </div>
-          </li>`
+    <li class="cart-list">
+    <div class="obj-delete">
+<button class="cart-delete-button">
+<svg class="cart_close_all" width="18" height="18">
+<use xlink:href="../img/icons.svg#icon-ion_close-sharp"></use>
+</svg>
+</button>
+</div>
+<div class="cart-obj">
+<div class="add-img">
+<img src="${img}" alt="Product Image" class="product-image" wi>
+</div>
+<div class="add-img-info">
+<p class="product-name">${name}</p>
+<div class="product-category-size">
+<p class="product-category">Category: <span class="colored-text">${category}</span></p>
+<p class="product-size">Size: <span class="colored-text">${size}</span></p>
+</div>
+<p class="product-price">$ ${price}</p>
+</div>
+</div></li>
+          `
   }).join('')
 }
 
