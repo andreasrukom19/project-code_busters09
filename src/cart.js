@@ -57,7 +57,8 @@ calculateTotalPrice();
 
 
 function createCartMarkup() {
-  return `<div class="products_container">
+  return `
+  <div class="products_container">
   <div class="cart-add-products">      
     <div class="delete-all">        
       <button type="submit" class="cart-delete-all-button">Delete all            
@@ -97,76 +98,62 @@ function createCartMarkup() {
         </label>
       </div>
       <div class="cart-btn">
-        <button type="submit" class="cart-checkout-button">Checkout</button>
+        <button type="submit" id="checkoutButton" class="cart-checkout-button">Checkout</button>
       </div>
     </form>
     
+    <div id="modal" class="modal">
+      <div class="cart-modal-content">
+        
+      <button class="cart-delete-modal">
+      <span class="close">&times;</span>
+      
+      </button>
+
+        <img class="cart-modal-img" src="${imgURLdesc}" alt="basket" />
+        <div>
+        <p class="cart-success">Order success</p>
+        <p class="cart-modal-info">Thank you for shopping at Food Boutique. Your order has been received and is now being freshly prepared just for you! Get ready to indulge in nourishing goodness, delivered right to your doorstep. We're thrilled to be part of your journey to better health and happiness</p>
+      </div>
+      </div>
   </div>`
 }
 
 
-function createCartMarkupProducts() {
-  if (products) {
-    const markup = products.map(({ _id, name, img, category, size, price }) => {
+function createCartMarkupProducts(products) {
+  return products.map(({ name, img, category, size, price }) => {
     return `      
-    <li id="${_id}" class="cart-list">
-      <div class="obj-delete">
-        <button class="cart-delete-button">
-          <svg class="cart_close_all" width="18" height="18">
-            <use xlink:href="${iconsURL}#icon-ion_close-sharp"></use>
-          </svg>
-        </button>
-      </div>
-      <div class="cart-obj">
-        <div class="add-img">
-          <img src="${img}" alt="Product Image" class="product-image" wi>
-        </div>
-        <div class="add-img-info">
-          <p class="product-name">${name}</p>
-          <div class="product-category-size">
-            <p class="product-category">Category: <span class="colored-text">${category}</span></p>
-            <p class="product-size">Size: <span class="colored-text">${size}</span></p>
-          </div>
-          <p class="product-price">$ ${price}</p>
-        </div>
-      </div>
-    </li>`
-  }).join('');
-  cartProductsList.innerHTML = markup;
-  const deleteBtns = document.querySelectorAll('.cart-delete-button');
-  deleteBtns.forEach(btn => btn.addEventListener('click', onDeleteProduct));
-  }
-}
-
-function onDeleteProduct(event) {
-  const productId = event.target.closest('li').id;
-  storage.removeFromCart(productId);
-  products = storage.getFromStorage('cart');
-  if (products.length === 0) {
-    storage.clearCart();
-  }
-  checkLocalStorage();
-  createCartMarkupProducts();
+    <li class="cart-list">
+    <div class="obj-delete">
+<button class="cart-delete-button">
+<svg class="cart_close_all" width="18" height="18">
+<use xlink:href="${iconsURL}#icon-ion_close-sharp"></use>
+</svg>
+</button>
+</div>
+<div class="cart-obj">
+<div class="add-img">
+<img src="${img}" alt="Product Image" class="product-image" wi>
+</div>
+<div class="add-img-info">
+<p class="product-name">${name}</p>
+<div class="product-category-size">
+<p class="product-category">Category: <span class="colored-text">${category}</span></p>
+<p class="product-size">Size: <span class="colored-text">${size}</span></p>
+</div>
+<p class="product-price">$ ${price}</p>
+</div>
+</div></li>
+          `
+  }).join('')
 }
 
 function createCartMarkupDefault() {
   return `  
   <div class="cart-img">
-    <picture>
-      <source media="(min-width: 1440px)" srcset="
-          ${imgURLdesc} 1x,
-          ${imgURLdesc2x} 2x
-        " type="image/png" />
-      <source media="(min-width: 768px)" srcset="
-          ${imgURLtablet} 1x,
-          ${imgURLtab2x} 2x
-        " type="image/png" />
-      <source media="(min-width: 320px)" srcset="
-          ${imgURLmob} 1x,
-          ${imgURLmob2x} 2x
-        " type="image/png" />
+    
       <img class="cart-img" src="${imgURLdesc}" alt="basket" />
-    </picture>
+   
   </div>
   <div class="cart-empty">
     <p class="cart-message">
@@ -180,3 +167,28 @@ function createCartMarkupDefault() {
 </div>`
 };
 
+
+const checkoutButton = document.getElementById("checkoutButton");
+checkoutButton.addEventListener("click", sendOrder);
+
+const modal = document.getElementById("modal");
+const closeModalButton = document.getElementsByClassName("close")[0];
+
+function sendOrder(e) {
+    e.preventDefault();
+ const orderCreated = true; 
+
+  if (orderCreated) 
+  modal.style.display = "block";
+  closeModalButton.onclick = function() {
+    modal.style.display = "none";
+  };
+
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    } 
+  };
+}
+      
+    
