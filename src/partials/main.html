@@ -5,7 +5,12 @@
       <div class="filters">
         <form class="submit-form">
           <div class="input-container">
-            <input type="text" name="search" class="search" placeholder="Search for anything" />
+            <input
+              type="text"
+              name="search"
+              class="search"
+              placeholder="Search for anything"
+            />
             <button type="submit" class="search-btn">
               <svg class="search-icon" width="20" height="20">
                 <use href="./img/icons.svg#icon-Vector"></use>
@@ -27,11 +32,16 @@
           <ul class="filter-box__list"></ul>
           <div class="no-products-message">
             <h2>Nothing was found for the selected <span>filters...</span></h2>
-            <p>Try adjusting your search parameters or browse our range by other criteria to find the perfect product
-              for you.</p>
+            <p>
+              Try adjusting your search parameters or browse our range by other
+              criteria to find the perfect product for you.
+            </p>
           </div>
           <section class="pagination">
-            <div class="pag-ribbon">
+            <div
+              class="pag-ribbon tui-pagination"
+              id="tui-pagination-container"
+            >
               <button type="button" class="pag-btn pag-item">
                 <svg class="arrow-icon" width="12" height="12">
                   <use href="./img/icons.svg#icon-caret-small-left"></use>

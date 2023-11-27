@@ -8,6 +8,7 @@ import cartLightImgURL from '../img/cartLight.svg';
 import discountImgURL from '../img/discount.svg';
 import { changeCardIconOnClick } from './changeCardIconOnClick';
 import { addClassHidden, removeClassHidden } from "./helpers";
+import Pagination from 'tui-pagination';
 
 const noProductsMessageEl = document.querySelector('.no-products-message');
 const pagginationEl = document.querySelector('.pagination');
