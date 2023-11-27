@@ -1,5 +1,5 @@
 
-import  { storage }  from './js/mainSection';
+import { storage } from './js/mainSection';
 
 import imgURLdesc from './img/yellow_basket_desctop_1x-min.png';
 import imgURLtablet from './img/yellow_basket_tablet_1x-min.png';
@@ -41,6 +41,7 @@ totalQuantity()
 // Функція для розрахунку загальної вартості продуктів
 
 function calculateTotalPrice() {
+  let cartSumNumber = document.querySelector('.cart-sum-number');
   let total = 0;
   if (products) {
     products.forEach(product => {
@@ -49,7 +50,7 @@ function calculateTotalPrice() {
     });
   }
 }
-// calculateTotalPrice() 
+// calculateTotalPrice()
 
 function checkLocalStorage() {
 
@@ -59,15 +60,16 @@ function checkLocalStorage() {
   if (cart) {
     cartContent.innerHTML = createCartMarkup(cart);
     const cartProductsList = cartContent.querySelector('.cart_products_list');
-      cartProductsList.innerHTML = createCartMarkupProducts(cart);
-    } else {
-      cartContent.innerHTML = createCartMarkupDefault();
-    }
+    cartProductsList.innerHTML = createCartMarkupProducts(cart);
+  } else {
+    cartContent.innerHTML = createCartMarkupDefault();
+  }
 }
 
 checkLocalStorage();
+calculateTotalPrice();
 
-function createCartMarkup () {
+function createCartMarkup() {
   return `<div class="products_container">
   <div class="cart-add-products">      
     <div class="delete-all">        
@@ -117,8 +119,8 @@ function createCartMarkup () {
 
 
 function createCartMarkupProducts(products) {
-  return  products.map(({ _id, name, img, category, size, price }) => {
-  return `      
+  return products.map(({ _id, name, img, category, size, price }) => {
+    return `      
     <li class="discount-item" data-id="${_id}">
     <div class="add-img">
               <img src="${img}" alt="Product Image" class="product-image">
@@ -137,7 +139,8 @@ function createCartMarkupProducts(products) {
             <p class="product-price">${price}</p>
           </div>
           </li>`
-  })  .join('')}
+  }).join('')
+}
 
 function createCartMarkupDefault() {
   return `  
