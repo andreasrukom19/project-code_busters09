@@ -7,7 +7,9 @@ import cartImgURL from '../img/cart.svg';
 import cartLightImgURL from '../img/cartLight.svg';
 import discountImgURL from '../img/discount.svg';
 import { changeCardIconOnClick } from './changeCardIconOnClick';
+import { addClassHidden, removeClassHidden } from "./helpers";
 
+const noProductsMessageEl = document.querySelector('.no-products-message');
 const filterBoxList = document.querySelector('.filter-box__list');
 const popularProductsList = document.querySelector('.popular-products__list');
 const discountProductsList = document.querySelector('.discount-products__list');
@@ -48,6 +50,12 @@ export function mainContentDrawer() {
     .getFoodListWithOptions2(options)
     .then(data => {
       console.log(data);
+      if (data.results.length === 0) {
+        removeClassHidden(noProductsMessageEl);
+      }
+      else {
+        addClassHidden(noProductsMessageEl);
+      }
       filterBoxList.innerHTML = createProductsMarkup(data.results);
       storage.saveCardsToLocalStorage(data.results);
     })
@@ -65,6 +73,12 @@ export function contentByOptionsDrawer() {
   foodService
     .getFoodListWithOptions2(options)
     .then(data => {
+      if (data.results.length === 0) {
+        removeClassHidden(noProductsMessageEl);
+      }
+      else {
+        addClassHidden(noProductsMessageEl);
+      }
       filterBoxList.innerHTML = createProductsMarkup(data.results);
       storage.saveCardsToLocalStorage(data.results);
     })
