@@ -1,9 +1,4 @@
-import {
-  foodService,
-  mainContentDrawer,
-  contentByOptionsDrawer,
-  storage,
-} from './mainSection.js';
+import { foodService, contentByOptionsDrawer, storage } from './mainSection.js';
 
 const submitForm = document.querySelector('.submit-form');
 const select = document.querySelector('.categories');
@@ -32,7 +27,7 @@ submitForm.addEventListener('submit', event => {
     contentByOptionsDrawer();
   } else {
     foodService.resetSearchQuerry();
-    mainContentDrawer();
+    contentByOptionsDrawer();
   }
 });
 
@@ -47,7 +42,7 @@ select.addEventListener('change', function () {
   if (select.value === 'show-all') {
     filterBoxList.innerHTML = '';
     storage.defaultApiOptions();
-    mainContentDrawer();
+    contentByOptionsDrawer();
   } else {
     foodService.category = selectedItem;
     filterBoxList.innerHTML = '';

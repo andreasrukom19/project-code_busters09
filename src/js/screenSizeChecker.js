@@ -9,8 +9,6 @@ function onScreenSizeFetch2() {
   const options = storage.getOptions();
 
   const screenSize = window.innerWidth;
-  console.log(options.limit);
-  console.log(screenSize);
   if (screenSize >= 768 && screenSize < 1440 && options.limit !== 8) {
     options.limit = 8;
     storage.setOptions(options);

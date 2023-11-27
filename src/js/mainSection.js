@@ -7,7 +7,7 @@ import cartImgURL from '../img/cart.svg';
 import cartLightImgURL from '../img/cartLight.svg';
 import discountImgURL from '../img/discount.svg';
 import { changeCardIconOnClick } from './changeCardIconOnClick';
-import { addClassHidden, removeClassHidden } from "./helpers";
+import { addClassHidden, removeClassHidden } from './helpers';
 
 const noProductsMessageEl = document.querySelector('.no-products-message');
 const pagginationEl = document.querySelector('.pagination');
@@ -29,7 +29,6 @@ document.addEventListener('click', function (event) {
   }
 });
 storage.defaultApiOptions();
-// mainContentDrawer();
 contentByOptionsDrawer();
 popularContentDrawer();
 discountContentDrawer();
@@ -38,7 +37,8 @@ changeCardIconOnClick();
 document.addEventListener('click', addToCartOnMainProductsClick);
 
 function addToCartOnMainProductsClick(event) {
-  if (event.target &&
+  if (
+    event.target &&
     (event.target.classList.contains('cart-img-products') ||
       event.target.classList.contains('main-cart-icon') ||
       event.target.classList.contains('popular-cart-img'))
@@ -47,31 +47,6 @@ function addToCartOnMainProductsClick(event) {
     storage.addToCart(productId);
     updateCartCountTitle();
   }
-}
-
-export function mainContentDrawer() {
-  const options = JSON.parse(localStorage.getItem('options'));
-  foodService
-    .getFoodListWithOptions2(options)
-    .then(data => {
-      console.log(data);
-      if (data.results.length === 0) {
-        removeClassHidden(noProductsMessageEl);
-        addClassHidden(pagginationEl);
-      }
-      else {
-        addClassHidden(noProductsMessageEl);
-        removeClassHidden(pagginationEl);
-      }
-      filterBoxList.innerHTML = createProductsMarkup(data.results);
-      storage.saveCardsToLocalStorage(data.results);
-    })
-    .catch(error => {
-      // TODO ADD NOTIFLIX
-      // Notify.failure(
-      //   "Error"
-      // );
-    });
 }
 
 export function contentByOptionsDrawer() {
@@ -83,11 +58,11 @@ export function contentByOptionsDrawer() {
       if (data.results.length === 0) {
         removeClassHidden(noProductsMessageEl);
         addClassHidden(pagginationEl);
-      }
-      else {
+      } else {
         addClassHidden(noProductsMessageEl);
         removeClassHidden(pagginationEl);
       }
+      console.log(data.results);
       filterBoxList.innerHTML = createProductsMarkup(data.results);
       storage.saveCardsToLocalStorage(data.results);
     })
