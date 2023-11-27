@@ -59,8 +59,8 @@ function checkLocalStorage() {
   if (cart) {
     cartContent.innerHTML = createCartMarkup(cart);
     const cartProductsList = cartContent.querySelector('.cart_products_list');
-      cartProductsList.innerHTML = createCartMarkupProducts(cart);
-    } else {
+    cartProductsList.innerHTML = createCartMarkupProducts(cart);
+  } else {
       cartContent.innerHTML = createCartMarkupDefault();
     }
 }
