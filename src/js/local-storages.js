@@ -1,7 +1,7 @@
 import { foodService } from './mainSection';
 
 export class LocalStorage {
-  constructor() {}
+  constructor() { }
 
   getOptions() {
     return JSON.parse(localStorage.getItem('options'));
@@ -56,13 +56,7 @@ export class LocalStorage {
 
     const item = products.find(item => item._id === id);
 
-    if (!localStorage.getItem('cart')) {
-      return localStorage.setItem('cart', JSON.stringify([item]));
-    } else {
-      const cart = JSON.parse(localStorage.getItem('cart'));
-      cart.push(item);
-      return localStorage.setItem('cart', JSON.stringify(cart));
-    }
+    this.addProductToCart(item);
   }
 
   addProductToCart(obj) {
