@@ -38,7 +38,11 @@ changeCardIconOnClick();
 document.addEventListener('click', addToCartOnMainProductsClick);
 
 function addToCartOnMainProductsClick(event) {
-  if (event.target && event.target.classList.contains('main-cart-icon')) {
+  if (event.target &&
+    (event.target.classList.contains('cart-img-products') ||
+      event.target.classList.contains('main-cart-icon') ||
+      event.target.classList.contains('popular-cart-img'))
+  ) {
     const productId = event.target.dataset.productId;
     storage.addToCart(productId);
     updateCartCountTitle();
@@ -179,6 +183,7 @@ export function createPopularMarkup(arr) {
       const imgElement = document.createElement('img');
       imgElement.src = cartLightImgURL;
       imgElement.classList.add('popular-cart-img');
+      imgElement.dataset.productId = _id;
 
       const imgElementDown = document.createElement('img');
       imgElementDown.src = cartLightImgURL;
@@ -216,6 +221,7 @@ export function createDiscountMarkup(arr) {
       const imgElement = document.createElement('img');
       imgElement.src = cartImgURL;
       imgElement.classList.add('cart-img-products');
+      imgElement.dataset.productId = _id;
 
       const discountImgElement = document.createElement('img');
       discountImgElement.src = discountImgURL;
