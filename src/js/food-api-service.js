@@ -48,12 +48,12 @@ export class FoodService {
     const params = {
       page: obj.page,
       limit: obj.limit,
-      keyword: obj.keyword !== null ? obj.keyword : undefined, //міняємо null на undefined
-      category: obj.category !== null ? obj.category : undefined, //міняємо null на undefined
+      keyword: obj.keyword !== null ? obj.keyword : undefined, //міняємо null на undefined при першій загрузці
+      category: obj.category !== null ? obj.category : undefined, //міняємо null на undefined при першій загрузці
     };
 
     Object.keys(params).forEach(
-      key => params[key] === undefined && delete params[key] // видалення, якщо в пошуках та категорії - undefined
+      key => params[key] === undefined && delete params[key] // видалення, якщо в пошуках та/або в категорії - undefined
     );
 
     return axios.get(`${this.URL}/products`, { params }).then(response => {

@@ -1,13 +1,13 @@
 import { foodService } from './mainSection';
 import { storage } from './mainSection';
 import iconUrl from '../img/icons.svg';
-import { updateCartCountTitle } from "./header";
+import { updateCartCountTitle } from './header';
 
 const modal = document.querySelector('.modal');
 const modalContent = document.querySelector('.modal-content');
 const listItems = document.querySelector('.main-products');
 
-let cardData;
+let productData;
 
 listItems.addEventListener('click', onCardClick);
 
@@ -23,20 +23,57 @@ async function onCardClick(e) {
   const card = e.target.closest('li');
   if (!card) return;
 
-  cardData = await foodService.findProductById(card.dataset.id);
-  modalContent.innerHTML = makeModalMarkup(cardData);
+  productData = await foodService.findProductById(card.dataset.id);
+  const cartList = storage.getCart();
 
-  openModal();
+  modalContent.innerHTML = makeModalMarkup(productData);
 
   const addToCartBtn = document.querySelector('.add-to-cart-btn');
-  addToCartBtn.addEventListener('click', onAddToCartBtnClick);
+  addToCartBtn.removeEventListener('click', onCartBtnClick);
+  addToCartBtn.addEventListener('click', onCartBtnClick);
+  const isInCartList = cartList.some(
+    cartElem => cartElem._id === productData._id
+  );
+  if (isInCartList) {
+    addToCartBtn.firstChild.textContent = 'Remove from';
+  }
+
+  openModal();
 }
 
-function onAddToCartBtnClick() {
-  this.firstChild.textContent = 'Added to';
-  console.log(cardData);
-  storage.addProductToCart(cardData);
+function onCartBtnClick() {
+  const cartList = storage.getCart();
+  console.log(cartList);
+  const isInCartList = cartList.some(
+    cartElem => cartElem._id === productData._id
+  );
+
+  if (isInCartList) {
+    removeFromCart();
+  } else {
+    addToCart();
+  }
+}
+
+function BtnNameSwitcher() {
+  const btn = document.querySelector('.add-to-cart-btn');
+  if (btn.firstChild.textContent === 'Add to') {
+    btn.firstChild.textContent = 'Remove from';
+  } else {
+    btn.firstChild.textContent = 'Add to';
+  }
+}
+
+function addToCart() {
+  storage.addProductToCart(productData);
   updateCartCountTitle();
+  BtnNameSwitcher();
+}
+
+function removeFromCart() {
+  storage.removeFromCart(productData._id);
+  updateCartCountTitle();
+  BtnNameSwitcher();
 }
 
 function makeModalMarkup(product) {
@@ -59,9 +96,7 @@ function makeModalMarkup(product) {
   <p class="modal-info-desc">${product.desc}</p>
 </div>
 <p class="modal-price">$${product.price}</p>
-<button class="add-to-cart-btn">
-  Add to
-  <svg class="modal-cart" width="18" height="18">
+<button class="add-to-cart-btn">Add to<svg class="modal-cart" width="18" height="18">
     <use href="${iconUrl}#icon-heroicons-solid_shopping-cart"></use>
   </svg>
 </button>
