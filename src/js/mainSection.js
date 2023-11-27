@@ -38,15 +38,24 @@ changeCardIconOnClick();
 document.addEventListener('click', addToCartOnMainProductsClick);
 
 function addToCartOnMainProductsClick(event) {
-  if (
-    event.target &&
-    (event.target.classList.contains('cart-img-products') ||
-      event.target.classList.contains('main-cart-icon') ||
-      event.target.classList.contains('popular-cart-img'))
+  if (event.target &&
+    event.target.classList.contains('main-cart-icon')
   ) {
     const productId = event.target.dataset.productId;
     storage.addToCart(productId);
     updateCartCountTitle();
+  }
+  else if (event.target &&
+    (event.target.classList.contains('cart-img-products') ||
+      event.target.classList.contains('popular-cart-img'))
+  ) {
+    const productId = event.target.dataset.productId;
+    foodService.findProductById(productId)
+      .then(product => {
+        storage.addProductToCart(product);
+        updateCartCountTitle();
+      });
+
   }
 }
 
