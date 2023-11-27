@@ -73,7 +73,7 @@ function createCartMarkup () {
     <div class="delete-all">        
       <button type="submit" class="cart-delete-all-button">Delete all            
         <svg class="cart_close_all" width="24" height="24">
-          <use xlink:href="../img/icons.svg#icon-ion_close-sharp"></use>
+          <use xlink:href="./img/icons.svg#icon-ion_close-sharp"></use>
         </svg>            
       </button>          
     </div>        
