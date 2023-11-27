@@ -6,9 +6,9 @@ const filterBoxList = document.querySelector('.filter-box__list');
 
 document.addEventListener('DOMContentLoaded', function () {
   // Скинути значення інпуту
-  // submitForm.elements.search.value = '';
+  submitForm.elements.search.value = '';
   // Скинути значення select
-  select.value = '';
+  // select.value = '';
 });
 
 submitForm.addEventListener('submit', event => {
@@ -23,12 +23,7 @@ submitForm.addEventListener('submit', event => {
   localStorage.setItem('options', JSON.stringify(savedOptions));
   // storage.updateFoodService(savedOptions);
 
-  if (searchValue) {
-    contentByOptionsDrawer();
-  } else {
-    foodService.resetSearchQuerry();
-    contentByOptionsDrawer();
-  }
+  contentByOptionsDrawer();
 });
 
 select.addEventListener('change', function () {
@@ -42,10 +37,12 @@ select.addEventListener('change', function () {
   if (select.value === 'show-all') {
     filterBoxList.innerHTML = '';
     storage.defaultApiOptions();
+    submitForm.elements.search.value = '';
     contentByOptionsDrawer();
   } else {
     foodService.category = selectedItem;
     filterBoxList.innerHTML = '';
+
     contentByOptionsDrawer();
   }
 });
@@ -60,9 +57,12 @@ foodService.getCategories().then(categories => {
   defaultOption.selected = true; // Обрана за замовчуванням
 
   const options = categories.map(category => {
+    // Заміна нижніх підкреслень на пробіли
+    const displayText = category.replace(/_/g, ' ');
+
     const option = document.createElement('option');
     option.value = category;
-    option.textContent = category;
+    option.textContent = displayText;
     return option;
   });
   const showAllOption = createShowAllOption();
