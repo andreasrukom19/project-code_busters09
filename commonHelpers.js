@@ -1,4 +1,4 @@
-import{s as c}from"./assets/header-16e75f68.js";import"./assets/vendor-a61d8330.js";const a="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",u="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",p="/project-code_busters09/assets/yellow_basket_mobile_1x-min-195418a1.png",m="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",g="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",_="/project-code_busters09/assets/yellow_basket_mobile_2x-min-566aede4.png";document.querySelector(".cart-delete_all-button");document.querySelector(".cart_close_all");const s=document.getElementById("cart-content");document.querySelector(".cart_products_container");const b=document.querySelector(".cart-quentity"),o=c.getFromStorage("cart");c.getFromStorage("cart");function v(){if(o){const t=o.length;b.textContent=`Cart (${t})`}}v();function y(){const t=c.getFromStorage("cart");if(console.log(t),t){s.innerHTML=h();const e=s.querySelector(".cart_products_list");e.innerHTML=x(t)}else s.innerHTML=f()}y();function h(){return`<div class="products_container">
+import{s as r}from"./assets/header-16e75f68.js";import"./assets/vendor-a61d8330.js";const o="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",u="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",p="/project-code_busters09/assets/yellow_basket_mobile_1x-min-195418a1.png",m="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",g="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",_="/project-code_busters09/assets/yellow_basket_mobile_2x-min-566aede4.png";document.querySelector(".cart-delete_all-button");document.querySelector(".cart_close_all");const a=document.getElementById("cart-content");document.querySelector(".cart_products_container");const b=document.querySelector(".cart-quentity"),s=r.getFromStorage("cart");r.getFromStorage("cart");function v(){if(s){const t=s.length;b.textContent=`Cart (${t})`}}v();function y(){let t=document.querySelector(".cart-sum-number"),e=0;s&&s.forEach(c=>(e+=c.price,t.textContent=`${e}`))}function h(){const t=r.getFromStorage("cart");if(console.log(t),t){a.innerHTML=x();const e=a.querySelector(".cart_products_list");e.innerHTML=f(t)}else a.innerHTML=k()}h();y();function x(){return`<div class="products_container">
   <div class="cart-add-products">      
     <div class="delete-all">        
       <button type="submit" class="cart-delete-all-button">Delete all            
@@ -42,7 +42,7 @@ import{s as c}from"./assets/header-16e75f68.js";import"./assets/vendor-a61d8330.
       </div>
     </form>
     
-  </div>`}function x(t){return t.map(({_id:e,name:r,img:i,category:l,size:n,price:d})=>`      
+  </div>`}function f(t){return t.map(({_id:e,name:c,img:i,category:l,size:n,price:d})=>`      
     <li class="discount-item" data-id="${e}">
     <div class="add-img">
               <img src="${i}" alt="Product Image" class="product-image">
@@ -53,18 +53,18 @@ import{s as c}from"./assets/header-16e75f68.js";import"./assets/vendor-a61d8330.
                     <use xlink:href="../img/icons.svg#icon-ion_close-sharp"></use>
                 </svg>
               </button>
-            <h2 class="product-name">${r}</h2>
+            <h2 class="product-name">${c}</h2>
                 <div class="product-category-size">
                     <p class="product-category">Category: ${l}</p>
                     <p class="product-size">Size: ${n}</p>
                 </div>
             <p class="product-price">${d}</p>
           </div>
-          </li>`).join("")}function f(){return`  
+          </li>`).join("")}function k(){return`  
   <div class="cart-img">
     <picture>
       <source media="(min-width: 1440px)" srcset="
-          ${a} 1x,
+          ${o} 1x,
           ${m} 2x
         " type="image/png" />
       <source media="(min-width: 768px)" srcset="
@@ -75,7 +75,7 @@ import{s as c}from"./assets/header-16e75f68.js";import"./assets/vendor-a61d8330.
           ${p} 1x,
           ${_} 2x
         " type="image/png" />
-      <img class="cart-img" src="${a}" alt="basket" />
+      <img class="cart-img" src="${o}" alt="basket" />
     </picture>
   </div>
   <div class="cart-empty">
