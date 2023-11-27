@@ -47,7 +47,7 @@ import{s as r,i as l}from"./assets/icons-76543e5e.js";import"./assets/vendor-a61
     <div class="obj-delete">
 <button class="cart-delete-button">
 <svg class="cart_close_all" width="18" height="18">
-<use xlink:href=".${l}#icon-ion_close-sharp"></use>
+<use xlink:href="${l}#icon-ion_close-sharp"></use>
 </svg>
 </button>
 </div>
