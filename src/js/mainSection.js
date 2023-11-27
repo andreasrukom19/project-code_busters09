@@ -2,10 +2,12 @@
 // import 'simplelightbox/dist/simple-lightbox.min.css';
 import { LocalStorage } from './local-storages';
 import { FoodService } from './food-api-service';
+import { updateCartCountTitle } from './header';
 import cartImgURL from '../img/cart.svg';
 import cartLightImgURL from '../img/cartLight.svg';
 import discountImgURL from '../img/discount.svg';
 import { changeCardIconOnClick } from './changeCardIconOnClick';
+
 const filterBoxList = document.querySelector('.filter-box__list');
 const popularProductsList = document.querySelector('.popular-products__list');
 const discountProductsList = document.querySelector('.discount-products__list');
@@ -29,6 +31,16 @@ contentByOptionsDrawer();
 popularContentDrawer();
 discountContentDrawer();
 changeCardIconOnClick();
+
+document.addEventListener('click', addToCartOnMainProductsClick);
+
+function addToCartOnMainProductsClick(event) {
+  if (event.target && event.target.classList.contains('main-cart-icon')) {
+    const productId = event.target.dataset.productId;
+    storage.addToCart(productId);
+    updateCartCountTitle();
+  }
+}
 
 export function mainContentDrawer() {
   const options = JSON.parse(localStorage.getItem('options'));
@@ -110,6 +122,7 @@ export function createProductsMarkup(arr) {
         const cartElement = document.createElement('img');
         cartElement.src = cartImgURL;
         cartElement.classList.add('main-cart-icon');
+        cartElement.dataset.productId = _id;
 
         const discountElement = document.createElement('img');
         discountElement.src = discountImgURL;
