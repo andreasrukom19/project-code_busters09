@@ -1,9 +1,9 @@
-import{s as r}from"./assets/mainSection-0276f5a6.js";import"./assets/vendor-a61d8330.js";const o="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",d="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",u="/project-code_busters09/assets/yellow_basket_mobile_1x-min-195418a1.png",p="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",m="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",g="/project-code_busters09/assets/yellow_basket_mobile_2x-min-566aede4.png";document.querySelector(".cart-delete_all-button");document.querySelector(".cart_close_all");const a=document.getElementById("cart-content");document.querySelector(".cart_products_container");const _=document.querySelector(".cart-quentity"),s=r.getFromStorage("cart");r.getFromStorage("cart");function b(){if(s){const t=s.length;_.textContent=`Cart (${t})`}}b();function v(){let t=document.querySelector(".cart-sum-number"),e=0;s&&s.forEach(c=>(e+=c.price,t.textContent=`${e}`))}function y(){const t=r.getFromStorage("cart");if(console.log(t),t){a.innerHTML=h();const e=a.querySelector(".cart_products_list");e.innerHTML=x(t)}else a.innerHTML=f()}y();v();function h(){return`<div class="products_container">
+import{s as r,i as l}from"./assets/icons-76543e5e.js";import"./assets/vendor-a61d8330.js";const o="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",u="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",p="/project-code_busters09/assets/yellow_basket_mobile_1x-min-195418a1.png",m="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",g="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",_="/project-code_busters09/assets/yellow_basket_mobile_2x-min-566aede4.png";document.querySelector(".cart-delete_all-button");document.querySelector(".cart_close_all");const a=document.getElementById("cart-content");document.querySelector(".cart_products_container");const b=document.querySelector(".cart-quentity"),s=r.getFromStorage("cart");r.getFromStorage("cart");function v(){if(s){const t=s.length;b.textContent=`Cart (${t})`}}v();function y(){let t=document.querySelector(".cart-sum-number"),e=0;s&&s.forEach(c=>(e+=c.price,t.textContent=`${e}`))}function h(){const t=r.getFromStorage("cart");if(console.log(t),t){a.innerHTML=x();const e=a.querySelector(".cart_products_list");e.innerHTML=f(t)}else a.innerHTML=$()}h();y();function x(){return`<div class="products_container">
   <div class="cart-add-products">      
     <div class="delete-all">        
       <button type="submit" class="cart-delete-all-button">Delete all            
         <svg class="cart_close_all" width="24" height="24">
-          <use xlink:href="./img/icons.svg#icon-ion_close-sharp"></use>
+          <use xlink:href="${l}#icon-ion_close-sharp"></use>
         </svg>            
       </button>          
     </div>        
@@ -42,12 +42,12 @@ import{s as r}from"./assets/mainSection-0276f5a6.js";import"./assets/vendor-a61d
       </div>
     </form>
     
-  </div>`}function x(t){return t.map(({name:e,img:c,category:l,size:i,price:n})=>`      
+  </div>`}function f(t){return t.map(({name:e,img:c,category:i,size:n,price:d})=>`      
     <li class="cart-list">
     <div class="obj-delete">
 <button class="cart-delete-button">
 <svg class="cart_close_all" width="18" height="18">
-<use xlink:href="../img/icons.svg#icon-ion_close-sharp"></use>
+<use xlink:href=".${l}#icon-ion_close-sharp"></use>
 </svg>
 </button>
 </div>
@@ -58,26 +58,26 @@ import{s as r}from"./assets/mainSection-0276f5a6.js";import"./assets/vendor-a61d
 <div class="add-img-info">
 <p class="product-name">${e}</p>
 <div class="product-category-size">
-<p class="product-category">Category: <span class="colored-text">${l}</span></p>
-<p class="product-size">Size: <span class="colored-text">${i}</span></p>
+<p class="product-category">Category: <span class="colored-text">${i}</span></p>
+<p class="product-size">Size: <span class="colored-text">${n}</span></p>
 </div>
-<p class="product-price">$ ${n}</p>
+<p class="product-price">$ ${d}</p>
 </div>
 </div></li>
-          `).join("")}function f(){return`  
+          `).join("")}function $(){return`  
   <div class="cart-img">
     <picture>
       <source media="(min-width: 1440px)" srcset="
           ${o} 1x,
-          ${p} 2x
-        " type="image/png" />
-      <source media="(min-width: 768px)" srcset="
-          ${d} 1x,
           ${m} 2x
         " type="image/png" />
-      <source media="(min-width: 320px)" srcset="
+      <source media="(min-width: 768px)" srcset="
           ${u} 1x,
           ${g} 2x
+        " type="image/png" />
+      <source media="(min-width: 320px)" srcset="
+          ${p} 1x,
+          ${_} 2x
         " type="image/png" />
       <img class="cart-img" src="${o}" alt="basket" />
     </picture>
