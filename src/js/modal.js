@@ -34,7 +34,6 @@ async function onCardClick(e) {
   const isInCartList = cartList.some(
     cartElem => cartElem._id === productData._id
   );
-  console.log(isInCartList);
   if (isInCartList) {
     addToCartBtn.firstChild.textContent = 'Remove from';
   }
