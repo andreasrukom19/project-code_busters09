@@ -9,27 +9,14 @@ import imgURLtab2x from './img/yellow_basket_tablet_2x-min.png';
 import imgURLmob2x from './img/yellow_basket_mobile_2x-min.png';
 import iconsURL from './img/icons.svg';
 
-const deleteBtn = document.querySelector(".cart-delete_all-button");
 const deleteAllBtn = document.querySelector(".cart_close_all");
 const cartContent = document.getElementById("cart-content");
-
 const cartProductsContainer = document.querySelector('.cart_products_container');
 const cartHeader = document.querySelector('.cart-quentity');
 
-// console.log(cartContent);
+let products = storage.getFromStorage('cart');
+console.log(products);
 
-// const storage = new LocalStorage();
-// deleteBtn.addEventListener('click', storage.removeFromCart());
-
-// deleteAllBtn.addEventListener('click', function() {
-//   storage.removeFromCart();
-//   cartContent.innerHTML = createCartMarkupDefault();;
-// });
-
-
-//функція загальної кількості продуктів, доданих у кошик
-const products = storage.getFromStorage('cart');
-const cart = storage.getFromStorage('cart');
 
 function totalQuantity() {
   if (products) {
@@ -54,21 +41,20 @@ function calculateTotalPrice() {
 // calculateTotalPrice()
 
 function checkLocalStorage() {
-
-  const cart = storage.getFromStorage('cart');
-  console.log(cart);
-
-  if (cart) {
-    cartContent.innerHTML = createCartMarkup(cart);
-    const cartProductsList = cartContent.querySelector('.cart_products_list');
-    cartProductsList.innerHTML = createCartMarkupProducts(cart);
+  if (products) {
+    cartContent.innerHTML = createCartMarkup();
   } else {
     cartContent.innerHTML = createCartMarkupDefault();
   }
 }
 
 checkLocalStorage();
+const cartProductsList = cartContent.querySelector('.cart_products_list');
+
+createCartMarkupProducts(products);
 calculateTotalPrice();
+
+
 
 function createCartMarkup() {
   return `<div class="products_container">
@@ -119,32 +105,48 @@ function createCartMarkup() {
 }
 
 
-function createCartMarkupProducts(products) {
-  return products.map(({ name, img, category, size, price }) => {
+function createCartMarkupProducts() {
+  if (products) {
+    const markup = products.map(({ _id, name, img, category, size, price }) => {
     return `      
-    <li class="cart-list">
-    <div class="obj-delete">
-<button class="cart-delete-button">
-<svg class="cart_close_all" width="18" height="18">
-<use xlink:href="${iconsURL}#icon-ion_close-sharp"></use>
-</svg>
-</button>
-</div>
-<div class="cart-obj">
-<div class="add-img">
-<img src="${img}" alt="Product Image" class="product-image" wi>
-</div>
-<div class="add-img-info">
-<p class="product-name">${name}</p>
-<div class="product-category-size">
-<p class="product-category">Category: <span class="colored-text">${category}</span></p>
-<p class="product-size">Size: <span class="colored-text">${size}</span></p>
-</div>
-<p class="product-price">$ ${price}</p>
-</div>
-</div></li>
-          `
-  }).join('')
+    <li id="${_id}" class="cart-list">
+      <div class="obj-delete">
+        <button class="cart-delete-button">
+          <svg class="cart_close_all" width="18" height="18">
+            <use xlink:href="${iconsURL}#icon-ion_close-sharp"></use>
+          </svg>
+        </button>
+      </div>
+      <div class="cart-obj">
+        <div class="add-img">
+          <img src="${img}" alt="Product Image" class="product-image" wi>
+        </div>
+        <div class="add-img-info">
+          <p class="product-name">${name}</p>
+          <div class="product-category-size">
+            <p class="product-category">Category: <span class="colored-text">${category}</span></p>
+            <p class="product-size">Size: <span class="colored-text">${size}</span></p>
+          </div>
+          <p class="product-price">$ ${price}</p>
+        </div>
+      </div>
+    </li>`
+  }).join('');
+  cartProductsList.innerHTML = markup;
+  const deleteBtns = document.querySelectorAll('.cart-delete-button');
+  deleteBtns.forEach(btn => btn.addEventListener('click', onDeleteProduct));
+  }
+}
+
+function onDeleteProduct(event) {
+  const productId = event.target.closest('li').id;
+  storage.removeFromCart(productId);
+  products = storage.getFromStorage('cart');
+  if (products.length === 0) {
+    storage.clearCart();
+  }
+  checkLocalStorage();
+  createCartMarkupProducts();
 }
 
 function createCartMarkupDefault() {
@@ -177,21 +179,4 @@ function createCartMarkupDefault() {
   </div>
 </div>`
 };
-
-//scroll
-// if (storage.getFromStorage('cart')) {
-//   const products = storage.getFromStorage('cart');
-// if (products.length > 3) {
-//   const observer = new IntersectionObserver(entries => {
-//     entries.forEach(entry => {    
-//       if (entry.isIntersecting) {
-//           cartProductsContainer.classList.add('scroll');
-//       } else {
-//           cartProductsContainer.classList.remove('scroll');
-//         }
-//   });
-// });
-//   observer.observe(cartProductsList);
-// }
-// }
 
