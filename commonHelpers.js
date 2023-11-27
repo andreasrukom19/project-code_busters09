@@ -1,4 +1,4 @@
-import{s as r,i as l}from"./assets/icons-11454348.js";import"./assets/vendor-a61d8330.js";const o="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",u="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",p="/project-code_busters09/assets/yellow_basket_mobile_1x-min-195418a1.png",m="/project-code_busters09/assets/yellow_basket_tablet_2x-min-91220a6c.png",g="/project-code_busters09/assets/yellow_basket_tablet_2x-min-91220a6c.png",_="/project-code_busters09/assets/yellow_basket_mobile_2x-min-566aede4.png";document.querySelector(".cart-delete_all-button");document.querySelector(".cart_close_all");const c=document.getElementById("cart-content");document.querySelector(".cart_products_container");const b=document.querySelector(".cart-quentity"),s=r.getFromStorage("cart");r.getFromStorage("cart");function v(){if(s){const t=s.length;b.textContent=`Cart (${t})`}}v();function y(){let t=document.querySelector(".cart-sum-number"),e=0;s&&s.forEach(a=>(e+=a.price,t.textContent=`${e}`))}function h(){const t=r.getFromStorage("cart");if(console.log(t),t){c.innerHTML=x();const e=c.querySelector(".cart_products_list");e.innerHTML=f(t)}else c.innerHTML=$()}h();y();function x(){return`<div class="products_container">
+import{s as r,i as l}from"./assets/icons-d344378c.js";import"./assets/vendor-a61d8330.js";const o="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",u="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",p="/project-code_busters09/assets/yellow_basket_mobile_1x-min-195418a1.png",m="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",g="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",_="/project-code_busters09/assets/yellow_basket_mobile_2x-min-566aede4.png";document.querySelector(".cart-delete_all-button");document.querySelector(".cart_close_all");const a=document.getElementById("cart-content");document.querySelector(".cart_products_container");const b=document.querySelector(".cart-quentity"),s=r.getFromStorage("cart");r.getFromStorage("cart");function v(){if(s){const t=s.length;b.textContent=`Cart (${t})`}}v();function y(){let t=document.querySelector(".cart-sum-number"),e=0;s&&s.forEach(c=>(e+=c.price,t.textContent=`${e}`))}function h(){const t=r.getFromStorage("cart");if(console.log(t),t){a.innerHTML=x();const e=a.querySelector(".cart_products_list");e.innerHTML=f(t)}else a.innerHTML=$()}h();y();function x(){return`<div class="products_container">
   <div class="cart-add-products">      
     <div class="delete-all">        
       <button type="submit" class="cart-delete-all-button">Delete all            
@@ -42,7 +42,7 @@ import{s as r,i as l}from"./assets/icons-11454348.js";import"./assets/vendor-a61
       </div>
     </form>
     
-  </div>`}function f(t){return t.map(({name:e,img:a,category:i,size:n,price:d})=>`      
+  </div>`}function f(t){return t.map(({name:e,img:c,category:i,size:n,price:d})=>`      
     <li class="cart-list">
     <div class="obj-delete">
 <button class="cart-delete-button">
@@ -53,7 +53,7 @@ import{s as r,i as l}from"./assets/icons-11454348.js";import"./assets/vendor-a61
 </div>
 <div class="cart-obj">
 <div class="add-img">
-<img src="${a}" alt="Product Image" class="product-image" wi>
+<img src="${c}" alt="Product Image" class="product-image" wi>
 </div>
 <div class="add-img-info">
 <p class="product-name">${e}</p>
