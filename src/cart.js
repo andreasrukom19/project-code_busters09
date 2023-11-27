@@ -34,7 +34,7 @@ function calculateTotalPrice() {
   if (products) {
     products.forEach(product => {
       total += product.price;
-      return cartSumNumber.textContent = `$${total}`;
+      return cartSumNumber.textContent = `$${total.toFixed(2)}`;
     });
   }
 }
