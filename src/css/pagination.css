@@ -1,4 +1,4 @@
-.pag-item {
+.tui-page-btn {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -22,12 +22,12 @@
   padding: 8px;
 }
 
-.pag-item:hover {
+.tui-page-btn:hover {
   background-color: var(--dark-green);
   color: white;
 }
 
-.pag-item:hover .arrow-icon {
+.tui-page-btn:hover .arrow-icon {
   fill: #fafafa;
 }
 .pag-active {
