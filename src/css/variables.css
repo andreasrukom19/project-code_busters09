@@ -73,3 +73,7 @@ svg {
     padding: 0 100px;
   }
 }
+
+html {
+  scroll-behavior: smooth;
+}
