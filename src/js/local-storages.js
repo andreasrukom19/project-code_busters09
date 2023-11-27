@@ -10,6 +10,13 @@ export class LocalStorage {
     localStorage.setItem('options', JSON.stringify(options));
   }
 
+  getCart() {
+    if (!localStorage.getItem('cart')) {
+      return [];
+    }
+    return JSON.parse(localStorage.getItem('cart'));
+  }
+
   createAndSave(key, data) {
     localStorage.setItem(key, JSON.stringify(data));
   }
@@ -68,7 +75,6 @@ export class LocalStorage {
       const cart = JSON.parse(localStorage.getItem('cart'));
 
       if (cart.find(item => obj._id === item._id)) {
-        console.log(obj._id);
         return;
       } else {
         cart.push(obj);
