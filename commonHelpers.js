@@ -1,4 +1,4 @@
-import{s as r,i as l}from"./assets/icons-67fe66e5.js";import"./assets/vendor-a61d8330.js";const o="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",u="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",p="/project-code_busters09/assets/yellow_basket_mobile_1x-min-195418a1.png",m="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",g="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",_="/project-code_busters09/assets/yellow_basket_mobile_2x-min-566aede4.png";document.querySelector(".cart-delete_all-button");document.querySelector(".cart_close_all");const a=document.getElementById("cart-content");document.querySelector(".cart_products_container");const b=document.querySelector(".cart-quentity"),s=r.getFromStorage("cart");r.getFromStorage("cart");function v(){if(s){const t=s.length;b.textContent=`Cart (${t})`}}v();function y(){let t=document.querySelector(".cart-sum-number"),e=0;s&&s.forEach(c=>(e+=c.price,t.textContent=`${e}`))}function h(){const t=r.getFromStorage("cart");if(console.log(t),t){a.innerHTML=x();const e=a.querySelector(".cart_products_list");e.innerHTML=f(t)}else a.innerHTML=$()}h();y();function x(){return`<div class="products_container">
+import{s as a,i as l}from"./assets/icons-67fe66e5.js";import"./assets/vendor-a61d8330.js";const o="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",_="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",b="/project-code_busters09/assets/yellow_basket_mobile_1x-min-195418a1.png",v="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",y="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",h="/project-code_busters09/assets/yellow_basket_mobile_2x-min-566aede4.png";document.querySelector(".cart_close_all");const r=document.getElementById("cart-content");document.querySelector(".cart_products_container");const f=document.querySelector(".cart-quentity");let t=a.getFromStorage("cart");console.log(t);function x(){if(t){const e=t.length;f.textContent=`Cart (${e})`}}x();function $(){let e=document.querySelector(".cart-sum-number"),s=0;t&&t.forEach(c=>(s+=c.price,e.textContent=`${s}`))}function i(){t?r.innerHTML=w():r.innerHTML=L()}i();const k=r.querySelector(".cart_products_list");n();$();function w(){return`<div class="products_container">
   <div class="cart-add-products">      
     <div class="delete-all">        
       <button type="submit" class="cart-delete-all-button">Delete all            
@@ -42,42 +42,42 @@ import{s as r,i as l}from"./assets/icons-67fe66e5.js";import"./assets/vendor-a61
       </div>
     </form>
     
-  </div>`}function f(t){return t.map(({name:e,img:c,category:i,size:n,price:d})=>`      
-    <li class="cart-list">
-    <div class="obj-delete">
-<button class="cart-delete-button">
-<svg class="cart_close_all" width="18" height="18">
-<use xlink:href="${l}#icon-ion_close-sharp"></use>
-</svg>
-</button>
-</div>
-<div class="cart-obj">
-<div class="add-img">
-<img src="${c}" alt="Product Image" class="product-image" wi>
-</div>
-<div class="add-img-info">
-<p class="product-name">${e}</p>
-<div class="product-category-size">
-<p class="product-category">Category: <span class="colored-text">${i}</span></p>
-<p class="product-size">Size: <span class="colored-text">${n}</span></p>
-</div>
-<p class="product-price">$ ${d}</p>
-</div>
-</div></li>
-          `).join("")}function $(){return`  
+  </div>`}function n(){if(t){const e=t.map(({_id:c,name:d,img:u,category:p,size:m,price:g})=>`      
+    <li id="${c}" class="cart-list">
+      <div class="obj-delete">
+        <button class="cart-delete-button">
+          <svg class="cart_close_all" width="18" height="18">
+            <use xlink:href="${l}#icon-ion_close-sharp"></use>
+          </svg>
+        </button>
+      </div>
+      <div class="cart-obj">
+        <div class="add-img">
+          <img src="${u}" alt="Product Image" class="product-image" wi>
+        </div>
+        <div class="add-img-info">
+          <p class="product-name">${d}</p>
+          <div class="product-category-size">
+            <p class="product-category">Category: <span class="colored-text">${p}</span></p>
+            <p class="product-size">Size: <span class="colored-text">${m}</span></p>
+          </div>
+          <p class="product-price">$ ${g}</p>
+        </div>
+      </div>
+    </li>`).join("");k.innerHTML=e,document.querySelectorAll(".cart-delete-button").forEach(c=>c.addEventListener("click",C))}}function C(e){const s=e.target.closest("li").id;a.removeFromCart(s),t=a.getFromStorage("cart"),t.length===0&&a.clearCart(),i(),n()}function L(){return`  
   <div class="cart-img">
     <picture>
       <source media="(min-width: 1440px)" srcset="
           ${o} 1x,
-          ${m} 2x
+          ${v} 2x
         " type="image/png" />
       <source media="(min-width: 768px)" srcset="
-          ${u} 1x,
-          ${g} 2x
+          ${_} 1x,
+          ${y} 2x
         " type="image/png" />
       <source media="(min-width: 320px)" srcset="
-          ${p} 1x,
-          ${_} 2x
+          ${b} 1x,
+          ${h} 2x
         " type="image/png" />
       <img class="cart-img" src="${o}" alt="basket" />
     </picture>
