@@ -45,7 +45,8 @@ export class LocalStorage {
       page: 1,
       limit: 6,
     };
-
+    const data = localStorage.getItem('options');
+    if (data) return;
     localStorage.setItem('options', JSON.stringify(defaultOptions));
   }
 
