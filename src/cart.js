@@ -135,7 +135,7 @@ function createCartMarkupProducts() {
     </li>`;
       })
       .join('');
-    if (products.length === 0) { return };
+    if (products.length === 0) return;
     cartProductsList.innerHTML = markup;
     const deleteBtns = document.querySelectorAll('.cart-delete-button');
     deleteBtns.forEach(btn => btn.addEventListener('click', onDeleteProduct));
