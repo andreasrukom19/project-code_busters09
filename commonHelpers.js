@@ -1,4 +1,4 @@
-import{s as c,u as d,i as m,f as h}from"./assets/icons-e2989b7d.js";import"./assets/vendor-99d50140.js";const p="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",x="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",C="/project-code_busters09/assets/yellow_basket_mobile_1x-min-195418a1.png",k="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",$="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",L="/project-code_busters09/assets/yellow_basket_mobile_2x-min-566aede4.png",r=document.getElementById("cart-content");r.addEventListener("click",S);document.querySelector(".cart_products_container");const u=document.querySelector(".cart-quentity");let e=c.getFromStorage("cart");function S(t){t.target.closest(".cart-delete-all-button")&&(c.clearCart(),d(),u.textContent="Cart(0)",r.innerHTML=n())}function g(){if(e){const t=e.length;u.textContent=`Cart (${t})`}}g();function v(){let t=0;return e&&e.forEach(o=>{t+=o.price}),t.toFixed(2)}function w(){e?r.innerHTML=b():r.innerHTML=n()}w();const M=r.querySelector(".cart_products_list");_();function b(){const t=v();return`<div class="products_container">
+import{s as o,u as d,i as m,f as y}from"./assets/icons-e2989b7d.js";import"./assets/vendor-99d50140.js";const p="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",x="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",C="/project-code_busters09/assets/yellow_basket_mobile_1x-min-195418a1.png",k="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",$="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",L="/project-code_busters09/assets/yellow_basket_mobile_2x-min-566aede4.png",c=document.getElementById("cart-content");c.addEventListener("click",S);document.querySelector(".cart_products_container");const u=document.querySelector(".cart-quentity");let e=o.getFromStorage("cart");function S(t){t.target.closest(".cart-delete-all-button")&&(o.clearCart(),d(),u.textContent="Cart(0)",c.innerHTML=n())}function g(){if(e){const t=e.length;u.textContent=`Cart (${t})`}}g();function v(){let t=0;return e&&e.forEach(r=>{t+=r.price}),t.toFixed(2)}function w(){e.length!==0?c.innerHTML=b():c.innerHTML=n()}w();const M=c.querySelector(".cart_products_list");_();function b(){const t=v();return`<div class="products_container">
   <div class="cart-add-products">      
     <div class="delete-all">        
       <button type="submit" class="cart-delete-all-button">Delete all            
@@ -42,8 +42,8 @@ import{s as c,u as d,i as m,f as h}from"./assets/icons-e2989b7d.js";import"./ass
       </div>
     </form>
 
-  </div>`}function _(){if(e){const t=e.map(({_id:a,name:i,img:l,category:s,size:f,price:y})=>`      
-    <li id="${a}" class="cart-list">
+  </div>`}function _(){if(e){const t=e.map(({_id:s,name:i,img:l,category:a,size:f,price:h})=>`      
+    <li id="${s}" class="cart-list">
       <div class="obj-delete">
         <button class="cart-delete-button">
           <svg class="cart_close_all" width="18" height="18">
@@ -58,13 +58,13 @@ import{s as c,u as d,i as m,f as h}from"./assets/icons-e2989b7d.js";import"./ass
         <div class="add-img-info">
           <p class="product-name">${i}</p>
           <div class="product-category-size">
-            <p class="product-category">Category: <span class="colored-text">${s}</span></p>
+            <p class="product-category">Category: <span class="colored-text">${a}</span></p>
             <p class="product-size">Size: <span class="colored-text">${f}</span></p>
           </div>
-          <p class="product-price">$ ${y}</p>
+          <p class="product-price">$ ${h}</p>
         </div>
       </div>
-    </li>`).join("");M.innerHTML=t,document.querySelectorAll(".cart-delete-button").forEach(a=>a.addEventListener("click",j))}}function j(t){const o=t.target.closest("li").id;c.removeFromCart(o),d(),e=c.getFromStorage("cart"),e.length===0&&(c.clearCart(),r.innerHTML=n());const a=document.querySelector(".cart-sum-number");a&&(a.textContent=v()),b(),_(),g()}function n(){return`  
+    </li>`).join("");if(e.length===0)return;M.innerHTML=t,document.querySelectorAll(".cart-delete-button").forEach(s=>s.addEventListener("click",j))}}function j(t){const r=t.target.closest("li").id;o.removeFromCart(r),d(),e=o.getFromStorage("cart"),e.length===0&&(c.innerHTML=n());const s=document.querySelector(".cart-sum-number");s&&(s.textContent=v()),b(),_(),g()}function n(){return`  
   <div class="cart-img">
     <picture>
       <source media="(min-width: 1440px)" srcset="
@@ -91,5 +91,5 @@ import{s as c,u as d,i as m,f as h}from"./assets/icons-e2989b7d.js";import"./ass
       the cart.
     </p>
   </div>
-</div>`}if(document.querySelector(".order-form")){let o=function(a){a.preventDefault();const i=c.getCart().map(s=>({productId:s._id,amount:1})),l=document.querySelector(".cart-email");if(!l.value){alert("pls enter email");return}h.order(l.value,i).then(s=>{console.log(s.data),c.clearCart(),d(),u.textContent="Cart(0)",r.innerHTML=n()}).catch(s=>{console.log(s)})};document.querySelector(".order-form").addEventListener("submit",o)}
+</div>`}if(document.querySelector(".order-form")){let r=function(s){s.preventDefault();const i=o.getCart().map(a=>({productId:a._id,amount:1})),l=document.querySelector(".cart-email");if(!l.value){alert("pls enter email");return}y.order(l.value,i).then(a=>{console.log(a.data),o.clearCart(),d(),u.textContent="Cart(0)",c.innerHTML=n()}).catch(a=>{console.log(a)})};document.querySelector(".order-form").addEventListener("submit",r)}
 //# sourceMappingURL=commonHelpers.js.map
