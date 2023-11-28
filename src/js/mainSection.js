@@ -112,8 +112,7 @@ export function discountContentDrawer() {
 }
 
 export function createProductsMarkup(arr) {
-  const storedArray = localStorage.getItem('arrayChecked');
-  const arrayChecked = storedArray ? JSON.parse(storedArray) : [];
+  const cart = storage.getCart();
 
   return arr
     .map(
@@ -141,7 +140,7 @@ export function createProductsMarkup(arr) {
         const checkedElement = document.createElement('img');
         checkedElement.src = checkedImage;
 
-        const isChecked = arrayChecked.some(
+        const isChecked = cart.some(
           checkedItem => checkedItem._id === _id
         );
 
@@ -168,8 +167,7 @@ export function createProductsMarkup(arr) {
 }
 
 export function createPopularMarkup(arr) {
-  const storedArray = localStorage.getItem('arrayChecked');
-  const arrayChecked = storedArray ? JSON.parse(storedArray) : [];
+  const cart = storage.getCart();
   return arr
     .map(({ _id, name, img, category, popularity, size, is10PercentOff }) => {
       const imgElement = document.createElement('img');
@@ -193,7 +191,7 @@ export function createPopularMarkup(arr) {
       checkedElement.src = checkedImage;
       checkedElement.classList.add('popular-cart-img');
 
-      const isChecked = arrayChecked.some(
+      const isChecked = cart.some(
         checkedItem => checkedItem._id === _id
       );
 
@@ -216,8 +214,7 @@ export function createPopularMarkup(arr) {
 }
 
 export function createDiscountMarkup(arr) {
-  const storedArray = localStorage.getItem('arrayChecked');
-  const arrayChecked = storedArray ? JSON.parse(storedArray) : [];
+  const cart = storage.getCart();
   return arr
     .map(({ _id, name, img, price }) => {
       const imgElement = document.createElement('img');
@@ -233,7 +230,7 @@ export function createDiscountMarkup(arr) {
       checkedElement.src = checkedImage;
       // checkedElement.classList.add('popular-cart-img');
 
-      const isChecked = arrayChecked.some(
+      const isChecked = cart.some(
         checkedItem => checkedItem._id === _id
       );
 
