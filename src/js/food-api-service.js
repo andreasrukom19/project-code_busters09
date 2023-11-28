@@ -58,7 +58,7 @@ export class FoodService {
   //* POST => //
 
   subscribe(email) {
-    axios.post(`${this.URL}/subscription`, {
+    return axios.post(`${this.URL}/subscription`, {
       email: email,
     });
   }

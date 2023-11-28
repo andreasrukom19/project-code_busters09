@@ -157,6 +157,12 @@ svg {
   margin-bottom: 14px;
 }
 
+.footer-input:focus,
+select:focus {
+  outline: none;
+  border-color: #e8e8e2;
+}
+
 .footer-input::placeholder {
   color: rgba(232, 232, 226, 0.6);
   font-size: 14px;
@@ -187,11 +193,6 @@ svg {
 }
 
 /* Медіа запити */
-@media screen and (min-width: 428px) {
-
-  
-}
-
 
 @media screen and (min-width: 768px) {
   .footer {
