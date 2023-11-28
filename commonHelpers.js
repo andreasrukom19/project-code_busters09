@@ -1,9 +1,9 @@
-import{s as a,i as l,u as y}from"./assets/icons-676adec5.js";import"./assets/vendor-99d50140.js";const r="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",h="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",f="/project-code_busters09/assets/yellow_basket_mobile_1x-min-195418a1.png",x="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",$="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",k="/project-code_busters09/assets/yellow_basket_mobile_2x-min-566aede4.png";document.querySelector(".cart_close_all");const c=document.getElementById("cart-content");document.querySelector(".cart_products_container");const C=document.querySelector(".cart-quentity");let e=a.getFromStorage("cart");console.log(e);function i(){if(e){const t=e.length;C.textContent=`Cart (${t})`}}i();function n(){let t=0;return e&&e.forEach(s=>{t+=s.price}),t.toFixed(2)}function L(){e?c.innerHTML=d():c.innerHTML=p()}L();const w=c.querySelector(".cart_products_list");u();function d(){const t=n();return`<div class="products_container">
+import{s as c,u as i,i as n}from"./assets/icons-00702b3c.js";import"./assets/vendor-99d50140.js";const l="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",h="/project-code_busters09/assets/yellow_basket_desctop_1x-min-6400acde.png",x="/project-code_busters09/assets/yellow_basket_mobile_1x-min-195418a1.png",k="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",$="/project-code_busters09/assets/yellow_basket_desctop_2x-min-91220a6c.png",C="/project-code_busters09/assets/yellow_basket_mobile_2x-min-566aede4.png",a=document.getElementById("cart-content");a.addEventListener("click",L);document.querySelector(".cart_products_container");const d=document.querySelector(".cart-quentity");let e=c.getFromStorage("cart");function L(t){t.target.closest(".cart-delete-all-button")&&(c.clearCart(),i(),d.textContent="Cart(0)",a.innerHTML=o())}function u(){if(e){const t=e.length;d.textContent=`Cart (${t})`}}u();function p(){let t=0;return e&&e.forEach(r=>{t+=r.price}),t.toFixed(2)}function w(){e?a.innerHTML=m():a.innerHTML=o()}w();const S=a.querySelector(".cart_products_list");g();function m(){const t=p();return`<div class="products_container">
   <div class="cart-add-products">      
     <div class="delete-all">        
       <button type="submit" class="cart-delete-all-button">Delete all            
         <svg class="cart_close_all" width="24" height="24">
-          <use xlink:href="${l}#icon-ion_close-sharp"></use>
+          <use xlink:href="${n}#icon-ion_close-sharp"></use>
         </svg>            
       </button>          
     </div>        
@@ -42,44 +42,44 @@ import{s as a,i as l,u as y}from"./assets/icons-676adec5.js";import"./assets/ven
       </div>
     </form>
 
-  </div>`}function u(){if(e){const t=e.map(({_id:o,name:m,img:g,category:_,size:v,price:b})=>`      
-    <li id="${o}" class="cart-list">
+  </div>`}function g(){if(e){const t=e.map(({_id:s,name:v,img:_,category:b,size:y,price:f})=>`      
+    <li id="${s}" class="cart-list">
       <div class="obj-delete">
         <button class="cart-delete-button">
           <svg class="cart_close_all" width="18" height="18">
-            <use xlink:href="${l}#icon-ion_close-sharp"></use>
+            <use xlink:href="${n}#icon-ion_close-sharp"></use>
           </svg>
         </button>
       </div>
       <div class="cart-obj">
         <div class="add-img">
-          <img src="${g}" alt="Product Image" class="product-image" wi>
+          <img src="${_}" alt="Product Image" class="product-image" wi>
         </div>
         <div class="add-img-info">
-          <p class="product-name">${m}</p>
+          <p class="product-name">${v}</p>
           <div class="product-category-size">
-            <p class="product-category">Category: <span class="colored-text">${_}</span></p>
-            <p class="product-size">Size: <span class="colored-text">${v}</span></p>
+            <p class="product-category">Category: <span class="colored-text">${b}</span></p>
+            <p class="product-size">Size: <span class="colored-text">${y}</span></p>
           </div>
-          <p class="product-price">$ ${b}</p>
+          <p class="product-price">$ ${f}</p>
         </div>
       </div>
-    </li>`).join("");w.innerHTML=t,document.querySelectorAll(".cart-delete-button").forEach(o=>o.addEventListener("click",S))}}function S(t){const s=t.target.closest("li").id;a.removeFromCart(s),y(),e=a.getFromStorage("cart"),e.length===0&&(a.clearCart(),c.innerHTML=p()),n(),d(),u(),i()}function p(){return`  
+    </li>`).join("");S.innerHTML=t,document.querySelectorAll(".cart-delete-button").forEach(s=>s.addEventListener("click",j))}}function j(t){const r=t.target.closest("li").id;c.removeFromCart(r),i(),e=c.getFromStorage("cart"),e.length===0&&(c.clearCart(),a.innerHTML=o());const s=document.querySelector(".cart-sum-number");s&&(s.textContent=p()),m(),g(),u()}function o(){return`  
   <div class="cart-img">
     <picture>
       <source media="(min-width: 1440px)" srcset="
-          ${r} 1x,
-          ${x} 2x
+          ${l} 1x,
+          ${k} 2x
         " type="image/png" />
       <source media="(min-width: 768px)" srcset="
           ${h} 1x,
           ${$} 2x
         " type="image/png" />
       <source media="(min-width: 320px)" srcset="
-          ${f} 1x,
-          ${k} 2x
+          ${x} 1x,
+          ${C} 2x
         " type="image/png" />
-      <img class="cart-img" src="${r}" alt="basket" />
+      <img class="cart-img" src="${l}" alt="basket" />
     </picture>
   </div>
   <div class="cart-empty">
