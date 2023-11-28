@@ -1,4 +1,9 @@
-import { foodService } from './mainSection';
+import {
+  contentByOptionsDrawer,
+  foodService,
+  popularContentDrawer,
+  discountContentDrawer,
+} from './mainSection';
 import { storage } from './mainSection';
 import iconUrl from '../img/icons.svg';
 import { updateCartCountTitle } from './header';
@@ -9,6 +14,7 @@ const modalContent = document.querySelector('.modal-content');
 const listItems = document.querySelector('.main-products');
 
 let productData;
+// let category;
 
 listItems.addEventListener('click', onCardClick);
 
@@ -16,15 +22,27 @@ async function onCardClick(e) {
   if (
     e.target.classList.contains('main-cart-icon') ||
     e.target.classList.contains('cart-img-products') ||
-    e.target.classList.contains('popular-cart-img')
+    e.target.classList.contains('popular-cart-img') ||
+    e.target.classList.contains('js-checked-arrow')
   ) {
     return;
   }
+
+  // if (e.target.closest('ul').classList.contains('filter-box__list')) {
+  //   category = 'main';
+  // }
+  // if (e.target.closest('ul').classList.contains('popular-products__list')) {
+  //   category = 'popular';
+  // }
+  // if (e.target.closest('ul').classList.contains('discount-products__list')) {
+  //   category = 'discount';
+  // }
 
   const card = e.target.closest('li');
   if (!card) return;
   showSpinner();
   productData = await foodService.findProductById(card.dataset.id);
+  console.log(productData);
   const cartList = storage.getCart();
 
   modalContent.innerHTML = makeModalMarkup(productData);
@@ -132,4 +150,23 @@ function closeModal() {
   document.removeEventListener('keydown', onEscCloseModal);
   window.removeEventListener('click', onClickCloseModal);
   document.body.classList.remove('no-scroll');
+  contentByOptionsDrawer();
+  popularContentDrawer();
+  discountContentDrawer();
+  // if (category === 'main') {
+  //   contentByOptionsDrawer();
+  // }
+  // if (category === 'popular') {
+  //   popularContentDrawer();
+  // }
+  // if (category === 'discount') {
+  //   discountContentDrawer();
+  // }
+  // const mainProducts = document.querySelector('.main-products');
+  // console.log(mainProducts);
+  // mainProducts.addEventListener('click', categoryToRefreshChooser);
 }
+
+// function categoryToRefreshChooser(e) {
+//   console.log(e.target);
+// }
