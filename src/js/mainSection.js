@@ -10,8 +10,8 @@ import checkedImage from '../img/checked.svg';
 import { changeCardIconOnClick } from './changeCardIconOnClick';
 import { addClassHidden, removeClassHidden } from './helpers';
 import Pagination from 'tui-pagination';
+import { hideSpinner, showSpinner } from './spinner';
 
-const noProductsMessageEl = document.querySelector('.no-products-message');
 const pagginationEl = document.querySelector('.pagination');
 const filterBoxList = document.querySelector('.filter-box__list');
 const popularProductsList = document.querySelector('.popular-products__list');
@@ -58,19 +58,18 @@ function addToCartOnMainProductsClick(event) {
 
 export function contentByOptionsDrawer() {
   const options = JSON.parse(localStorage.getItem('options'));
-
+  showSpinner();
   foodService
     .getFoodListWithOptions2(options)
     .then(data => {
       if (data.results.length === 0) {
-        removeClassHidden(noProductsMessageEl);
         addClassHidden(pagginationEl);
       } else {
-        addClassHidden(noProductsMessageEl);
         removeClassHidden(pagginationEl);
       }
       console.log(data.results);
       filterBoxList.innerHTML = createProductsMarkup(data.results);
+      hideSpinner();
       storage.saveCardsToLocalStorage(data.results);
     })
     .catch(error => {
@@ -140,9 +139,7 @@ export function createProductsMarkup(arr) {
         const checkedElement = document.createElement('img');
         checkedElement.src = checkedImage;
 
-        const isChecked = cart.some(
-          checkedItem => checkedItem._id === _id
-        );
+        const isChecked = cart.some(checkedItem => checkedItem._id === _id);
 
         return `<li class="product-card" data-id=${_id}>
           ${imgToInsert}
@@ -191,9 +188,7 @@ export function createPopularMarkup(arr) {
       checkedElement.src = checkedImage;
       checkedElement.classList.add('popular-cart-img');
 
-      const isChecked = cart.some(
-        checkedItem => checkedItem._id === _id
-      );
+      const isChecked = cart.some(checkedItem => checkedItem._id === _id);
 
       return `      
         <li class="popular-item" data-id="${_id}">
@@ -230,9 +225,7 @@ export function createDiscountMarkup(arr) {
       checkedElement.src = checkedImage;
       // checkedElement.classList.add('popular-cart-img');
 
-      const isChecked = cart.some(
-        checkedItem => checkedItem._id === _id
-      );
+      const isChecked = cart.some(checkedItem => checkedItem._id === _id);
 
       return `      
       <li class="discount-item" data-id="${_id}">
