@@ -1,5 +1,6 @@
 
 import { storage } from './js/mainSection';
+import { updateCartCountTitle } from "./js/header";
 
 import imgURLdesc from './img/yellow_basket_desctop_1x-min.png';
 import imgURLtablet from './img/yellow_basket_tablet_1x-min.png';
@@ -51,11 +52,7 @@ function checkLocalStorage() {
 
 checkLocalStorage();
 const cartProductsList = cartContent.querySelector('.cart_products_list');
-
 createCartMarkupProducts(products);
-
-
-
 
 function createCartMarkup() {
   const total = calculateTotalPrice();
@@ -143,12 +140,17 @@ function createCartMarkupProducts() {
 function onDeleteProduct(event) {
   const productId = event.target.closest('li').id;
   storage.removeFromCart(productId);
+  updateCartCountTitle();
   products = storage.getFromStorage('cart');
   if (products.length === 0) {
     storage.clearCart();
+    cartContent.innerHTML = createCartMarkupDefault();
   }
-  checkLocalStorage();
-  createCartMarkupProducts();
+    calculateTotalPrice();
+    createCartMarkup();
+    createCartMarkupProducts();
+    totalQuantity();
+    
 }
 
 function createCartMarkupDefault() {
