@@ -29,14 +29,15 @@ totalQuantity()
 // Функція для розрахунку загальної вартості продуктів
 
 function calculateTotalPrice() {
-  let cartSumNumber = document.querySelector('.cart-sum-number');
+  // let cartSumNumber = document.querySelector('.cart-sum-number');
   let total = 0;
   if (products) {
     products.forEach(product => {
       total += product.price;
-      return cartSumNumber.textContent = `$${total.toFixed(2)}`;
+      // return cartSumNumber.textContent = `$${total.toFixed(2)}`;
     });
   }
+  return total.toFixed(2);
 }
 // calculateTotalPrice()
 
@@ -52,11 +53,12 @@ checkLocalStorage();
 const cartProductsList = cartContent.querySelector('.cart_products_list');
 
 createCartMarkupProducts(products);
-calculateTotalPrice();
+
 
 
 
 function createCartMarkup() {
+  const total = calculateTotalPrice();
   return `<div class="products_container">
   <div class="cart-add-products">      
     <div class="delete-all">        
@@ -79,11 +81,11 @@ function createCartMarkup() {
         <p class="cart-total">Total</p>            
         <div class="cart-total-sum">              
           <p class="cart-sum">Sum:</p>              
-          <p class="cart-sum-number">$0</p>              
-        </div>     
-      </div>   
+          <p class="cart-sum-number">$${total}</p>
+        </div>
+      </div>
     </div>
-  
+
     <form class="order-form">
       <div class="cart-input">
         <label class="label-cart">
@@ -100,7 +102,7 @@ function createCartMarkup() {
         <button type="submit" class="cart-checkout-button">Checkout</button>
       </div>
     </form>
-    
+
   </div>`
 }
 
@@ -108,7 +110,7 @@ function createCartMarkup() {
 function createCartMarkupProducts() {
   if (products) {
     const markup = products.map(({ _id, name, img, category, size, price }) => {
-    return `      
+      return `      
     <li id="${_id}" class="cart-list">
       <div class="obj-delete">
         <button class="cart-delete-button">
@@ -131,10 +133,10 @@ function createCartMarkupProducts() {
         </div>
       </div>
     </li>`
-  }).join('');
-  cartProductsList.innerHTML = markup;
-  const deleteBtns = document.querySelectorAll('.cart-delete-button');
-  deleteBtns.forEach(btn => btn.addEventListener('click', onDeleteProduct));
+    }).join('');
+    cartProductsList.innerHTML = markup;
+    const deleteBtns = document.querySelectorAll('.cart-delete-button');
+    deleteBtns.forEach(btn => btn.addEventListener('click', onDeleteProduct));
   }
 }
 
