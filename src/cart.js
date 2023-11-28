@@ -35,23 +35,18 @@ function totalQuantity() {
 }
 totalQuantity();
 
-// Функція для розрахунку загальної вартості продуктів
-
 function calculateTotalPrice() {
-  // let cartSumNumber = document.querySelector('.cart-sum-number');
   let total = 0;
   if (products) {
     products.forEach(product => {
       total += product.price;
-      // return cartSumNumber.textContent = `$${total.toFixed(2)}`;
     });
   }
   return total.toFixed(2);
 }
-// calculateTotalPrice()
 
 function checkLocalStorage() {
-  if (products) {
+  if (products.length !== 0) {
     cartContent.innerHTML = createCartMarkup();
   } else {
     cartContent.innerHTML = createCartMarkupDefault();
@@ -140,6 +135,7 @@ function createCartMarkupProducts() {
     </li>`;
       })
       .join('');
+    if (products.length === 0) { return };
     cartProductsList.innerHTML = markup;
     const deleteBtns = document.querySelectorAll('.cart-delete-button');
     deleteBtns.forEach(btn => btn.addEventListener('click', onDeleteProduct));
@@ -152,7 +148,6 @@ function onDeleteProduct(event) {
   updateCartCountTitle();
   products = storage.getFromStorage('cart');
   if (products.length === 0) {
-    storage.clearCart();
     cartContent.innerHTML = createCartMarkupDefault();
   }
 
