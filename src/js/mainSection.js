@@ -58,7 +58,7 @@ function addToCartOnMainProductsClick(event) {
 
 export function contentByOptionsDrawer() {
   const options = JSON.parse(localStorage.getItem('options'));
-  // showSpinner();
+  showSpinner();
   foodService
     .getFoodListWithOptions2(options)
     .then(data => {
@@ -69,7 +69,7 @@ export function contentByOptionsDrawer() {
       }
       console.log(data.results);
       filterBoxList.innerHTML = createProductsMarkup(data.results);
-      // hideSpinner();
+      hideSpinner();
       storage.saveCardsToLocalStorage(data.results);
     })
     .catch(error => {
