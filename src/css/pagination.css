@@ -15,7 +15,9 @@
   border-color: transparent;
 }
 .pagination {
-  padding-left: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .pag-btn {
   background-color: white;

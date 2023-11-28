@@ -18,7 +18,7 @@ export class LocalStorage {
   }
 
   createAndSave(key, data) {
-    localStorage.setItem(key, JSON.stringify(data));
+        localStorage.setItem(key, JSON.stringify(data));
   }
 
   getFromStorage(item) {

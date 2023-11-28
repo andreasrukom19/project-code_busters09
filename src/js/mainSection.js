@@ -72,9 +72,10 @@ export function contentByOptionsDrawer() {
         addClassHidden(noProductsMessageEl);
         removeClassHidden(pagginationEl);
       }
-      console.log(data.results);
+      console.log(data);
       filterBoxList.innerHTML = createProductsMarkup(data.results);
       storage.saveCardsToLocalStorage(data.results);
+      storage.createAndSave('pagination', data)
     })
     .catch(error => {
       // TODO ADD NOTIFLIX

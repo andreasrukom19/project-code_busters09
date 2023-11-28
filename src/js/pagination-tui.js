@@ -5,16 +5,18 @@ const container = document.getElementById('tui-pagination-container');
 
 container.addEventListener('click', launchPaginstion)
 
+
 const {
-    keyword, category, page, limit,
-} = storage.getFromStorage('options');
+    page, perPage, results, totalPages
+} = storage.getFromStorage('pagination')
 
+console.log(results.length);
 
-const pagination = new Pagination(container, { 
-    totalItems: 50,
-    itemsPerPage: 6,
+export const pagination = new Pagination(container, { 
+    totalItems: (totalPages*perPage),
+    itemsPerPage: perPage,
     page,
-    centerAlign: true,
+    centerAlign: false,
      template: {
          page: '<a href="./index.html" class="tui-page-btn">{{page}}</a>',
          currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
@@ -38,5 +40,5 @@ function launchPaginstion() {
     const p = pagination.getCurrentPage();
     storage.setApiOptions('page', `${p}`);
     contentByOptionsDrawer()
+    console.log(p);
 }
-launchPaginstion()
