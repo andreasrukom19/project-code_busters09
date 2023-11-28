@@ -2,6 +2,7 @@ import { foodService } from './mainSection';
 import { storage } from './mainSection';
 import iconUrl from '../img/icons.svg';
 import { updateCartCountTitle } from './header';
+import { hideSpinner, showSpinner } from './spinner';
 
 const modal = document.querySelector('.modal');
 const modalContent = document.querySelector('.modal-content');
@@ -22,7 +23,7 @@ async function onCardClick(e) {
 
   const card = e.target.closest('li');
   if (!card) return;
-
+  showSpinner();
   productData = await foodService.findProductById(card.dataset.id);
   const cartList = storage.getCart();
 
@@ -37,7 +38,7 @@ async function onCardClick(e) {
   if (isInCartList) {
     addToCartBtn.firstChild.textContent = 'Remove from';
   }
-
+  hideSpinner();
   openModal();
 }
 
