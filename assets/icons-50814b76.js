@@ -1,0 +1,43 @@
+import{a as p}from"./vendor-99d50140.js";(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const s of document.querySelectorAll('link[rel="modulepreload"]'))o(s);new MutationObserver(s=>{for(const c of s)if(c.type==="childList")for(const n of c.addedNodes)n.tagName==="LINK"&&n.rel==="modulepreload"&&o(n)}).observe(document,{childList:!0,subtree:!0});function r(s){const c={};return s.integrity&&(c.integrity=s.integrity),s.referrerpolicy&&(c.referrerPolicy=s.referrerpolicy),s.crossorigin==="use-credentials"?c.credentials="include":s.crossorigin==="anonymous"?c.credentials="omit":c.credentials="same-origin",c}function o(s){if(s.ep)return;s.ep=!0;const c=r(s);fetch(s.href,c)}})();class w{constructor(){}getOptions(){return JSON.parse(localStorage.getItem("options"))}setOptions(t){localStorage.setItem("options",JSON.stringify(t))}getCart(){return localStorage.getItem("cart")?JSON.parse(localStorage.getItem("cart")):[]}createAndSave(t,r){localStorage.setItem(t,JSON.stringify(r))}getFromStorage(t){return JSON.parse(localStorage.getItem(`${t}`))}saveCardsToLocalStorage(t){localStorage.setItem("products",JSON.stringify(t))}saveCategories(){if(!localStorage.getItem("categories"))return f.getCategories().then(t=>{console.log(t),localStorage.setItem("categories",JSON.stringify(t))})}defaultApiOptions(){const t={keyword:null,category:null,page:1,limit:6};localStorage.setItem("options",JSON.stringify(t))}setApiOptions(t,r){const o=JSON.parse(localStorage.getItem("options"));o[t]=r,localStorage.setItem("options",JSON.stringify(o))}addToCart(t){const o=JSON.parse(localStorage.getItem("products")).find(s=>s._id===t);this.addProductToCart(o)}addProductToCart(t){if(localStorage.getItem("cart")){const r=JSON.parse(localStorage.getItem("cart"));if(r.find(o=>t._id===o._id))return;r.push(t),localStorage.setItem("cart",JSON.stringify(r))}else{const r=[t];localStorage.setItem("cart",JSON.stringify(r))}}removeFromCart(t){const r=JSON.parse(localStorage.getItem("cart")),o=r.find(c=>c._id===t),s=r.indexOf(o);return r.splice(s,1),console.log(r),localStorage.setItem("cart",JSON.stringify(r))}clearCart(){localStorage.removeItem("cart")}}class T{constructor(){this.URL="https://food-boutique.b.goit.study/api"}getFoodListWithOptions2(t){window.innerWidth>=768&&window.innerWidth<1440?(t.limit=8,i.setOptions(t)):window.innerWidth>=1440&&(t.limit=9,i.setOptions(t));const r={page:t.page,limit:t.limit,keyword:t.keyword!==null?t.keyword:void 0,category:t.category!==null?t.category:void 0};return Object.keys(r).forEach(o=>r[o]===void 0&&delete r[o]),p.get(`${this.URL}/products`,{params:r}).then(o=>o.data)}findProductById(t){return p.get(`${this.URL}/products/${t}`).then(r=>r.data)}getPopular(){return p.get(`${this.URL}/products/popular`).then(t=>t.data)}getDiscount(){return p.get(`${this.URL}/products/discount`).then(t=>t.data)}getCategories(){return p.get(`${this.URL}/products/categories`).then(t=>t.data)}subscribe(t){return p.post(`${this.URL}/subscription`,{email:t})}order(t,r){return p.post(`${this.URL}/orders`,{email:t,products:r})}}const M=new w,N=document.querySelector(".cart-title");function k(){return(M.getFromStorage("cart")??[]).length}function _(){let e=k();N.innerHTML=`cart (${e})`}_();const E="/project-code_busters09/assets/cart-a9135e8e.svg",I="/project-code_busters09/assets/cartLight-0b4d3d6f.svg",$="/project-code_busters09/assets/discount-b955391f.svg",L="/project-code_busters09/assets/checked-295f5189.svg";function H(){document.addEventListener("click",function(e){if(e.target.classList.contains("cart-img-products")||e.target.classList.contains("main-cart-icon")||e.target.classList.contains("popular-cart-img")||e.target.classList.contains("popular-cart-img-down")){const t=e.target;t.src=L}})}function P(e){e.classList.add("visually-hidden")}function J(e){e.classList.remove("visually-hidden")}document.querySelector(".loader-container");const O=document.querySelector(".pagination"),R=document.querySelector(".filter-box__list"),U=document.querySelector(".popular-products__list"),q=document.querySelector(".discount-products__list"),D=document.querySelector(".popular-products__list-responsive"),b=document.querySelector(".discount-products__list-responsive"),i=new w,f=new T;document.addEventListener("click",function(e){e.target.tagName==="IMG"&&e.preventDefault()});i.defaultApiOptions();x();z();A();H();document.addEventListener("click",F);function F(e){if(e.target&&e.target.classList.contains("main-cart-icon")){const t=e.target.dataset.productId;i.addToCart(t),_()}else if(e.target&&(e.target.classList.contains("cart-img-products")||e.target.classList.contains("popular-cart-img"))){const t=e.target.dataset.productId;f.findProductById(t).then(r=>{i.addProductToCart(r),_()})}}function x(){const e=JSON.parse(localStorage.getItem("options"));f.getFoodListWithOptions2(e).then(t=>{t.results.length===0?P(O):J(O),console.log(t.results),R.innerHTML=W(t.results),i.saveCardsToLocalStorage(t.results)}).catch(t=>{})}function z(){f.getPopular().then(e=>{U.innerHTML=v(e),D.innerHTML=v(e)}).catch(e=>{})}function A(){f.getDiscount().then(e=>{q.innerHTML=C(e),b.innerHTML=C(e)}).catch(e=>{})}function W(e){const t=i.getCart();return e.map(({_id:r,name:o,img:s,category:c,price:n,popularity:l,size:g,is10PercentOff:d})=>{const a=document.createElement("img");a.src=E,a.classList.add("main-cart-icon"),a.dataset.productId=r;const u=document.createElement("img");u.src=$,u.classList.add("discount-icon-products");const h=d?u.outerHTML:"",m=document.createElement("img");m.src=L;const S=t.some(y=>y._id===r);return`<li class="product-card" data-id=${r}>
+          ${h}
+          <div class="img-container"><a href="${s}"><img class="product-card__img" src="${s}" alt="${o}" loading="lazy" /></a>
+          </div>
+          <div class="info">      
+            <h2 class="info__title">${o}</h2>
+            <div class="info-wrapper">
+              <p class="info-wrapper__product">Category:<span>${c}</span></p>
+              <p class="info-wrapper__product">Size:<span>${g}</span></p>
+              <p class="info-wrapper__product">Popularity:<span>${l}</span></p>
+            </div>
+            <div class="info-wrapper__price-container" >
+              <p class="info__price">$${n}</p> 
+              ${S?m.outerHTML:a.outerHTML}
+            </div>     
+          </div>
+        </li>`}).join("")}function v(e){const t=i.getCart();return e.map(({_id:r,name:o,img:s,category:c,popularity:n,size:l,is10PercentOff:g})=>{const d=document.createElement("img");d.src=I,d.classList.add("popular-cart-img"),d.dataset.productId=r;const a=document.createElement("img");a.src=I,a.classList.add("popular-cart-img-down");const u=document.createElement("img");u.src=$,u.classList.add("discount-icon-popular");const h=g?`${u.outerHTML}${a.outerHTML}`:`${d.outerHTML}`,m=document.createElement("img");m.src=L,m.classList.add("popular-cart-img");const S=t.some(y=>y._id===r);return`      
+        <li class="popular-item" data-id="${r}">
+            ${S?m.outerHTML:h}
+          <div class="popular-img-container"><img class="popular-item__img" src="${s}" alt="${o}" loading="lazy" /></div>
+          <div class="popular-info">
+            <h3 class="popular-info__title">${o}</h3>
+            <div class="info-wrapper">
+              <p class="info-wrapper__product">Category:<span>${c}</span></p>
+              <p class="info-wrapper__product">Size:<span>${l}</span></p>
+              <p class="info-wrapper__product">Popularity:<span>${n}</span></p>
+            </div>             
+          </div>
+        </li>`}).slice(0,5).join("")}function C(e){const t=i.getCart();return e.map(({_id:r,name:o,img:s,price:c})=>{const n=document.createElement("img");n.src=E,n.classList.add("cart-img-products"),n.dataset.productId=r;const l=document.createElement("img");l.src=$,l.classList.add("discount-cheap");const g=document.createElement("img");g.src=L;const d=t.some(a=>a._id===r);return`      
+      <li class="discount-item" data-id="${r}">
+   
+       ${l.outerHTML} 
+      <div class="discount-img-container"><a href="${s}"><img class="discount-item__img" src="${s}" alt="${o}" loading="lazy" /></a>
+      </div>
+      <div class="discount-info">
+        <h3 class="discount-info__title">${o}</h3>
+        <div class="discount-img-wrapper">
+        <p class="discount-info__price">$${c}</p>
+         ${d?g.outerHTML:n.outerHTML}
+        </div>        
+      </div>
+    </li>`}).slice(0,2).join("")}const G="/project-code_busters09/assets/icons-d9095b3f.svg";export{x as c,f,G as i,i as s,_ as u};
+//# sourceMappingURL=icons-50814b76.js.map
