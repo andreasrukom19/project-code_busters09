@@ -5,7 +5,8 @@ export function changeCardIconOnClick() {
     if (
       event.target.classList.contains('cart-img-products') ||
       event.target.classList.contains('main-cart-icon') ||
-      event.target.classList.contains('popular-cart-img')
+      event.target.classList.contains('popular-cart-img') ||
+      event.target.classList.contains('popular-cart-img-down')
     ) {
       const currentImage = event.target;
       currentImage.src = checkedImage;

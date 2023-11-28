@@ -12,8 +12,8 @@
     font-weight: 500;
     line-height: 1.16em;
 }
-.cart-img {
-    padding-top: 105px;
+.box-img {
+    margin-top: 105px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -243,8 +243,8 @@
         font-size: 32px;
         line-height: 1em;
     }
-    .cart-img{
-        padding-top: 135px;
+    .box-img{
+        margin-top: 135px;
     }
     .cart-empty {
         padding-top: 40px;
@@ -330,8 +330,8 @@
     .icon-cart {
         padding-top: 94px;
     }
-    .cart-img {
-        padding-top: 155px;
+    .box-img {
+        margin-top: 155px;
     }
     .cart-empty {
         padding-top: 40px;

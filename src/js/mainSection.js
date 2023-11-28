@@ -6,11 +6,12 @@ import { updateCartCountTitle } from './header';
 import cartImgURL from '../img/cart.svg';
 import cartLightImgURL from '../img/cartLight.svg';
 import discountImgURL from '../img/discount.svg';
+import checkedImage from '../img/checked.svg';
 import { changeCardIconOnClick } from './changeCardIconOnClick';
-import { addClassHidden, removeClassHidden } from "./helpers";
+import { addClassHidden, removeClassHidden } from './helpers';
 import Pagination from 'tui-pagination';
+import { hideSpinner, showSpinner } from './spinner';
 
-const noProductsMessageEl = document.querySelector('.no-products-message');
 const pagginationEl = document.querySelector('.pagination');
 const filterBoxList = document.querySelector('.filter-box__list');
 const popularProductsList = document.querySelector('.popular-products__list');
@@ -38,42 +39,37 @@ changeCardIconOnClick();
 document.addEventListener('click', addToCartOnMainProductsClick);
 
 function addToCartOnMainProductsClick(event) {
-  if (event.target &&
-    event.target.classList.contains('main-cart-icon')
-  ) {
+  if (event.target && event.target.classList.contains('main-cart-icon')) {
     const productId = event.target.dataset.productId;
     storage.addToCart(productId);
     updateCartCountTitle();
-  }
-  else if (event.target &&
+  } else if (
+    event.target &&
     (event.target.classList.contains('cart-img-products') ||
       event.target.classList.contains('popular-cart-img'))
   ) {
     const productId = event.target.dataset.productId;
-    foodService.findProductById(productId)
-      .then(product => {
-        storage.addProductToCart(product);
-        updateCartCountTitle();
-      });
-
+    foodService.findProductById(productId).then(product => {
+      storage.addProductToCart(product);
+      updateCartCountTitle();
+    });
   }
 }
 
 export function contentByOptionsDrawer() {
   const options = JSON.parse(localStorage.getItem('options'));
-
+  showSpinner();
   foodService
     .getFoodListWithOptions2(options)
     .then(data => {
       if (data.results.length === 0) {
-        removeClassHidden(noProductsMessageEl);
         addClassHidden(pagginationEl);
       } else {
-        addClassHidden(noProductsMessageEl);
         removeClassHidden(pagginationEl);
       }
       console.log(data);
       filterBoxList.innerHTML = createProductsMarkup(data.results);
+      hideSpinner();
       storage.saveCardsToLocalStorage(data.results);
       storage.createAndSave('pagination', data)
     })
@@ -116,6 +112,8 @@ export function discountContentDrawer() {
 }
 
 export function createProductsMarkup(arr) {
+  const cart = storage.getCart();
+
   return arr
     .map(
       ({
@@ -137,12 +135,15 @@ export function createProductsMarkup(arr) {
         discountElement.src = discountImgURL;
         discountElement.classList.add('discount-icon-products');
 
-        const imgToInsert = is10PercentOff
-          ? `${discountElement.outerHTML}`
-          : '';
+        const imgToInsert = is10PercentOff ? discountElement.outerHTML : '';
+
+        const checkedElement = document.createElement('img');
+        checkedElement.src = checkedImage;
+
+        const isChecked = cart.some(checkedItem => checkedItem._id === _id);
 
         return `<li class="product-card" data-id=${_id}>
-        ${imgToInsert}
+          ${imgToInsert}
           <div class="img-container"><a href="${img}"><img class="product-card__img" src="${img}" alt="${name}" loading="lazy" /></a>
           </div>
           <div class="info">      
@@ -154,7 +155,7 @@ export function createProductsMarkup(arr) {
             </div>
             <div class="info-wrapper__price-container" >
               <p class="info__price">$${price}</p> 
-               ${cartElement.outerHTML}
+              ${isChecked ? checkedElement.outerHTML : cartElement.outerHTML}
             </div>     
           </div>
         </li>`;
@@ -164,6 +165,7 @@ export function createProductsMarkup(arr) {
 }
 
 export function createPopularMarkup(arr) {
+  const cart = storage.getCart();
   return arr
     .map(({ _id, name, img, category, popularity, size, is10PercentOff }) => {
       const imgElement = document.createElement('img');
@@ -183,9 +185,15 @@ export function createPopularMarkup(arr) {
         ? `${discountImgElement.outerHTML}${imgElementDown.outerHTML}`
         : `${imgElement.outerHTML}`;
 
+      const checkedElement = document.createElement('img');
+      checkedElement.src = checkedImage;
+      checkedElement.classList.add('popular-cart-img');
+
+      const isChecked = cart.some(checkedItem => checkedItem._id === _id);
+
       return `      
         <li class="popular-item" data-id="${_id}">
-          ${imgToInsert}
+            ${isChecked ? checkedElement.outerHTML : imgToInsert}
           <div class="popular-img-container"><img class="popular-item__img" src="${img}" alt="${name}" loading="lazy" /></div>
           <div class="popular-info">
             <h3 class="popular-info__title">${name}</h3>
@@ -202,6 +210,7 @@ export function createPopularMarkup(arr) {
 }
 
 export function createDiscountMarkup(arr) {
+  const cart = storage.getCart();
   return arr
     .map(({ _id, name, img, price }) => {
       const imgElement = document.createElement('img');
@@ -213,6 +222,12 @@ export function createDiscountMarkup(arr) {
       discountImgElement.src = discountImgURL;
       discountImgElement.classList.add('discount-cheap');
 
+      const checkedElement = document.createElement('img');
+      checkedElement.src = checkedImage;
+      // checkedElement.classList.add('popular-cart-img');
+
+      const isChecked = cart.some(checkedItem => checkedItem._id === _id);
+
       return `      
       <li class="discount-item" data-id="${_id}">
    
@@ -223,7 +238,7 @@ export function createDiscountMarkup(arr) {
         <h3 class="discount-info__title">${name}</h3>
         <div class="discount-img-wrapper">
         <p class="discount-info__price">$${price}</p>
-        ${imgElement.outerHTML} 
+         ${isChecked ? checkedElement.outerHTML : imgElement.outerHTML}
         </div>        
       </div>
     </li>`;

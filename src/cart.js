@@ -1,5 +1,5 @@
-
-import { storage } from './js/mainSection';
+import { foodService, storage } from './js/mainSection';
+import { updateCartCountTitle } from './js/header';
 
 import imgURLdesc from './img/yellow_basket_desctop_1x-min.png';
 import imgURLtablet from './img/yellow_basket_tablet_1x-min.png';
@@ -9,40 +9,44 @@ import imgURLtab2x from './img/yellow_basket_tablet_2x-min.png';
 import imgURLmob2x from './img/yellow_basket_mobile_2x-min.png';
 import iconsURL from './img/icons.svg';
 
-const deleteAllBtn = document.querySelector(".cart_close_all");
-const cartContent = document.getElementById("cart-content");
-const cartProductsContainer = document.querySelector('.cart_products_container');
+const cartContent = document.getElementById('cart-content');
+cartContent.addEventListener('click', clearCart);
+const cartProductsContainer = document.querySelector(
+  '.cart_products_container'
+);
 const cartHeader = document.querySelector('.cart-quentity');
 
 let products = storage.getFromStorage('cart');
-console.log(products);
 
-
+function clearCart(e) {
+  if (!e.target.closest('.cart-delete-all-button')) {
+    return;
+  }
+  storage.clearCart();
+  updateCartCountTitle();
+  cartHeader.textContent = 'Cart(0)';
+  cartContent.innerHTML = createCartMarkupDefault();
+}
 function totalQuantity() {
   if (products) {
     const totalCount = products.length;
     cartHeader.textContent = `Cart (${totalCount})`;
   }
 }
-totalQuantity()
-
-// Функція для розрахунку загальної вартості продуктів
+totalQuantity();
 
 function calculateTotalPrice() {
-  // let cartSumNumber = document.querySelector('.cart-sum-number');
   let total = 0;
   if (products) {
     products.forEach(product => {
       total += product.price;
-      // return cartSumNumber.textContent = `$${total.toFixed(2)}`;
     });
   }
   return total.toFixed(2);
 }
-// calculateTotalPrice()
 
 function checkLocalStorage() {
-  if (products) {
+  if (products.length !== 0) {
     cartContent.innerHTML = createCartMarkup();
   } else {
     cartContent.innerHTML = createCartMarkupDefault();
@@ -51,11 +55,7 @@ function checkLocalStorage() {
 
 checkLocalStorage();
 const cartProductsList = cartContent.querySelector('.cart_products_list');
-
 createCartMarkupProducts(products);
-
-
-
 
 function createCartMarkup() {
   const total = calculateTotalPrice();
@@ -103,14 +103,14 @@ function createCartMarkup() {
       </div>
     </form>
 
-  </div>`
+  </div>`;
 }
-
 
 function createCartMarkupProducts() {
   if (products) {
-    const markup = products.map(({ _id, name, img, category, size, price }) => {
-      return `      
+    const markup = products
+      .map(({ _id, name, img, category, size, price }) => {
+        return `      
     <li id="${_id}" class="cart-list">
       <div class="obj-delete">
         <button class="cart-delete-button">
@@ -132,8 +132,10 @@ function createCartMarkupProducts() {
           <p class="product-price">$ ${price}</p>
         </div>
       </div>
-    </li>`
-    }).join('');
+    </li>`;
+      })
+      .join('');
+    if (products.length === 0) return;
     cartProductsList.innerHTML = markup;
     const deleteBtns = document.querySelectorAll('.cart-delete-button');
     deleteBtns.forEach(btn => btn.addEventListener('click', onDeleteProduct));
@@ -143,17 +145,25 @@ function createCartMarkupProducts() {
 function onDeleteProduct(event) {
   const productId = event.target.closest('li').id;
   storage.removeFromCart(productId);
+  updateCartCountTitle();
   products = storage.getFromStorage('cart');
   if (products.length === 0) {
-    storage.clearCart();
+    cartContent.innerHTML = createCartMarkupDefault();
   }
-  checkLocalStorage();
+
+  const price = document.querySelector('.cart-sum-number');
+  if (price) {
+    price.textContent = calculateTotalPrice();
+  }
+
+  createCartMarkup();
   createCartMarkupProducts();
+  totalQuantity();
 }
 
 function createCartMarkupDefault() {
   return `  
-  <div class="cart-img">
+  <div class="box-img">
     <picture>
       <source media="(min-width: 1440px)" srcset="
           ${imgURLdesc} 1x,
@@ -179,6 +189,35 @@ function createCartMarkupDefault() {
       the cart.
     </p>
   </div>
-</div>`
-};
+</div>`;
+}
 
+if (document.querySelector('.order-form')) {
+  const orderForm = document.querySelector('.order-form');
+  orderForm.addEventListener('submit', onCheckoutSubmit);
+
+  function onCheckoutSubmit(e) {
+    e.preventDefault();
+
+    const totalCart = storage
+      .getCart()
+      .map(elem => ({ productId: elem._id, amount: 1 }));
+    const emailInput = document.querySelector('.cart-email');
+    if (!emailInput.value) {
+      alert('pls enter email');
+      return;
+    }
+    foodService
+      .order(emailInput.value, totalCart)
+      .then(result => {
+        console.log(result.data);
+        storage.clearCart();
+        updateCartCountTitle();
+        cartHeader.textContent = 'Cart(0)';
+        cartContent.innerHTML = createCartMarkupDefault();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+}
