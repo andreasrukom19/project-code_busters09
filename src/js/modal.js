@@ -23,7 +23,7 @@ async function onCardClick(e) {
 
   const card = e.target.closest('li');
   if (!card) return;
-  showSpinner();
+  // showSpinner();
   productData = await foodService.findProductById(card.dataset.id);
   const cartList = storage.getCart();
 
@@ -38,7 +38,7 @@ async function onCardClick(e) {
   if (isInCartList) {
     addToCartBtn.firstChild.textContent = 'Remove from';
   }
-  hideSpinner();
+  // hideSpinner();
   openModal();
 }
 
