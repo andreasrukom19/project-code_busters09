@@ -64,7 +64,7 @@ export class FoodService {
   }
 
   order(email, products) {
-    axios.post(`${this.URL}/orders`, {
+    return axios.post(`${this.URL}/orders`, {
       email: email,
       products,
     });
