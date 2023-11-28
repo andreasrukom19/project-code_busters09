@@ -1,7 +1,7 @@
 import { foodService } from './mainSection';
 
 export class LocalStorage {
-  constructor() { }
+  constructor() {}
 
   getOptions() {
     return JSON.parse(localStorage.getItem('options'));
@@ -98,10 +98,10 @@ export class LocalStorage {
     localStorage.removeItem('cart');
   }
 
-  saveOptionsToFoodService(options) {
-    foodService.perPage = options.limit;
-    foodService.currentPage = options.page;
-    foodService.category = options.category;
-    foodService.searchQuerry = options.keyword;
-  }
+  // saveOptionsToFoodService(options) {
+  //   foodService.perPage = options.limit;
+  //   foodService.currentPage = options.page;
+  //   foodService.category = options.category;
+  //   foodService.searchQuerry = options.keyword;
+  // }
 }
