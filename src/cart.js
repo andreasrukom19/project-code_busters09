@@ -1,4 +1,4 @@
-import { storage } from './js/mainSection';
+import { foodService, storage } from './js/mainSection';
 import { updateCartCountTitle } from './js/header';
 
 import imgURLdesc from './img/yellow_basket_desctop_1x-min.png';
@@ -195,4 +195,34 @@ function createCartMarkupDefault() {
     </p>
   </div>
 </div>`;
+}
+
+if (document.querySelector('.order-form')) {
+  const orderForm = document.querySelector('.order-form');
+  orderForm.addEventListener('submit', onCheckoutSubmit);
+
+  function onCheckoutSubmit(e) {
+    e.preventDefault();
+
+    const totalCart = storage
+      .getCart()
+      .map(elem => ({ productId: elem._id, amount: 1 }));
+    const emailInput = document.querySelector('.cart-email');
+    if (!emailInput.value) {
+      alert('pls enter email');
+      return;
+    }
+    foodService
+      .order(emailInput.value, totalCart)
+      .then(result => {
+        console.log(result.data);
+        storage.clearCart();
+        updateCartCountTitle();
+        cartHeader.textContent = 'Cart(0)';
+        cartContent.innerHTML = createCartMarkupDefault();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 }
