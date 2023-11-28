@@ -163,7 +163,7 @@ function onDeleteProduct(event) {
 
 function createCartMarkupDefault() {
   return `  
-  <div class="cart-img">
+  <div class="box-img">
     <picture>
       <source media="(min-width: 1440px)" srcset="
           ${imgURLdesc} 1x,
