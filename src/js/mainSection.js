@@ -11,7 +11,8 @@ import { changeCardIconOnClick } from './changeCardIconOnClick';
 import { addClassHidden, removeClassHidden } from './helpers';
 import Pagination from 'tui-pagination';
 import { hideSpinner, showSpinner } from './spinner';
-
+const optionsString = localStorage.getItem('options');
+const parsedOptions = JSON.parse(optionsString);
 const noProductsMessageEl = document.querySelector('.no-products-message');
 const pagginationEl = document.querySelector('.pagination');
 const filterBoxList = document.querySelector('.filter-box__list');
@@ -66,7 +67,11 @@ export function contentByOptionsDrawer() {
   foodService
     .getFoodListWithOptions2(options)
     .then(data => {
-      if (data.results.length === 0) {
+      if (
+        data.totalPages < 2 ||
+        parsedOptions.limit < 6 ||
+        data.results.length === 0
+      ) {
         removeClassHidden(noProductsMessageEl);
         addClassHidden(pagginationEl);
       } else {
@@ -77,7 +82,7 @@ export function contentByOptionsDrawer() {
       filterBoxList.innerHTML = createProductsMarkup(data.results);
       hideSpinner();
       storage.saveCardsToLocalStorage(data.results);
-      storage.createAndSave('pagination', data)
+      storage.createAndSave('pagination', data);
     })
     .catch(error => {
       // TODO ADD NOTIFLIX
