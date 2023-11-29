@@ -16,8 +16,8 @@
     />
     <script type="module" crossorigin src="/project-code_busters09/commonHelpers2.js"></script>
     <link rel="modulepreload" crossorigin href="/project-code_busters09/assets/vendor-99d50140.js">
-    <link rel="modulepreload" crossorigin href="/project-code_busters09/assets/icons-e77a5501.js">
-    <link rel="stylesheet" href="/project-code_busters09/assets/icons-ca8574ad.css">
+    <link rel="modulepreload" crossorigin href="/project-code_busters09/assets/icons-78dcda7a.js">
+    <link rel="stylesheet" href="/project-code_busters09/assets/icons-7b10ab29.css">
   </head>
 
   <body>
@@ -52,39 +52,16 @@
       for a fresher, fitter, and happier you.
     </h2>
     <div class="hero-img-wrap">
-      <img
-        class="hero-sticker"
-        src="/project-code_busters09/assets/organic food-42117473.png"
-        alt="organic"
-        width="100"
-      />
+      <img class="hero-sticker" src="/project-code_busters09/assets/organic_food-42117473.png" alt="organic" width="100" />
       <picture>
-        <source
-          media="(min-width: 1440px)"
-          srcset="/project-code_busters09/assets/hero_img_desctop_1x-min-63888bef.jpg 1x, /project-code_busters09/assets/hero_img_desctop_2x-min-9cd92608.jpg 2x"
-          type="image/jpg"
-        />
-        <source
-          media="(min-width: 768px)"
-          srcset="/project-code_busters09/assets/hero_img_tablet_1x-min-ffe59559.jpg 1x, /project-code_busters09/assets/hero_img_tablet_2x-min-eeb6cc98.jpg 2x"
-          type="image/jpg"
-        />
-        <source
-          media="(min-width: 320px)"
-          srcset="/project-code_busters09/assets/hero_img_mobile_1x-min-d7824de2.jpg 1x, /project-code_busters09/assets/hero_img_mobile_2x-min-25c52852.jpg 2x"
-          type="image/jpg"
-        />
-        <img
-          class="hero-img"
-          src="/project-code_busters09/assets/hero_img_mobile_1x-min-d7824de2.jpg"
-          alt="Fresh vegetables"
-          width="335"
-        />
+        <source media="(min-width: 1440px)" srcset="/project-code_busters09/assets/hero_img_desctop_1x-min-63888bef.jpg 1x, /project-code_busters09/assets/hero_img_desctop_2x-min-9cd92608.jpg 2x" type="image/jpg" />
+        <source media="(min-width: 768px)" srcset="/project-code_busters09/assets/hero_img_tablet_1x-min-ffe59559.jpg 1x, /project-code_busters09/assets/hero_img_tablet_2x-min-eeb6cc98.jpg 2x" type="image/jpg" />
+        <source media="(min-width: 320px)" srcset="/project-code_busters09/assets/hero_img_mobile_1x-min-d7824de2.jpg 1x, /project-code_busters09/assets/hero_img_mobile_2x-min-25c52852.jpg 2x" type="image/jpg" />
+        <img class="hero-img" src="/project-code_busters09/assets/hero_img_mobile_1x-min-d7824de2.jpg" alt="Fresh vegetables" width="335" />
       </picture>
     </div>
   </div>
 </section>
-
     <main>
   <section id="content-block">
     <div class="container">
@@ -93,7 +70,7 @@
         <form class="submit-form">
           <div class="input-container">
             <input type="text" name="search" class="search" placeholder="Search for anything" />
-            <button type="submit" class="search-btn">
+            <button type="submit" id="search-button" class="search-btn">
               <svg class="search-icon" width="20" height="20">
                 <use href="/project-code_busters09/assets/icons-d9095b3f.svg#icon-Vector"></use>
               </svg>
@@ -101,7 +78,7 @@
           </div>
         </form>
         <div class="input-container">
-          <select name="product-categories" class="categories"></select>
+          <select name="product-categories" class="categories" aria-label="categories"></select>
           <svg class="chevron-down-icon" width="20" height="20">
             <use href="/project-code_busters09/assets/icons-d9095b3f.svg#down-arrow"></use>
           </svg>
@@ -170,28 +147,22 @@
       <div class="footer-socials-container">
         <ul class="footer-socials-list">
           <li class="footer-list-item">
-            <a
-              href="https://www.facebook.com/goITclub/"
-              class="footer-list-link link"
-              ><svg class="footer-socials-icon" width="24" height="24">
-                <use href="/project-code_busters09/assets/icons-d9095b3f.svg#icon-facebook"></use></svg
-            ></a>
+            <a href="https://www.facebook.com/goITclub/" class="footer-list-link link" aria-label="facebook"><svg
+                class="footer-socials-icon" width="24" height="24">
+                <use href="/project-code_busters09/assets/icons-d9095b3f.svg#icon-facebook"></use>
+              </svg></a>
           </li>
           <li class="footer-list-item">
-            <a
-              href="https://www.instagram.com/goitclub/"
-              class="footer-list-link link"
-              ><svg class="footer-socials-icon" width="24" height="24">
-                <use href="/project-code_busters09/assets/icons-d9095b3f.svg#icon-instagram"></use></svg
-            ></a>
+            <a href="https://www.instagram.com/goitclub/" class="footer-list-link link" aria-label="instagram"><svg
+                class="footer-socials-icon" width="24" height="24">
+                <use href="/project-code_busters09/assets/icons-d9095b3f.svg#icon-instagram"></use>
+              </svg></a>
           </li>
           <li class="footer-list-item">
-            <a
-              href="https://www.youtube.com/c/GoIT"
-              class="footer-list-link link"
-              ><svg class="footer-socials-icon" width="24" height="24">
-                <use href="/project-code_busters09/assets/icons-d9095b3f.svg#icon-youtube"></use></svg
-            ></a>
+            <a href="https://www.youtube.com/c/GoIT" class="footer-list-link link" aria-label="youtube"><svg
+                class="footer-socials-icon" width="24" height="24">
+                <use href="/project-code_busters09/assets/icons-d9095b3f.svg#icon-youtube"></use>
+              </svg></a>
           </li>
         </ul>
       </div>
@@ -209,15 +180,7 @@
       <p class="subscribe-text">Subscribe and learn about new products!</p>
       <form class="send-form" id="subscriptionForm">
         <label class="send-label">
-          <input
-            type="email"
-            class="footer-input"
-            name="email"
-            id="emailInput"
-            placeholder="Email"
-            multiple
-            
-        /></label>
+          <input type="email" class="footer-input" name="email" id="emailInput" placeholder="Email" multiple /></label>
         <button type="submit" class="footer-send-button">Send</button>
       </form>
     </div>
@@ -225,20 +188,12 @@
     <div class="footer-rights">
       <p class="footer-all-rights">Food Boutique. All rights reserved.</p>
       <p class="footer-policy">
-        <a
-          href="https://en.wikipedia.org/wiki/Privacy_policy"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href="https://en.wikipedia.org/wiki/Privacy_policy" target="_blank" rel="noopener noreferrer">
           Privacy Policy
         </a>
         <span style="margin: 0 8px">/</span>
-        <a
-          href="https://en.wikipedia.org/wiki/Terms_of_service"
-          target="_blank"
-          rel="noopener noreferrer"
-        >Terms of Service</a
-        >
+        <a href="https://en.wikipedia.org/wiki/Terms_of_service" target="_blank" rel="noopener noreferrer">Terms of
+          Service</a>
       </p>
     </div>
   </div>
