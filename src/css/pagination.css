@@ -1,6 +1,9 @@
 .tui-page-btn {
   width: 40px;
   height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 50%;
   text-align: center;
   color: #a3a3a3;
@@ -50,14 +53,21 @@
 
 .pag-ribbon {
   display: flex;
-  max-width: 334px;
+  gap: 8px;
   justify-content: space-between;
   padding-top: 40px;
 }
 
-.disabled {
-  pointer-events: none;
-  opacity: 0.5;
+.tui-prev{
+  margin-right: 30px;
+}
+.tui-next{
+  margin-left: 30px;
+}
+
+.tui-prev,
+.tui-next{
+  background-color: white;
 }
 
 .pag-inactive {
@@ -70,14 +80,14 @@
   }
 
   .pag-ribbon {
-    max-width: 472px;
+
     padding-top: 50px;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .pag-ribbon {
-    max-width: 472px;
+
     padding-top: 40px;
   }
 }
