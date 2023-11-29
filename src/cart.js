@@ -103,6 +103,7 @@ function createCartMarkup() {
       </div>
     </form>
     
+    
     <div id="modal-cart" class="modal-cart-del" style="display: none;">
     <div class="modal-overlay">
       <div class="cart-modal-content">   
@@ -119,7 +120,8 @@ function createCartMarkup() {
       </div>
       </div>
   </div>
-  </div>`;
+  </div>
+  `;
 }
 
 function createCartMarkupProducts() {
@@ -200,7 +202,7 @@ function createCartMarkupDefault() {
     <p class="cart-message">
       Your basket is <span class="hero-title-span">empty...</span>
     </p>
-    <p class="cart-message-ihfo">
+    <p class="cart-message-info">
       Go to the main page to select your favorite products and add them to
       the cart.
     </p>
@@ -238,19 +240,26 @@ if (document.querySelector('.order-form')) {
   }
 }
 //modal window
-window.document.getElementById("checkoutButton").addEventListener("click", openCartModal);
-window.document.querySelector(".cart-delete-modal").addEventListener("click", cartCloseModal);
+document.getElementById("checkoutButton").addEventListener("click", openCartModal);
+document.querySelector(".cart-delete-modal").addEventListener("click", cartCloseModal);
+document.querySelector(".modal-overlay").addEventListener("click", onBackdropClickCart)
 function openCartModal(event) {
 event.preventDefault();
 const inputEmail = document.getElementById("email-cart");
-if (!inputEmail.checkValidity() || !inputEmail.value) {
-return;
-}
+// if (!inputEmail.checkValidity() || !inputEmail.value) {
+// return;
+// }
 cartModal();
 }
 function cartModal() {
 document.getElementById("modal-cart").style.display = "block";
 }
+function onBackdropClickCart(e){
+    if(e.currentTarget === e.target) {
+      cartCloseModal();
+    }
+}
+
 function cartCloseModal() {
 document.getElementById("modal-cart").style.display = "none";
 cartContent.innerHTML = createCartMarkupDefault();
