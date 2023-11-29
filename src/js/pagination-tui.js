@@ -5,12 +5,9 @@ const container = document.getElementById('tui-pagination-container');
 
 container.addEventListener('click', launchPaginstion)
 
-
 const {
     page, perPage, results, totalPages
 } = storage.getFromStorage('pagination') ?? {}
-
-console.log(results.length);
 
 export const pagination = new Pagination(container, {
     totalItems: (totalPages * perPage),
