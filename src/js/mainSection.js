@@ -70,10 +70,11 @@ export function contentByOptionsDrawer() {
       } else {
         removeClassHidden(pagginationEl);
       }
-      console.log(data.results);
+      console.log(data);
       filterBoxList.innerHTML = createProductsMarkup(data.results);
       hideSpinner();
       storage.saveCardsToLocalStorage(data.results);
+      storage.createAndSave('pagination', data)
     })
     .catch(error => {
       // TODO ADD NOTIFLIX
