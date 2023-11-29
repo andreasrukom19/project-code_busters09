@@ -118,11 +118,15 @@ h2 {
   margin-bottom: 20px;
 }
 
-li {
+li.product-card,
+li.popular-item,
+li.discount-item {
   transition: transform var(--animation);
 }
 
-li:hover {
+li.product-card:hover,
+li.popular-item:hover,
+li.discount-item:hover {
   transform: scale(1.05);
   box-shadow: 0px 0px 8px 0px var(--main-green);
   transition: transform var(--animation);
