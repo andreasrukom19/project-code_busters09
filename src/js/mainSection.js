@@ -43,6 +43,7 @@ function addToCartOnMainProductsClick(event) {
     const productId = event.target.dataset.productId;
     storage.addToCart(productId);
     updateCartCountTitle();
+    contentByOptionsDrawer();
   } else if (
     event.target &&
     (event.target.classList.contains('cart-img-products') ||
@@ -52,6 +53,8 @@ function addToCartOnMainProductsClick(event) {
     foodService.findProductById(productId).then(product => {
       storage.addProductToCart(product);
       updateCartCountTitle();
+      popularContentDrawer();
+      discountContentDrawer();
     });
   }
 }
@@ -138,6 +141,7 @@ export function createProductsMarkup(arr) {
 
         const checkedElement = document.createElement('img');
         checkedElement.src = checkedImage;
+        checkedElement.classList.add('js-checked-arrow');
 
         const isChecked = cart.some(checkedItem => checkedItem._id === _id);
 

@@ -68,7 +68,10 @@ export class LocalStorage {
   }
 
   addProductToCart(obj) {
-    if (!localStorage.getItem('cart')) {
+    if (
+      !localStorage.getItem('cart') ||
+      localStorage.getItem('cart').length === 0
+    ) {
       const cart = [obj];
       localStorage.setItem('cart', JSON.stringify(cart));
     } else {
