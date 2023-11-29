@@ -9,7 +9,7 @@ import discountImgURL from '../img/discount.svg';
 import checkedImage from '../img/checked.svg';
 import { changeCardIconOnClick } from './changeCardIconOnClick';
 import { addClassHidden, removeClassHidden } from './helpers';
-import Pagination from 'tui-pagination';
+// import Pagination from 'tui-pagination';
 import { hideSpinner, showSpinner } from './spinner';
 const optionsString = localStorage.getItem('options');
 const parsedOptions = JSON.parse(optionsString);

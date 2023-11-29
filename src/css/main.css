@@ -236,11 +236,11 @@ h2 {
   column-gap: 20px;
   row-gap: 40px;
 }
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
   .filter-box {
     margin-bottom: 50px;
   }
-}
+} */
 @media only screen and (min-width: 1440px) {
   .filter-box__list {
     width: 925px;
@@ -337,6 +337,25 @@ h2 {
   font-style: normal;
   font-weight: 500;
   line-height: 32px;
+}
+
+@media only screen and (max-width: 768px) {
+  .popular__title,
+.discount__title {
+    margin-top: 80px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .popular__title,
+.discount__title {
+    margin-top: 100px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .popular__title,
+.discount__title {
+    margin-top: 0px;
+  }
 }
 
 .popular-products__list {
@@ -580,11 +599,11 @@ h2 {
   line-height: 20px;
 }
 
-@media only screen and (min-width: minwidthpx) {
+/* @media only screen and (min-width: minwidthpx) {
   .popular-discount-box {
     display: none;
   }
-}
+} */
 
 @media only screen and (min-width: 1440px) {
   .popular-discount-box-responsive {
