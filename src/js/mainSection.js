@@ -72,12 +72,16 @@ export function contentByOptionsDrawer() {
         parsedOptions.limit < 6 ||
         data.results.length === 0
       ) {
-        addClassHidden(noProductsMessageEl);
         addClassHidden(pagginationEl);
       } else {
-        addClassHidden(noProductsMessageEl);
         removeClassHidden(pagginationEl);
       }
+      if (data.results.length === 0) {
+        removeClassHidden(noProductsMessageEl);
+      } else {
+        addClassHidden(noProductsMessageEl);
+      }
+      console.log(data);
       filterBoxList.innerHTML = createProductsMarkup(data.results);
       hideSpinner();
       storage.saveCardsToLocalStorage(data.results);
