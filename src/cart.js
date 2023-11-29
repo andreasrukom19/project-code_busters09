@@ -8,6 +8,10 @@ import imgURLdesc2x from './img/yellow_basket_desctop_2x-min.png';
 import imgURLtab2x from './img/yellow_basket_tablet_2x-min.png';
 import imgURLmob2x from './img/yellow_basket_mobile_2x-min.png';
 import iconsURL from './img/icons.svg';
+import { showSpinner, hideSpinner } from './js/spinner';
+
+const modal = document.querySelector('.modal');
+const modalContent = document.querySelector('.modal-content');
 
 const cartContent = document.getElementById('cart-content');
 cartContent.addEventListener('click', clearCart);
@@ -46,7 +50,7 @@ function calculateTotalPrice() {
 }
 
 function checkLocalStorage() {
-  if (products.length !== 0) {
+  if (products && products.length !== 0) {
     cartContent.innerHTML = createCartMarkup();
   } else {
     cartContent.innerHTML = createCartMarkupDefault();
@@ -220,40 +224,62 @@ if (document.querySelector('.order-form')) {
       .map(elem => ({ productId: elem._id, amount: 1 }));
     const emailInput = document.querySelector('.cart-email');
     if (!emailInput.value) {
-      alert('pls enter email');
       return;
     }
+
     foodService
       .order(emailInput.value, totalCart)
       .then(result => {
-        console.log(result.data);
+        console.log(result.data.message);
+        const message = result.data.message;
         storage.clearCart();
         updateCartCountTitle();
         cartHeader.textContent = 'Cart(0)';
         cartContent.innerHTML = createCartMarkupDefault();
+        modalContent.innerHTML = makeModalMarkup(message);
+        openModal();
       })
       .catch(err => {
         console.log(err);
-      });
+      })
+      .finally();
   }
 }
-//modal window
-window.document.getElementById("checkoutButton").addEventListener("click", openCartModal);
-window.document.querySelector(".cart-delete-modal").addEventListener("click", cartCloseModal);
-function openCartModal(event) {
-event.preventDefault();
-const inputEmail = document.getElementById("email-cart");
-if (!inputEmail.checkValidity() || !inputEmail.value) {
-return;
-}
-cartModal();
-}
-function cartModal() {
-document.getElementById("modal-cart").style.display = "block";
-}
-function cartCloseModal() {
-document.getElementById("modal-cart").style.display = "none";
-cartContent.innerHTML = createCartMarkupDefault();
-totalQuantity();
 
+function openModal() {
+  modal.style.display = 'block';
+  document.body.classList.add('no-scroll');
+  document.addEventListener('keydown', onEscCloseModal);
+  window.addEventListener('click', onClickCloseModal);
+}
+
+function closeModal() {
+  modal.style.display = 'none';
+  document.removeEventListener('keydown', onEscCloseModal);
+  window.removeEventListener('click', onClickCloseModal);
+  document.body.classList.remove('no-scroll');
+}
+
+function onEscCloseModal(e) {
+  if (e.key === 'Escape') {
+    closeModal();
+  }
+}
+
+function onClickCloseModal(e) {
+  if (e.target.classList.contains('modal')) {
+    // закриття по кліку по бекдропу
+    closeModal();
+  } else if (e.target.closest('.modal-btn-close')) {
+    // закриття по кліку по кнопці з класом '.modal-btn-close'
+    closeModal();
+  }
+}
+
+function makeModalMarkup(message) {
+  return `
+  <button class="modal-btn-close">X
+</button>
+<p>${message}</p>
+`;
 }

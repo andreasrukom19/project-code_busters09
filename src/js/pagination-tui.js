@@ -3,13 +3,14 @@ import { storage } from './mainSection';
 import { contentByOptionsDrawer } from './mainSection';
 const container = document.getElementById('tui-pagination-container');
 
-container.addEventListener('click', launchPaginstion)
+container.addEventListener('click', launchPaginstion);
 
-const {
-    page, perPage, results, totalPages
-} = storage.getFromStorage('pagination') ?? {}
+const { page, perPage, results, totalPages } =
+  storage.getFromStorage('pagination') ?? {};
+
 
 export const pagination = new Pagination(container, {
+
     totalItems: (totalPages * perPage),
     itemsPerPage: perPage,
     page,
@@ -35,11 +36,17 @@ export const pagination = new Pagination(container, {
             '</a>'
     }
 }
-);
 
-function launchPaginstion() {
-    const p = pagination.getCurrentPage();
-    storage.setApiOptions('page', `${p}`);
-    contentByOptionsDrawer()
-    console.log(p);
+
+pagination.on('afterMove', function (eventData) {
+  // Зміна сторінки у локальному сховищі після переміщення на нову сторінку
+  launchPaginstion();
+});
+
+export function launchPaginstion() {
+  const p = pagination.getCurrentPage();
+  storage.setApiOptions('page', `${p}`);
+  contentByOptionsDrawer();
+  console.log(p);
 }
+//pagination.movePageTo(1);

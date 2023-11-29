@@ -7,7 +7,6 @@ import discountImgURL from '../img/discount.svg';
 import checkedImage from '../img/checked.svg';
 import { changeCardIconOnClick } from './changeCardIconOnClick';
 import { addClassHidden, removeClassHidden } from './helpers';
-// import Pagination from 'tui-pagination';
 import { hideSpinner, showSpinner } from './spinner';
 const optionsString = localStorage.getItem('options');
 const parsedOptions = JSON.parse(optionsString);
@@ -39,6 +38,8 @@ function addToCartOnMainProductsClick(event) {
     storage.addToCart(productId);
     updateCartCountTitle();
     contentByOptionsDrawer();
+    popularContentDrawer();
+    discountContentDrawer();
   } else if (
     event.target &&
     (event.target.classList.contains('cart-img-products') ||
@@ -48,6 +49,7 @@ function addToCartOnMainProductsClick(event) {
     foodService.findProductById(productId).then(product => {
       storage.addProductToCart(product);
       updateCartCountTitle();
+      contentByOptionsDrawer();
       popularContentDrawer();
       discountContentDrawer();
     });
@@ -57,6 +59,7 @@ function addToCartOnMainProductsClick(event) {
 
 export function contentByOptionsDrawer() {
   const options = JSON.parse(localStorage.getItem('options'));
+  // filterBoxList.classList.remove('fade-in');
   showSpinner();
   foodService
     .getFoodListWithOptions2(options)
@@ -78,43 +81,39 @@ export function contentByOptionsDrawer() {
       console.log(data);
       filterBoxList.innerHTML = createProductsMarkup(data.results);
       hideSpinner();
+      // filterBoxList.classList.add('fade-in');
       storage.saveCardsToLocalStorage(data.results);
       storage.createAndSave('pagination', data);
     })
     .catch(error => {
-      // TODO ADD NOTIFLIX
-      // Notify.failure(
-      //   "Error"
-      // );
+      console.log('error', error);
     });
 }
 
 export function popularContentDrawer() {
+  // popularProductsList.classList.remove('fade-in');
   foodService
     .getPopular()
     .then(data => {
       popularProductsList.innerHTML = createPopularMarkup(data);
+      // popularProductsList.classList.add('fade-in');
     })
     .catch(error => {
-      // TODO ADD NOTIFLIX
-      // Notify.failure(
-      //   "Error"
-      // );
+      console.log('error', error);
     });
 }
 
 export function discountContentDrawer() {
+  // discountProductsList.classList.remove('fade-in');
   foodService
     .getDiscount()
     .then(data => {
       discountProductsList.innerHTML = createDiscountMarkup(data);
+      // discountProductsList.classList.add('fade-in');
       // discountProductsListResp.innerHTML = createDiscountMarkup(data);
     })
     .catch(error => {
-      // TODO ADD NOTIFLIX
-      // Notify.failure(
-      //   "Error"
-      // );
+      console.log('error', error);
     });
 }
 
@@ -137,7 +136,7 @@ export function createProductsMarkup(arr) {
         cartElement.src = cartImgURL;
         cartElement.classList.add('main-cart-icon');
         cartElement.dataset.productId = _id;
-
+        let updateCategory = category.replace(/_/g, ' ');
         const discountElement = document.createElement('img');
         discountElement.src = discountImgURL;
         discountElement.classList.add('discount-icon-products');
@@ -157,7 +156,7 @@ export function createProductsMarkup(arr) {
           <div class="info">      
             <h2 class="info__title">${name}</h2>
             <div class="info-wrapper">
-              <p class="info-wrapper__product">Category:<span>${category}</span></p>
+              <p class="info-wrapper__product">Category:<span>${updateCategory}</span></p>
               <p class="info-wrapper__product">Size:<span>${size}</span></p>
               <p class="info-wrapper__product">Popularity:<span>${popularity}</span></p>
             </div>
@@ -180,6 +179,7 @@ export function createPopularMarkup(arr) {
       imgElement.src = cartLightImgURL;
       imgElement.classList.add('popular-cart-img');
       imgElement.dataset.productId = _id;
+      imgElement.alt = 'add to cart';
 
       const imgElementDown = document.createElement('img');
       imgElementDown.src = cartLightImgURL;
@@ -197,9 +197,10 @@ export function createPopularMarkup(arr) {
       checkedElement.src = checkedImage;
       checkedElement.classList.add('popular-cart-img');
       checkedElement.dataset.productId = _id;
+      checkedElement.alt = 'added to cart';
 
       const isChecked = cart.some(checkedItem => checkedItem._id === _id);
-
+      let updateCategory = category.replace(/_/g, ' ');
       return `      
         <li class="popular-item" data-id="${_id}">
             ${isChecked ? checkedElement.outerHTML : imgToInsert}
@@ -207,7 +208,7 @@ export function createPopularMarkup(arr) {
           <div class="popular-info">
             <h3 class="popular-info__title">${name}</h3>
             <div class="info-wrapper">
-              <p class="info-wrapper__product">Category:<span>${category}</span></p>
+              <p class="info-wrapper__product">Category:<span>${updateCategory}</span></p>
               <p class="info-wrapper__product">Size:<span>${size}</span></p>
               <p class="info-wrapper__product">Popularity:<span>${popularity}</span></p>
             </div>             
@@ -226,10 +227,12 @@ export function createDiscountMarkup(arr) {
       imgElement.src = cartImgURL;
       imgElement.classList.add('cart-img-products');
       imgElement.dataset.productId = _id;
+      imgElement.alt = 'add to cart';
 
       const discountImgElement = document.createElement('img');
       discountImgElement.src = discountImgURL;
       discountImgElement.classList.add('discount-cheap');
+      discountImgElement.alt = 'discounted product';
 
       const checkedElement = document.createElement('img');
       checkedElement.src = checkedImage;
