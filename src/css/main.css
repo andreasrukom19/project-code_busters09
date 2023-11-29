@@ -379,9 +379,7 @@ li.discount-item:hover {
   }
 }
 @media only screen and (min-width: 768px) {
-  .popular__title,
-  .discount__title {
-  .popular__title{
+  .popular__title {
     margin-top: 100px;
   }
   .discount__title {
@@ -389,8 +387,7 @@ li.discount-item:hover {
   }
 }
 @media only screen and (min-width: 1440px) {
-  .popular__title,
-  .discount__title {
+  .popular__title {
     margin-top: 0px;
   }
   .discount__title {
