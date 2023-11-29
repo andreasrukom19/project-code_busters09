@@ -37,8 +37,9 @@ function addToCartOnMainProductsClick(event) {
     const productId = event.target.dataset.productId;
     storage.addToCart(productId);
     updateCartCountTitle();
-    popularContentDrawer();
     contentByOptionsDrawer();
+    popularContentDrawer();
+    discountContentDrawer();
   } else if (
     event.target &&
     (event.target.classList.contains('cart-img-products') ||
@@ -48,6 +49,7 @@ function addToCartOnMainProductsClick(event) {
     foodService.findProductById(productId).then(product => {
       storage.addProductToCart(product);
       updateCartCountTitle();
+      contentByOptionsDrawer();
       popularContentDrawer();
       discountContentDrawer();
     });
