@@ -186,6 +186,7 @@ export function createPopularMarkup(arr) {
       imgElement.src = cartLightImgURL;
       imgElement.classList.add('popular-cart-img');
       imgElement.dataset.productId = _id;
+      imgElement.alt = 'add to cart';
 
       const imgElementDown = document.createElement('img');
       imgElementDown.src = cartLightImgURL;
@@ -203,6 +204,7 @@ export function createPopularMarkup(arr) {
       checkedElement.src = checkedImage;
       checkedElement.classList.add('popular-cart-img');
       checkedElement.dataset.productId = _id;
+      checkedElement.alt = 'added to cart';
 
       const isChecked = cart.some(checkedItem => checkedItem._id === _id);
 
@@ -232,10 +234,12 @@ export function createDiscountMarkup(arr) {
       imgElement.src = cartImgURL;
       imgElement.classList.add('cart-img-products');
       imgElement.dataset.productId = _id;
+      imgElement.alt = 'add to cart';
 
       const discountImgElement = document.createElement('img');
       discountImgElement.src = discountImgURL;
       discountImgElement.classList.add('discount-cheap');
+      discountImgElement.alt = 'discounted product';
 
       const checkedElement = document.createElement('img');
       checkedElement.src = checkedImage;
