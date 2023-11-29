@@ -21,13 +21,13 @@ export const pagination = new Pagination(container, {
         currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
         disabledMoveButton:
         '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-            '<svg class="tui-ico-{{type}}" width="8px" height="8px">'+
+            '<svg class="tui-ico-{{type}}" width="8" height="8">'+
                 '<use href="./img/icons.svg#icon-caret-small-{{type}}"></use>'+
             '</svg>'+
         '</span>',
         moveButton:
             '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-                '<svg class="tui-ico-{{type}}" width="8px" height="8px">'+
+                '<svg class="tui-ico-{{type}}" width="8" height="8">'+
                     '<use href="./img/icons.svg#icon-caret-small-{{type}}"></use>'+
                 '</svg>'+
             '</span>',
