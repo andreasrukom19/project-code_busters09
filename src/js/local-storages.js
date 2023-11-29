@@ -18,7 +18,7 @@ export class LocalStorage {
   }
 
   createAndSave(key, data) {
-        localStorage.setItem(key, JSON.stringify(data));
+    localStorage.setItem(key, JSON.stringify(data));
   }
 
   getFromStorage(item) {
@@ -46,7 +46,7 @@ export class LocalStorage {
       limit: 6,
     };
     const data = localStorage.getItem('options');
-    if (data) return;
+    // if (data) return;
     localStorage.setItem('options', JSON.stringify(defaultOptions));
   }
 

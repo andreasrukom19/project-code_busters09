@@ -9,9 +9,10 @@ import discountImgURL from '../img/discount.svg';
 import checkedImage from '../img/checked.svg';
 import { changeCardIconOnClick } from './changeCardIconOnClick';
 import { addClassHidden, removeClassHidden } from './helpers';
-import Pagination from 'tui-pagination';
+// import Pagination from 'tui-pagination';
 import { hideSpinner, showSpinner } from './spinner';
-
+const optionsString = localStorage.getItem('options');
+const parsedOptions = JSON.parse(optionsString);
 const noProductsMessageEl = document.querySelector('.no-products-message');
 const pagginationEl = document.querySelector('.pagination');
 const filterBoxList = document.querySelector('.filter-box__list');
@@ -66,18 +67,25 @@ export function contentByOptionsDrawer() {
   foodService
     .getFoodListWithOptions2(options)
     .then(data => {
-      if (data.results.length === 0) {
-        removeClassHidden(noProductsMessageEl);
+      if (
+        data.totalPages < 2 ||
+        parsedOptions.limit < 6 ||
+        data.results.length === 0
+      ) {
         addClassHidden(pagginationEl);
       } else {
-        addClassHidden(noProductsMessageEl);
         removeClassHidden(pagginationEl);
+      }
+      if (data.results.length === 0) {
+        removeClassHidden(noProductsMessageEl);
+      } else {
+        addClassHidden(noProductsMessageEl);
       }
       console.log(data);
       filterBoxList.innerHTML = createProductsMarkup(data.results);
       hideSpinner();
       storage.saveCardsToLocalStorage(data.results);
-      storage.createAndSave('pagination', data)
+      storage.createAndSave('pagination', data);
     })
     .catch(error => {
       // TODO ADD NOTIFLIX
