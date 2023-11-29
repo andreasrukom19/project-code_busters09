@@ -9,6 +9,7 @@ import imgURLtab2x from './img/yellow_basket_tablet_2x-min.png';
 import imgURLmob2x from './img/yellow_basket_mobile_2x-min.png';
 import iconsURL from './img/icons.svg';
 
+
 const cartContent = document.getElementById('cart-content');
 cartContent.addEventListener('click', clearCart);
 const cartProductsContainer = document.querySelector(
@@ -237,15 +238,16 @@ if (document.querySelector('.order-form')) {
       });
   }
 }
-//modal window
+// //modal window
 window.document.getElementById("checkoutButton").addEventListener("click", openCartModal);
 window.document.querySelector(".cart-delete-modal").addEventListener("click", cartCloseModal);
+
 function openCartModal(event) {
 event.preventDefault();
-const inputEmail = document.getElementById("email-cart");
-if (!inputEmail.checkValidity() || !inputEmail.value) {
-return;
-}
+const inputEmail = document.getElementById("cart-email");
+// if (!inputEmail.checkValidity() || !inputEmail.value) {
+// return;
+// }
 cartModal();
 }
 function cartModal() {

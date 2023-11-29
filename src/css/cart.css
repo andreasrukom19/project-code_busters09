@@ -14,7 +14,9 @@
 }
 .box-img {
     padding-top: 105px;
-    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .cart-empty {
     padding-top: 28px;
