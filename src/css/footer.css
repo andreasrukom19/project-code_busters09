@@ -247,7 +247,15 @@ svg {
     height: 48px;
     font-size: 16px;
     line-height: 1.5;
+    color: var(--font-color);
+    border: none;
   }
+  .footer-send-button:hover,
+  .footer-send-button:focus,
+  .footer-send-button:active {
+    color: var(--main-green);
+  }
+
   .footer-input {
     /* width: 318px; */
     height: 48px;

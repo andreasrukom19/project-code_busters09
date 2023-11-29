@@ -6,7 +6,7 @@
         <form class="submit-form">
           <div class="input-container">
             <input type="text" name="search" class="search" placeholder="Search for anything" />
-            <button type="submit" class="search-btn">
+            <button type="submit" id="search-button" class="search-btn">
               <svg class="search-icon" width="20" height="20">
                 <use href="./img/icons.svg#icon-Vector"></use>
               </svg>
@@ -14,7 +14,7 @@
           </div>
         </form>
         <div class="input-container">
-          <select name="product-categories" class="categories"></select>
+          <select name="product-categories" class="categories" aria-label="categories"></select>
           <svg class="chevron-down-icon" width="20" height="20">
             <use href="./img/icons.svg#down-arrow"></use>
           </svg>
@@ -39,7 +39,7 @@
 
           </div>
           <div class="pagination">
-            <div class="pag-ribbon tui-pagination" id="tui-pagination-container">
+
             </div>
           </div>
         </div>

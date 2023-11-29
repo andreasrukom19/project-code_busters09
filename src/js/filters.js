@@ -1,4 +1,5 @@
 import { foodService, contentByOptionsDrawer, storage } from './mainSection.js';
+import { launchPaginstion, pagination } from './pagination-tui.js';
 
 const submitForm = document.querySelector('.submit-form');
 const select = document.querySelector('.categories');
@@ -18,11 +19,13 @@ submitForm.addEventListener('submit', event => {
   const searchValue = event.target.elements.search.value;
   //foodService.searchQuerry = searchValue;
   const savedOptions = storage.getFromStorage('options');
+  savedOptions.page = 1;
+
   savedOptions.keyword = searchValue ? searchValue : null;
 
   localStorage.setItem('options', JSON.stringify(savedOptions));
   // storage.updateFoodService(savedOptions);
-
+  //launchPaginstion();
   contentByOptionsDrawer();
 });
 
@@ -31,6 +34,7 @@ select.addEventListener('change', function () {
   const selectedItem = select.value;
   //const searchValue = event.target.elements.search.value; //================================================================================
   const savedOptions = storage.getFromStorage('options');
+  savedOptions.page = 1;
 
   savedOptions.category = selectedItem ? selectedItem : null;
   localStorage.setItem('options', JSON.stringify(savedOptions));

@@ -27,6 +27,9 @@
   margin: 32px auto 0 auto;
   border-radius: 30px;
 } */
+.info-wrapper__product .сategory{
+  
+}
 
 .filters {
   margin-bottom: 40px;
@@ -50,7 +53,7 @@
 .search-btn,
 .chevron-down-icon {
   position: absolute;
-  background-color: var(--light-green) transparent;
+  background: rgba(var(--light-green), 0);
   right: 0;
   border: none;
   padding: 14px 20px;
@@ -116,6 +119,19 @@ h2 {
   font-weight: 500;
   line-height: 28px;
   margin-bottom: 20px;
+}
+
+.fade-in {
+  animation: fadeIn 1000ms;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 li.product-card,
@@ -184,9 +200,9 @@ li.discount-item:hover {
 }
 
 @media only screen and (max-width: 768px) {
- .main-products {
-  margin-bottom: 0px;
-}
+  .main-products {
+    margin-bottom: 0px;
+  }
 }
 
 @media only screen and (min-width: 1440px) {
@@ -351,7 +367,7 @@ li.discount-item:hover {
 
 .popular__title,
 .discount__title {
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
   color: var(--font-color);
   font-size: 28px;
   font-style: normal;
@@ -361,12 +377,12 @@ li.discount-item:hover {
 
 @media only screen and (max-width: 768px) {
   .popular__title,
-.discount__title {
+  .discount__title {
     margin-top: 80px;
   }
 }
 @media only screen and (min-width: 768px) {
-  .popular__title{
+  .popular__title {
     margin-top: 100px;
   }
   .discount__title {
@@ -374,7 +390,7 @@ li.discount-item:hover {
   }
 }
 @media only screen and (min-width: 1440px) {
-  .popular__title{
+  .popular__title {
     margin-top: 0px;
   }
   .discount__title {
@@ -488,9 +504,9 @@ li.discount-item:hover {
 }
 @media only screen and (min-width: 768px) and (max-width: 1440px) {
   .discount-item:not(:last-child) {
-  margin-bottom: 0px;
-}
-.discount-products__list {
+    margin-bottom: 0px;
+  }
+  .discount-products__list {
     margin-bottom: 100px;
   }
   .main-products {
