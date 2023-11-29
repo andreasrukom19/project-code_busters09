@@ -9,7 +9,6 @@ import discountImgURL from '../img/discount.svg';
 import checkedImage from '../img/checked.svg';
 import { changeCardIconOnClick } from './changeCardIconOnClick';
 import { addClassHidden, removeClassHidden } from './helpers';
-// import Pagination from 'tui-pagination';
 import { hideSpinner, showSpinner } from './spinner';
 const optionsString = localStorage.getItem('options');
 const parsedOptions = JSON.parse(optionsString);
@@ -88,10 +87,7 @@ export function contentByOptionsDrawer() {
       storage.createAndSave('pagination', data);
     })
     .catch(error => {
-      // TODO ADD NOTIFLIX
-      // Notify.failure(
-      //   "Error"
-      // );
+      console.log('error', error);
     });
 }
 
@@ -103,10 +99,7 @@ export function popularContentDrawer() {
       popularProductsListResp.innerHTML = createPopularMarkup(data);
     })
     .catch(error => {
-      // TODO ADD NOTIFLIX
-      // Notify.failure(
-      //   "Error"
-      // );
+      console.log('error', error);
     });
 }
 
@@ -118,10 +111,7 @@ export function discountContentDrawer() {
       discountProductsListResp.innerHTML = createDiscountMarkup(data);
     })
     .catch(error => {
-      // TODO ADD NOTIFLIX
-      // Notify.failure(
-      //   "Error"
-      // );
+      console.log('error', error);
     });
 }
 
@@ -144,7 +134,7 @@ export function createProductsMarkup(arr) {
         cartElement.src = cartImgURL;
         cartElement.classList.add('main-cart-icon');
         cartElement.dataset.productId = _id;
-
+        let updateCategory = category.replace(/_/g, ' ');
         const discountElement = document.createElement('img');
         discountElement.src = discountImgURL;
         discountElement.classList.add('discount-icon-products');
@@ -164,7 +154,7 @@ export function createProductsMarkup(arr) {
           <div class="info">      
             <h2 class="info__title">${name}</h2>
             <div class="info-wrapper">
-              <p class="info-wrapper__product">Category:<span>${category}</span></p>
+              <p class="info-wrapper__product">Category:<span>${updateCategory}</span></p>
               <p class="info-wrapper__product">Size:<span>${size}</span></p>
               <p class="info-wrapper__product">Popularity:<span>${popularity}</span></p>
             </div>
@@ -206,7 +196,7 @@ export function createPopularMarkup(arr) {
       checkedElement.dataset.productId = _id;
 
       const isChecked = cart.some(checkedItem => checkedItem._id === _id);
-
+      let updateCategory = category.replace(/_/g, ' ');
       return `      
         <li class="popular-item" data-id="${_id}">
             ${isChecked ? checkedElement.outerHTML : imgToInsert}
@@ -214,7 +204,7 @@ export function createPopularMarkup(arr) {
           <div class="popular-info">
             <h3 class="popular-info__title">${name}</h3>
             <div class="info-wrapper">
-              <p class="info-wrapper__product">Category:<span>${category}</span></p>
+              <p class="info-wrapper__product">Category:<span>${updateCategory}</span></p>
               <p class="info-wrapper__product">Size:<span>${size}</span></p>
               <p class="info-wrapper__product">Popularity:<span>${popularity}</span></p>
             </div>             
