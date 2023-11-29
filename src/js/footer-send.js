@@ -40,3 +40,11 @@ function clearFormFields(form) {
 }
 
 
+subscriptionForm.addEventListener('submit', function(event) {
+  const emailInput = document.getElementById('emailInput');
+  
+  if (emailInput.value === '') {
+    event.preventDefault();  
+    alert('Будь ласка, заповніть обов\'язкове поле email.');
+  }
+});
