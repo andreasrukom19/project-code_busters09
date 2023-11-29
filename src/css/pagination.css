@@ -5,6 +5,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 50%;
+  text-align: center;
   color: #a3a3a3;
   background-color: transparent;
   text-align: center;
@@ -13,18 +14,17 @@
   font-style: normal;
   font-weight: 500;
   line-height: 1.42em;
+  top: 50%;
   border-color: transparent;
-  cursor: pointer;
 }
 .pagination {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 60px;
 }
-.tui-is-selected {
-  background-color: var(--dark-green);
-  color: white;
+.pag-btn {
+  background-color: white;
+  padding: 8px;
 }
 
 .tui-page-btn:hover {
@@ -35,13 +35,27 @@
 .tui-page-btn:hover .arrow-icon {
   fill: #fafafa;
 }
+.pag-active {
+  color: white;
+  background-color: var(--dark-green);
+  border-radius: 50%;
+}
+
+.arrow-icon {
+  fill: #a3a3a3;
+}
+
+.pag-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
 
 .pag-ribbon {
   display: flex;
   gap: 8px;
   justify-content: space-between;
   padding-top: 40px;
-  align-items: center;
 }
 
 .tui-prev{
@@ -56,17 +70,14 @@
   background-color: white;
 }
 
-.tui-ico-prev,
-.tui-ico-next{
-  fill: #a3a3a3;
+.pag-inactive {
+  pointer-events: none;
 }
-.tui-prev:hover .tui-ico-prev,
-.tui-next:hover .tui-ico-next{
-  fill: white;
-}
-
 
 @media screen and (min-width: 768px) {
+  .pag-wrapper {
+    gap: 8px;
+  }
 
   .pag-ribbon {
 
@@ -79,10 +90,4 @@
 
     padding-top: 40px;
   }
-}
-.tui-first{
-  display: none;
-}
-.tui-last{
-  display: none;
 }

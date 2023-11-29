@@ -45,8 +45,6 @@ select.addEventListener('change', function () {
     contentByOptionsDrawer();
   } else {
     foodService.category = selectedItem;
-    filterBoxList.innerHTML = '';
-    
     contentByOptionsDrawer();
   }
 });
