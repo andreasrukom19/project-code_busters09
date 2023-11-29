@@ -195,6 +195,7 @@ export function createPopularMarkup(arr) {
       const checkedElement = document.createElement('img');
       checkedElement.src = checkedImage;
       checkedElement.classList.add('popular-cart-img');
+      checkedElement.dataset.productId = _id;
 
       const isChecked = cart.some(checkedItem => checkedItem._id === _id);
 
