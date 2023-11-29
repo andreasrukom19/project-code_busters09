@@ -12,6 +12,7 @@ import { addClassHidden, removeClassHidden } from './helpers';
 import Pagination from 'tui-pagination';
 import { hideSpinner, showSpinner } from './spinner';
 
+const noProductsMessageEl = document.querySelector('.no-products-message');
 const pagginationEl = document.querySelector('.pagination');
 const filterBoxList = document.querySelector('.filter-box__list');
 const popularProductsList = document.querySelector('.popular-products__list');
@@ -66,8 +67,10 @@ export function contentByOptionsDrawer() {
     .getFoodListWithOptions2(options)
     .then(data => {
       if (data.results.length === 0) {
+        removeClassHidden(noProductsMessageEl);
         addClassHidden(pagginationEl);
       } else {
+        addClassHidden(noProductsMessageEl);
         removeClassHidden(pagginationEl);
       }
       console.log(data);
@@ -192,6 +195,7 @@ export function createPopularMarkup(arr) {
       const checkedElement = document.createElement('img');
       checkedElement.src = checkedImage;
       checkedElement.classList.add('popular-cart-img');
+      checkedElement.dataset.productId = _id;
 
       const isChecked = cart.some(checkedItem => checkedItem._id === _id);
 
