@@ -38,6 +38,7 @@ function addToCartOnMainProductsClick(event) {
     const productId = event.target.dataset.productId;
     storage.addToCart(productId);
     updateCartCountTitle();
+    popularContentDrawer();
     contentByOptionsDrawer();
   } else if (
     event.target &&
