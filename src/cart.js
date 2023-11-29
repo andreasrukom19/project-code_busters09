@@ -99,10 +99,26 @@ function createCartMarkup() {
         </label>
       </div>
       <div class="cart-btn">
-        <button type="submit" class="cart-checkout-button">Checkout</button>
+        <button type="submit" id="checkoutButton" class="cart-checkout-button">Checkout</button>
       </div>
     </form>
+    
+    <div id="modal-cart" class="modal-cart-del" style="display: none;">
+    <div class="modal-overlay">
+      <div class="cart-modal-content">   
+      <button class="cart-delete-modal">
+          <svg class="cart_close_all" width="18" height="18">
+            <use xlink:href="${iconsURL}#icon-ion_close-sharp"></use>
+          </svg>
+        </button>
 
+        <img class="cart-modal-img" src="${imgURLdesc}" alt="basket" />
+        <div>
+        <p class="cart-success">Order success</p>
+        <p class="cart-modal-info">Thank you for shopping at Food Boutique. Your order has been received and is now being freshly prepared just for you! Get ready to indulge in nourishing goodness, delivered right to your doorstep. We're thrilled to be part of your journey to better health and happiness</p>
+      </div>
+      </div>
+  </div>
   </div>`;
 }
 
@@ -220,4 +236,24 @@ if (document.querySelector('.order-form')) {
         console.log(err);
       });
   }
+}
+//modal window
+window.document.getElementById("checkoutButton").addEventListener("click", openCartModal);
+window.document.querySelector(".cart-delete-modal").addEventListener("click", cartCloseModal);
+function openCartModal(event) {
+event.preventDefault();
+const inputEmail = document.getElementById("email-cart");
+if (!inputEmail.checkValidity() || !inputEmail.value) {
+return;
+}
+cartModal();
+}
+function cartModal() {
+document.getElementById("modal-cart").style.display = "block";
+}
+function cartCloseModal() {
+document.getElementById("modal-cart").style.display = "none";
+cartContent.innerHTML = createCartMarkupDefault();
+totalQuantity();
+
 }
