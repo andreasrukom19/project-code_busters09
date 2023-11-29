@@ -33,11 +33,6 @@
   fill: #fafafa;
 }
 
-
-.arrow-icon {
-  
-}
-
 .pag-ribbon {
   display: flex;
   max-width: 334px;
@@ -55,6 +50,11 @@
 .tui-ico-next{
   fill: #a3a3a3;
 }
+.tui-prev:hover .tui-ico-prev,
+.tui-next:hover .tui-ico-next{
+  fill: white;
+}
+
 
 @media screen and (min-width: 768px) {
 
