@@ -15,15 +15,19 @@ export const pagination = new Pagination(container, {
     page,
     centerAlign: false,
     template: {
-        page: '<a href="./index.html" class="tui-page-btn">{{page}}</a>',
+        page: '<span class="tui-page-btn">{{page}}</span>',
         currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-        moveButton:
-            '<a href="#" class="tui-page-btn tui-{{type}}">' +
-            '<span class="tui-ico-{{type}}">{{type}}</span>' +
-            '</a>',
         disabledMoveButton:
+        '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+            '<svg class="tui-ico-{{type}}" width="8px" height="8px">'+
+                '<use href="./img/icons.svg#icon-caret-small-{{type}}"></use>'+
+            '</svg>'+
+        '</span>',
+        moveButton:
             '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-            '<span class="tui-ico-{{type}}">{{type}}</span>' +
+                '<svg class="tui-ico-{{type}}" width="8px" height="8px">'+
+                    '<use href="./img/icons.svg#icon-caret-small-{{type}}"></use>'+
+                '</svg>'+
             '</span>',
         moreButton:
             '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +

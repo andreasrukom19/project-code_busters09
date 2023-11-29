@@ -1,5 +1,6 @@
 .tui-page-btn {
   width: 40px;
+  padding: 8px;
   border-radius: 50%;
   color: #a3a3a3;
   background-color: transparent;
@@ -10,6 +11,7 @@
   font-weight: 500;
   line-height: 1.42em;
   border-color: transparent;
+  cursor: pointer;
 }
 .pagination {
   display: flex;
@@ -20,7 +22,6 @@
 .tui-is-selected {
   background-color: var(--dark-green);
   color: white;
-  padding: 8px;
 }
 
 .tui-page-btn:hover {
@@ -32,8 +33,9 @@
   fill: #fafafa;
 }
 
+
 .arrow-icon {
-  fill: #a3a3a3;
+  
 }
 
 .pag-ribbon {
@@ -47,6 +49,11 @@
 .tui-prev,
 .tui-next{
   background-color: white;
+}
+
+.tui-ico-prev,
+.tui-ico-next{
+  fill: #a3a3a3;
 }
 
 @media screen and (min-width: 768px) {
