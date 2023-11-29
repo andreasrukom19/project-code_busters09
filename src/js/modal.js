@@ -15,7 +15,6 @@ const listItems = document.querySelector('.main-products');
 
 let productData;
 // let category;
-
 listItems.addEventListener('click', onCardClick);
 
 async function onCardClick(e) {
@@ -23,7 +22,9 @@ async function onCardClick(e) {
     e.target.classList.contains('main-cart-icon') ||
     e.target.classList.contains('cart-img-products') ||
     e.target.classList.contains('popular-cart-img') ||
-    e.target.classList.contains('js-checked-arrow')
+    e.target.classList.contains('js-checked-arrow') ||
+    e.target.classList.contains('popular-cart-img-down') ||
+    e.target.classList.contains('discount-icon-popular')
   ) {
     return;
   }

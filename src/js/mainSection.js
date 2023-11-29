@@ -1,5 +1,3 @@
-// import SimpleLightbox from 'simplelightbox';
-// import 'simplelightbox/dist/simple-lightbox.min.css';
 import { LocalStorage } from './local-storages';
 import { FoodService } from './food-api-service';
 import { updateCartCountTitle } from './header';
@@ -18,12 +16,7 @@ const pagginationEl = document.querySelector('.pagination');
 const filterBoxList = document.querySelector('.filter-box__list');
 const popularProductsList = document.querySelector('.popular-products__list');
 const discountProductsList = document.querySelector('.discount-products__list');
-const popularProductsListResp = document.querySelector(
-  '.popular-products__list-responsive'
-);
-const discountProductsListResp = document.querySelector(
-  '.discount-products__list-responsive'
-);
+
 export const storage = new LocalStorage();
 export const foodService = new FoodService();
 
@@ -59,6 +52,7 @@ function addToCartOnMainProductsClick(event) {
       discountContentDrawer();
     });
   }
+  return;
 }
 
 export function contentByOptionsDrawer() {
@@ -100,7 +94,6 @@ export function popularContentDrawer() {
     .getPopular()
     .then(data => {
       popularProductsList.innerHTML = createPopularMarkup(data);
-      popularProductsListResp.innerHTML = createPopularMarkup(data);
     })
     .catch(error => {
       // TODO ADD NOTIFLIX
@@ -115,7 +108,7 @@ export function discountContentDrawer() {
     .getDiscount()
     .then(data => {
       discountProductsList.innerHTML = createDiscountMarkup(data);
-      discountProductsListResp.innerHTML = createDiscountMarkup(data);
+      // discountProductsListResp.innerHTML = createDiscountMarkup(data);
     })
     .catch(error => {
       // TODO ADD NOTIFLIX
@@ -240,6 +233,7 @@ export function createDiscountMarkup(arr) {
 
       const checkedElement = document.createElement('img');
       checkedElement.src = checkedImage;
+      checkedElement.classList.add('js-checked-arrow');
       // checkedElement.classList.add('popular-cart-img');
 
       const isChecked = cart.some(checkedItem => checkedItem._id === _id);
