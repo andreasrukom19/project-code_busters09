@@ -196,6 +196,12 @@ li.discount-item:hover {
   cursor: pointer;
 }
 
+@media only screen and (max-width: 768px) {
+  .main-products {
+    margin-bottom: 0px;
+  }
+}
+
 @media only screen and (min-width: 1440px) {
   .main-products {
     display: flex;
@@ -375,13 +381,20 @@ li.discount-item:hover {
 @media only screen and (min-width: 768px) {
   .popular__title,
   .discount__title {
+  .popular__title{
     margin-top: 100px;
+  }
+  .discount__title {
+    margin-top: 64px;
   }
 }
 @media only screen and (min-width: 1440px) {
   .popular__title,
   .discount__title {
     margin-top: 0px;
+  }
+  .discount__title {
+    margin-top: 40px;
   }
 }
 
@@ -407,7 +420,7 @@ li.discount-item:hover {
 }
 
 .popular-item {
-  margin-bottom: 14px;
+  /* margin-bottom: 14px; */
   height: 98px;
   display: flex;
   align-items: center;
@@ -480,14 +493,30 @@ li.discount-item:hover {
 
 .discount-cheap {
   position: absolute;
-  top: 3px;
+  top: -3px;
   right: 10px;
   width: 60px;
   height: 60px;
 }
 
 .discount-item:not(:last-child) {
-  margin-bottom: 20px;
+  margin-bottom: 22px;
+}
+@media only screen and (min-width: 768px) and (max-width: 1440px) {
+  .discount-item:not(:last-child) {
+    margin-bottom: 0px;
+  }
+  .discount-products__list {
+    margin-bottom: 100px;
+  }
+  .main-products {
+    margin-bottom: 0px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .discount-products__list {
+    margin-bottom: 80px;
+  }
 }
 
 .discount-info {
@@ -564,16 +593,16 @@ li.discount-item:hover {
   grid-template-columns: 1fr 1fr;
 }
 .popular-discount-box {
-  margin-bottom: 100px;
+  /* margin-bottom: 100px; */
   display: flex;
   flex-direction: column;
 }
 
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
   .popular-discount-box {
     margin-bottom: 0px;
   }
-}
+} */
 
 @media only screen and (min-width: 768px) {
   .discount-products__list {
