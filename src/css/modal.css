@@ -7,7 +7,10 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 2;
-  /* animation: fadeIn 650ms; */
+}
+
+.modal-content {
+  animation: fadeIn 650ms;
 }
 
 @keyframes fadeIn {
