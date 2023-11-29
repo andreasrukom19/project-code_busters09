@@ -50,7 +50,7 @@
 .search-btn,
 .chevron-down-icon {
   position: absolute;
-  background-color: rgba(var(--light-green), 0);
+  background: rgba(var(--light-green), 0);
   right: 0;
   border: none;
   padding: 14px 20px;
