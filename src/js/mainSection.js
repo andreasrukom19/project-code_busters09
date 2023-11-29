@@ -57,6 +57,7 @@ function addToCartOnMainProductsClick(event) {
 
 export function contentByOptionsDrawer() {
   const options = JSON.parse(localStorage.getItem('options'));
+  filterBoxList.classList.remove('fade-in');
   showSpinner();
   foodService
     .getFoodListWithOptions2(options)
@@ -78,6 +79,7 @@ export function contentByOptionsDrawer() {
       console.log(data);
       filterBoxList.innerHTML = createProductsMarkup(data.results);
       hideSpinner();
+      filterBoxList.classList.add('fade-in');
       storage.saveCardsToLocalStorage(data.results);
       storage.createAndSave('pagination', data);
     })
@@ -90,10 +92,12 @@ export function contentByOptionsDrawer() {
 }
 
 export function popularContentDrawer() {
+  popularProductsList.classList.remove('fade-in');
   foodService
     .getPopular()
     .then(data => {
       popularProductsList.innerHTML = createPopularMarkup(data);
+      popularProductsList.classList.add('fade-in');
     })
     .catch(error => {
       // TODO ADD NOTIFLIX
@@ -104,10 +108,12 @@ export function popularContentDrawer() {
 }
 
 export function discountContentDrawer() {
+  discountProductsList.classList.remove('fade-in');
   foodService
     .getDiscount()
     .then(data => {
       discountProductsList.innerHTML = createDiscountMarkup(data);
+      discountProductsList.classList.add('fade-in');
       // discountProductsListResp.innerHTML = createDiscountMarkup(data);
     })
     .catch(error => {

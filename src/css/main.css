@@ -118,6 +118,19 @@ h2 {
   margin-bottom: 20px;
 }
 
+.fade-in {
+  animation: fadeIn 1000ms;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 li.product-card,
 li.popular-item,
 li.discount-item {
@@ -184,9 +197,9 @@ li.discount-item:hover {
 }
 
 @media only screen and (max-width: 768px) {
- .main-products {
-  margin-bottom: 0px;
-}
+  .main-products {
+    margin-bottom: 0px;
+  }
 }
 
 @media only screen and (min-width: 1440px) {
@@ -351,7 +364,7 @@ li.discount-item:hover {
 
 .popular__title,
 .discount__title {
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
   color: var(--font-color);
   font-size: 28px;
   font-style: normal;
@@ -361,12 +374,12 @@ li.discount-item:hover {
 
 @media only screen and (max-width: 768px) {
   .popular__title,
-.discount__title {
+  .discount__title {
     margin-top: 80px;
   }
 }
 @media only screen and (min-width: 768px) {
-  .popular__title{
+  .popular__title {
     margin-top: 100px;
   }
   .discount__title {
@@ -374,7 +387,7 @@ li.discount-item:hover {
   }
 }
 @media only screen and (min-width: 1440px) {
-  .popular__title{
+  .popular__title {
     margin-top: 0px;
   }
   .discount__title {
@@ -488,9 +501,9 @@ li.discount-item:hover {
 }
 @media only screen and (min-width: 768px) and (max-width: 1440px) {
   .discount-item:not(:last-child) {
-  margin-bottom: 0px;
-}
-.discount-products__list {
+    margin-bottom: 0px;
+  }
+  .discount-products__list {
     margin-bottom: 100px;
   }
   .main-products {
