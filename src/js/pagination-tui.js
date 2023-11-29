@@ -36,7 +36,7 @@ export const pagination = new Pagination(container, {
             '</a>'
     }
 }
-
+)
 
 pagination.on('afterMove', function (eventData) {
   // Зміна сторінки у локальному сховищі після переміщення на нову сторінку
