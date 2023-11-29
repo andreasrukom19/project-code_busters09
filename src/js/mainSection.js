@@ -9,7 +9,7 @@ import discountImgURL from '../img/discount.svg';
 import checkedImage from '../img/checked.svg';
 import { changeCardIconOnClick } from './changeCardIconOnClick';
 import { addClassHidden, removeClassHidden } from './helpers';
-import Pagination from 'tui-pagination';
+// import Pagination from 'tui-pagination';
 import { hideSpinner, showSpinner } from './spinner';
 const optionsString = localStorage.getItem('options');
 const parsedOptions = JSON.parse(optionsString);
@@ -72,13 +72,12 @@ export function contentByOptionsDrawer() {
         parsedOptions.limit < 6 ||
         data.results.length === 0
       ) {
-        removeClassHidden(noProductsMessageEl);
+        addClassHidden(noProductsMessageEl);
         addClassHidden(pagginationEl);
       } else {
         addClassHidden(noProductsMessageEl);
         removeClassHidden(pagginationEl);
       }
-      console.log(data);
       filterBoxList.innerHTML = createProductsMarkup(data.results);
       hideSpinner();
       storage.saveCardsToLocalStorage(data.results);
