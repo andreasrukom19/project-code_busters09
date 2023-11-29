@@ -27,6 +27,9 @@
   margin: 32px auto 0 auto;
   border-radius: 30px;
 } */
+.info-wrapper__product .сategory{
+  
+}
 
 .filters {
   margin-bottom: 40px;
@@ -50,7 +53,7 @@
 .search-btn,
 .chevron-down-icon {
   position: absolute;
-  background-color: var(--light-green) transparent;
+  background: rgba(var(--light-green), 0);
   right: 0;
   border: none;
   padding: 14px 20px;
