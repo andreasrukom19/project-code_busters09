@@ -13,9 +13,14 @@
     line-height: 1.16em;
 }
 .box-img {
-    padding-top: 105px;
+    margin-top: 105px;
     margin: auto;
 }
+
+.cart-img {
+    margin: auto;
+}
+
 .cart-empty {
     padding-top: 28px;
     gap: 14px;
