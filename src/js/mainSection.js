@@ -8,8 +8,7 @@ import checkedImage from '../img/checked.svg';
 import { changeCardIconOnClick } from './changeCardIconOnClick';
 import { addClassHidden, removeClassHidden } from './helpers';
 import { hideSpinner, showSpinner } from './spinner';
-const optionsString = localStorage.getItem('options');
-const parsedOptions = JSON.parse(optionsString);
+const options = localStorage.getItem('options');
 const noProductsMessageEl = document.querySelector('.no-products-message');
 const pagginationEl = document.querySelector('.pagination');
 const filterBoxList = document.querySelector('.filter-box__list');
@@ -64,9 +63,11 @@ export function contentByOptionsDrawer() {
   foodService
     .getFoodListWithOptions2(options)
     .then(data => {
+      storage.saveCardsToLocalStorage(data.results);
+      storage.createAndSave('pagination', data);
       if (
         data.totalPages < 2 ||
-        parsedOptions.limit < 6 ||
+        options.limit < 6 ||
         data.results.length === 0
       ) {
         addClassHidden(pagginationEl);
@@ -84,8 +85,6 @@ export function contentByOptionsDrawer() {
 
       hideSpinner();
       // filterBoxList.classList.add('fade-in');
-      storage.saveCardsToLocalStorage(data.results);
-      storage.createAndSave('pagination', data);
     })
     .catch(error => {
       console.log('error', error);
