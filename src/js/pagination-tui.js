@@ -16,24 +16,29 @@ export const pagination = new Pagination(container, {
     itemsPerPage: perPage,
     page,
     visiblePages: 4,
-    centerAlign: false,
+    centerAlign: true,
     template: {
         page: '<span class="tui-page-btn">{{page}}</span>',
         currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
         moveButton:
-            '<a href="#" class="tui-page-btn tui-{{type}}">' +
-            '<span class="tui-ico-{{type}}">{{type}}</span>' +
-            '</a>',
+            '<span href="#" class="tui-page-btn tui-{{type}}">' +
+                '<svg class="tui-ico-{{type}}" width="8" height="8">'+
+                    '<use href="./img/icons.svg#icon-caret-small-{{type}}"></use>'+
+                '</svg>'+
+            '</span>',
         disabledMoveButton:
             '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-            '<span class="tui-ico-{{type}}">{{type}}</span>' +
+                '<svg class="tui-ico-{{type}}" width="8" height="8">'+
+                    '<use href="./img/icons.svg#icon-caret-small-{{type}}"></use>'+
+                '</svg>'+
             '</span>',
         moreButton:
-            '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-            '<span class="tui-ico-ellip">...</span>' +
-            '</a>',
-    },
-});
+            '<span class="tui-page-btn tui-{{type}}-is-ellip">' +
+                '<span class="tui-ico-ellip">...</span>' +
+            '</span>',
+        },
+    }
+);
 
 pagination.on('afterMove', function (eventData) {
     // Зміна сторінки у локальному сховищі після переміщення на нову сторінку
