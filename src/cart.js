@@ -189,7 +189,7 @@ function createCartMarkupDefault() {
     <p class="cart-message">
       Your basket is <span class="hero-title-span">empty...</span>
     </p>
-    <p class="cart-message-ihfo">
+    <p class="cart-message-info">
       Go to the main page to select your favorite products and add them to
       the cart.
     </p>
