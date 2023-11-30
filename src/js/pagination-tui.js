@@ -6,7 +6,7 @@ const container = document.getElementById('tui-pagination-container');
 container.addEventListener('click', launchPaginstion);
 
 const { page, perPage, results, totalPages } =
-  storage.getFromStorage('pagination') ?? {};
+    storage.getFromStorage('pagination') ?? {};
 
 console.log(results.length);
 
@@ -20,35 +20,30 @@ export const pagination = new Pagination(container, {
     template: {
         page: '<span class="tui-page-btn">{{page}}</span>',
         currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-        disabledMoveButton:
-        '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-            '<svg class="tui-ico-{{type}}" width="8" height="8">'+
-                '<use href="./img/icons.svg#icon-caret-small-{{type}}"></use>'+
-            '</svg>'+
-        '</span>',
         moveButton:
+            '<a href="#" class="tui-page-btn tui-{{type}}">' +
+            '<span class="tui-ico-{{type}}">{{type}}</span>' +
+            '</a>',
+        disabledMoveButton:
             '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-                '<svg class="tui-ico-{{type}}" width="8" height="8">'+
-                    '<use href="./img/icons.svg#icon-caret-small-{{type}}"></use>'+
-                '</svg>'+
+            '<span class="tui-ico-{{type}}">{{type}}</span>' +
             '</span>',
         moreButton:
             '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
             '<span class="tui-ico-ellip">...</span>' +
-            '</a>'
-    }
-}
-)
+            '</a>',
+    },
+});
 
 pagination.on('afterMove', function (eventData) {
-  // Зміна сторінки у локальному сховищі після переміщення на нову сторінку
-  launchPaginstion();
+    // Зміна сторінки у локальному сховищі після переміщення на нову сторінку
+    launchPaginstion();
 });
 
 export function launchPaginstion() {
-  const p = pagination.getCurrentPage();
-  storage.setApiOptions('page', `${p}`);
-  contentByOptionsDrawer();
-  console.log(p);
+    const p = pagination.getCurrentPage();
+    storage.setApiOptions('page', `${p}`);
+    contentByOptionsDrawer();
+    console.log(p);
 }
 //pagination.movePageTo(1);
