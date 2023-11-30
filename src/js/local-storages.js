@@ -32,7 +32,6 @@ export class LocalStorage {
   saveCategories() {
     if (!localStorage.getItem('categories')) {
       return foodService.getCategories().then(resp => {
-        console.log(resp);
         localStorage.setItem('categories', JSON.stringify(resp));
       });
     }
@@ -94,7 +93,6 @@ export class LocalStorage {
     const item = cart.find(item => item._id === id);
     const index = cart.indexOf(item);
     cart.splice(index, 1);
-    console.log(cart);
     return localStorage.setItem('cart', JSON.stringify(cart));
   }
 
