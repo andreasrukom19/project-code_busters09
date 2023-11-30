@@ -21,6 +21,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 40px;
 }
 
 .tui-is-selected,
@@ -31,16 +32,33 @@
 
 .pag-ribbon {
   display: flex;
-  gap: 8px;
-  justify-content: space-between;
-  padding-top: 40px;
+  gap: 4px;
 }
 
 .tui-prev{
-  margin-right: 30px;
+  margin-right: 10px;
 }
 .tui-next{
-  margin-left: 30px;
+  margin-left: 10px;
+}
+@media only screen and (min-width: 768px) {
+  .tui-prev{
+    margin-right: 70px;
+  }
+  .tui-next{
+    margin-left: 70px;
+  }
+  .pag-ribbon{
+    gap: 8px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .tui-prev{
+    margin-right: 70px;
+  }
+  .tui-next{
+    margin-left: 70px;
+  }
 }
 
 .tui-prev,
@@ -59,16 +77,15 @@
 }
 
 @media screen and (min-width: 768px) {
-
-  .pag-ribbon {
-    padding-top: 50px;
-  }
+.pagination{
+  margin-top: 50px;
+}
 }
 
 @media screen and (min-width: 1440px) {
-  .pag-ribbon {
-    padding-top: 40px;
-  }
+.pagination{
+  margin-top: 40px;
+}
 }
 
 .tui-first,
