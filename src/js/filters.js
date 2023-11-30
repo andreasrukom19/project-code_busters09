@@ -1,39 +1,31 @@
 import { foodService, contentByOptionsDrawer, storage } from './mainSection.js';
-import { launchPaginstion, pagination } from './pagination-tui.js';
+import { pagination } from './pagination-tui.js';
 
 const submitForm = document.querySelector('.submit-form');
 const select = document.querySelector('.categories');
 const filterBoxList = document.querySelector('.filter-box__list');
 
 document.addEventListener('DOMContentLoaded', function () {
-  // Скинути значення інпуту
   submitForm.elements.search.value = '';
-  // Скинути значення select
-  // select.value = '';
 });
 
 submitForm.addEventListener('submit', event => {
-  //select.value = '';
   event.preventDefault();
-  //const selectedItem = select.value; //===============================================================
+
   const searchValue = event.target.elements.search.value;
-  //foodService.searchQuerry = searchValue;
   const savedOptions = storage.getFromStorage('options');
   savedOptions.page = 1;
 
   savedOptions.keyword = searchValue ? searchValue : null;
 
   localStorage.setItem('options', JSON.stringify(savedOptions));
-  // storage.updateFoodService(savedOptions);
-  //launchPaginstion();
   contentByOptionsDrawer();
-  pagination.reset()
+  pagination.reset();
 });
 
 select.addEventListener('change', function () {
-  //submitForm.elements.search.value = '';
   const selectedItem = select.value;
-  //const searchValue = event.target.elements.search.value; //================================================================================
+
   const savedOptions = storage.getFromStorage('options');
   savedOptions.page = 1;
 
@@ -44,19 +36,16 @@ select.addEventListener('change', function () {
     storage.defaultApiOptions();
     submitForm.elements.search.value = '';
     contentByOptionsDrawer();
-    pagination.reset()
+    pagination.reset();
   } else {
     foodService.category = selectedItem;
     filterBoxList.innerHTML = '';
-    //launchPaginstion();
     contentByOptionsDrawer();
-    pagination.reset()
+    pagination.reset();
   }
 });
 
 foodService.getCategories().then(categories => {
-  //console.log(categories); //=======================================================================================
-  // dafault option
   const defaultOption = document.createElement('option');
   defaultOption.value = '';
   defaultOption.textContent = 'Categories';
@@ -82,6 +71,5 @@ function createShowAllOption() {
   const showAllOption = document.createElement('option');
   showAllOption.textContent = 'Show All';
   showAllOption.value = 'show-all';
-  //resetCategory();
   return showAllOption;
 }

@@ -29,21 +29,10 @@ async function onCardClick(e) {
     return;
   }
 
-  // if (e.target.closest('ul').classList.contains('filter-box__list')) {
-  //   category = 'main';
-  // }
-  // if (e.target.closest('ul').classList.contains('popular-products__list')) {
-  //   category = 'popular';
-  // }
-  // if (e.target.closest('ul').classList.contains('discount-products__list')) {
-  //   category = 'discount';
-  // }
-
   const card = e.target.closest('li');
   if (!card) return;
   showSpinner();
   productData = await foodService.findProductById(card.dataset.id);
-  console.log(productData);
   const cartList = storage.getCart();
 
   modalContent.innerHTML = makeModalMarkup(productData);
@@ -63,7 +52,6 @@ async function onCardClick(e) {
 
 function onCartBtnClick() {
   const cartList = storage.getCart();
-  console.log(cartList);
   const isInCartList = cartList.some(
     cartElem => cartElem._id === productData._id
   );
@@ -155,20 +143,4 @@ function closeModal() {
   contentByOptionsDrawer();
   popularContentDrawer();
   discountContentDrawer();
-  // if (category === 'main') {
-  //   contentByOptionsDrawer();
-  // }
-  // if (category === 'popular') {
-  //   popularContentDrawer();
-  // }
-  // if (category === 'discount') {
-  //   discountContentDrawer();
-  // }
-  // const mainProducts = document.querySelector('.main-products');
-  // console.log(mainProducts);
-  // mainProducts.addEventListener('click', categoryToRefreshChooser);
 }
-
-// function categoryToRefreshChooser(e) {
-//   console.log(e.target);
-// }
