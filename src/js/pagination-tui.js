@@ -23,7 +23,7 @@ export const pagination = new Pagination(container, {
         moveButton:
             '<span href="#" class="tui-page-btn tui-{{type}}">' +
                 '<svg class="tui-ico-{{type}}" width="8" height="8">'+
-                '<use href="./img/icons.svg#icon-caret-small-{{type}}"></use>'+
+                    '<use href="./img/icons.svg#icon-caret-small-{{type}}"></use>'+
                 '</svg>'+
             '</span>',
         disabledMoveButton:
@@ -36,8 +36,9 @@ export const pagination = new Pagination(container, {
             '<span class="tui-page-btn tui-{{type}}-is-ellip">' +
                 '<span class="tui-ico-ellip">...</span>' +
             '</span>',
-    },
-});
+        },
+    }
+);
 
 pagination.on('afterMove', function (eventData) {
     // Зміна сторінки у локальному сховищі після переміщення на нову сторінку
