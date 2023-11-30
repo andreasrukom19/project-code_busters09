@@ -14,14 +14,14 @@ export const pagination = new Pagination(container, {
 
     totalItems: (totalPages * perPage),
     itemsPerPage: perPage,
-    visiblePages: (totalPages > 4 ? 4 : `${totalPages}`),
+    visiblePages: (totalPages > 4 ? (page<4 ? 4 : 3) : `${totalPages}`),
     page,
     centerAlign: true,
     template: {
         page: '<span class="tui-page-btn">{{page}}</span>',
         currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
         moveButton:
-            '<span href="#" class="tui-page-btn tui-{{type}}">' +
+            '<span class="tui-page-btn tui-{{type}}">' +
                 '<svg class="tui-ico-{{type}}" width="8" height="8">'+
                     '<use href="./img/icons.svg#icon-caret-small-{{type}}"></use>'+
                 '</svg>'+
