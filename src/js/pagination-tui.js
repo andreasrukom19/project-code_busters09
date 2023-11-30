@@ -14,8 +14,8 @@ export const pagination = new Pagination(container, {
 
     totalItems: (totalPages * perPage),
     itemsPerPage: perPage,
+    visiblePages: (totalPages > 4 ? 4 : `${totalPages}`),
     page,
-    visiblePages: 4,
     centerAlign: true,
     template: {
         page: '<span class="tui-page-btn">{{page}}</span>',
