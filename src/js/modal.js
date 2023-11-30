@@ -97,6 +97,7 @@ function removeFromCart() {
 }
 
 function makeModalMarkup(product) {
+  let updateCategory = product.category.replace(/_/g, ' ');
   return `
   <button class="modal-btn-close">
   <svg class="close-sharp" width="16" height="16">
@@ -109,7 +110,7 @@ function makeModalMarkup(product) {
 <div class="modal-info">
   <h2 class="modal-title">${product.name}</h2>
   <div class="modal-info-wrapper">
-    <p class="modal-product">Category: <span>${product.category}</span></p>
+    <p class="modal-product">Category: <span>${updateCategory}</span></p>
     <p class="modal-product">Size: <span>${product.size}</span></p>
     <p class="modal-product">Popularity: <span>${product.popularity}</span></p>
   </div>
