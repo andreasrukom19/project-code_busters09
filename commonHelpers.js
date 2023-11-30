@@ -34,7 +34,7 @@ import{s as r,u as g,i as u,f as L}from"./assets/icons-d533626e.js";import"./ass
             class="cart-email"
             id="email"
             placeholder="enter your email"
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$">
+            multiple>
         </label>
       </div>
       <div class="cart-btn">
@@ -107,7 +107,7 @@ import{s as r,u as g,i as u,f as L}from"./assets/icons-d533626e.js";import"./ass
       the cart.
     </p>
   </div>
-</div>`}if(document.querySelector(".order-form")){let c=function(s){s.preventDefault();const i=r.getCart().map(o=>({productId:o._id,amount:1})),n=document.querySelector(".cart-email");n.value&&L.order(n.value,i).then(o=>{console.log(o.data.message);const d=o.data.message;r.clearCart(),g(),v.textContent="Cart(0)",a.innerHTML=l(),E.innerHTML=z(d),U()}).catch(o=>{console.log(o)}).finally()};document.querySelector(".order-form").addEventListener("submit",c)}function U(){b.style.display="block",document.body.classList.add("no-scroll"),document.addEventListener("keydown",k),window.addEventListener("click",x)}function m(){b.style.display="none",document.removeEventListener("keydown",k),window.removeEventListener("click",x),document.body.classList.remove("no-scroll")}function k(t){t.key==="Escape"&&m()}function x(t){(t.target.classList.contains("modal")||t.target.closest(".modal-btn-close"))&&m()}function z(t){return`
+</div>`}if(document.querySelector(".order-form")){let c=function(s){s.preventDefault();const i=r.getCart().map(o=>({productId:o._id,amount:1})),n=document.querySelector(".cart-email");n.value&&L.order(n.value,i).then(o=>{console.log(o.data.message);const d=o.data.message;r.clearCart(),g(),v.textContent="Cart(0)",a.innerHTML=l(),E.innerHTML=R(d),U()}).catch(o=>{console.log(o)}).finally()};document.querySelector(".order-form").addEventListener("submit",c)}function U(){b.style.display="block",document.body.classList.add("no-scroll"),document.addEventListener("keydown",k),window.addEventListener("click",x)}function m(){b.style.display="none",document.removeEventListener("keydown",k),window.removeEventListener("click",x),document.body.classList.remove("no-scroll")}function k(t){t.key==="Escape"&&m()}function x(t){(t.target.classList.contains("modal")||t.target.closest(".modal-btn-close"))&&m()}function R(t){return`
   <button class="modal-btn-close">X
 </button>
 <p>${t}</p>
