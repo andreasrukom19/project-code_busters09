@@ -2,6 +2,7 @@ import Pagination from 'tui-pagination';
 import { storage } from './mainSection';
 import { contentByOptionsDrawer } from './mainSection';
 const container = document.getElementById('tui-pagination-container');
+const iconAddress = new URL('/img/icons.svg', import.meta.url).href
 
 container.addEventListener('click', launchPaginstion);
 
@@ -14,7 +15,7 @@ export const pagination = new Pagination(container, {
 
     totalItems: (totalPages * perPage),
     itemsPerPage: perPage,
-    visiblePages: (totalPages > 4 ? (page<4 ? 4 : 3) : `${totalPages}`),
+    visiblePages: (totalPages > 4 ? 4 : `${totalPages}`),
     page,
     centerAlign: true,
     template: {
@@ -23,13 +24,13 @@ export const pagination = new Pagination(container, {
         moveButton:
             '<span class="tui-page-btn tui-{{type}}">' +
                 '<svg class="tui-ico-{{type}}" width="8" height="8">'+
-                    '<use href="./img/icons.svg#icon-caret-small-{{type}}"></use>'+
+                    `<use href="${iconAddress}#icon-caret-small-{{type}}"></use>`+
                 '</svg>'+
             '</span>',
         disabledMoveButton:
             '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
                 '<svg class="tui-ico-{{type}}" width="8" height="8">'+
-                    '<use href="./img/icons.svg#icon-caret-small-{{type}}"></use>'+
+                    `<use href="${iconAddress}#icon-caret-small-{{type}}"></use>`+
                 '</svg>'+
             '</span>',
         moreButton:
