@@ -17,7 +17,7 @@ function sendFormData(event) {
           if (response.status === 201) {
             console.log(response.data.message);
             Swal.fire({
-              title: 'Success!',
+              title: 'Subscription is complete',
               text: response.data.message,
               icon: 'success',
               confirmButtonText: 'Back to products',
