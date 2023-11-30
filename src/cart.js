@@ -8,6 +8,7 @@ import imgURLdesc2x from './img/yellow_basket_desctop_2x-min.png';
 import imgURLtab2x from './img/yellow_basket_tablet_2x-min.png';
 import imgURLmob2x from './img/yellow_basket_mobile_2x-min.png';
 import iconsURL from './img/icons.svg';
+import modalImg from './img/cart-modal1x.jpg';
 import { showSpinner, hideSpinner } from './js/spinner';
 
 const modalCart = document.querySelector('.modal-cart-submit');
@@ -251,10 +252,8 @@ function onEscCloseModal(e) {
 
 function onClickCloseModal(e) {
   if (e.target.classList.contains('cart-modal-content')) {
-    // закриття по кліку по бекдропу
     closeModal();
   } else if (e.target.closest('.cart-delete-modal')) {
-    // закриття по кліку по кнопці з класом '.modal-btn-close'
     closeModal();
   }
 }
@@ -274,7 +273,7 @@ function makeModalMarkup(message) {
       <use xlink:href="${iconsURL}#icon-ion_close-sharp"></use>
     </svg>
   </button>
-  <img class="cart-modal-img" src="${imgURLdesc}" alt="basket" />
+  <img class="cart-modal-img" src="${modalImg}" alt="basket" />
   
   <h1 class="cart-success">${messageTitle}</h1>
   <p class="cart-modal-info">${messageText}</p>
