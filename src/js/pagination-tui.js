@@ -9,8 +9,6 @@ container.addEventListener('click', launchPaginstion);
 const { page, perPage, results, totalPages } =
     storage.getFromStorage('pagination') ?? {};
 
-console.log(results.length);
-
 export const pagination = new Pagination(container, {
 
     totalItems: (totalPages * perPage),
@@ -23,22 +21,22 @@ export const pagination = new Pagination(container, {
         currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
         moveButton:
             '<span class="tui-page-btn tui-{{type}}">' +
-                '<svg class="tui-ico-{{type}}" width="8" height="8">'+
-                    `<use href="${iconAddress}#icon-caret-small-{{type}}"></use>`+
-                '</svg>'+
+            '<svg class="tui-ico-{{type}}" width="8" height="8">' +
+            `<use href="${iconAddress}#icon-caret-small-{{type}}"></use>` +
+            '</svg>' +
             '</span>',
         disabledMoveButton:
             '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-                '<svg class="tui-ico-{{type}}" width="8" height="8">'+
-                    `<use href="${iconAddress}#icon-caret-small-{{type}}"></use>`+
-                '</svg>'+
+            '<svg class="tui-ico-{{type}}" width="8" height="8">' +
+            `<use href="${iconAddress}#icon-caret-small-{{type}}"></use>` +
+            '</svg>' +
             '</span>',
         moreButton:
             '<span class="tui-page-btn tui-{{type}}-is-ellip">' +
-                '<span class="tui-ico-ellip">...</span>' +
+            '<span class="tui-ico-ellip">...</span>' +
             '</span>',
-        },
-    }
+    },
+}
 );
 
 pagination.on('afterMove', function (eventData) {

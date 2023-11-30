@@ -114,7 +114,8 @@ function createCartMarkupProducts() {
   if (products) {
     const markup = products
       .map(({ _id, name, img, category, size, price }) => {
-        return `      
+        let updateCategory = category.replace(/_/g, ' ');
+        return `
     <li id="${_id}" class="cart-list">
       <div class="obj-delete">
         <button class="cart-delete-button">
@@ -130,7 +131,7 @@ function createCartMarkupProducts() {
         <div class="add-img-info">
           <p class="product-name">${name}</p>
           <div class="product-category-size">
-            <p class="product-category">Category: <span class="colored-text">${category}</span></p>
+            <p class="product-category">Category: <span class="colored-text">${updateCategory}</span></p>
             <p class="product-size">Size: <span class="colored-text">${size}</span></p>
           </div>
           <p class="product-price">$ ${price}</p>
