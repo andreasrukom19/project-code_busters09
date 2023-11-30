@@ -8,7 +8,7 @@ import imgURLdesc2x from './img/yellow_basket_desctop_2x-min.png';
 import imgURLtab2x from './img/yellow_basket_tablet_2x-min.png';
 import imgURLmob2x from './img/yellow_basket_mobile_2x-min.png';
 import iconsURL from './img/icons.svg';
-import modalImg from './img/cart-modal1x.jpg';
+import modalImg from './img/cart-modal.png';
 import { showSpinner, hideSpinner } from './js/spinner';
 
 const modalCart = document.querySelector('.modal-cart-submit');
