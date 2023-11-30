@@ -253,10 +253,6 @@ li.discount-item:hover {
   height: 140px;
 }
 
-/* .filter-box{ 
-  
- } */
-
 @media screen and (min-width: 768px) {
 }
 
@@ -510,7 +506,7 @@ li.discount-item:hover {
     margin-bottom: 100px;
   }
   .main-products {
-    margin-bottom: 0px;
+    margin-bottom: 80px;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -591,6 +587,7 @@ li.discount-item:hover {
 
 .filter-box__list {
   grid-template-columns: 1fr 1fr;
+  justify-content: center
 }
 .popular-discount-box {
   /* margin-bottom: 100px; */
