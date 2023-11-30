@@ -1,3 +1,4 @@
+
 import { foodService, storage } from './js/mainSection';
 import { updateCartCountTitle } from './js/header';
 
@@ -10,8 +11,8 @@ import imgURLmob2x from './img/yellow_basket_mobile_2x-min.png';
 import iconsURL from './img/icons.svg';
 import { showSpinner, hideSpinner } from './js/spinner';
 
-const modal = document.querySelector('.modal');
-const modalContent = document.querySelector('.modal-content');
+const modalCart = document.querySelector('.modal-cart-submit');
+const modalCartContent = document.querySelector('.cart-modal-content');
 
 const cartContent = document.getElementById('cart-content');
 cartContent.addEventListener('click', clearCart);
@@ -103,27 +104,10 @@ function createCartMarkup() {
         </label>
       </div>
       <div class="cart-btn">
-        <button type="submit" id="checkoutButton" class="cart-checkout-button">Checkout</button>
+        <button type="submit" class="cart-checkout-button">Checkout</button>
       </div>
     </form>
-    
-    <div id="modal-cart" class="modal-cart-del" style="display: none;">
-    <div class="modal-overlay">
-      <div class="cart-modal-content">   
-      <button class="cart-delete-modal">
-          <svg class="cart_close_all" width="18" height="18">
-            <use xlink:href="${iconsURL}#icon-ion_close-sharp"></use>
-          </svg>
-        </button>
-
-        <img class="cart-modal-img" src="${imgURLdesc}" alt="basket" />
-        <div>
-        <p class="cart-success">Order success</p>
-        <p class="cart-modal-info">Thank you for shopping at Food Boutique. Your order has been received and is now being freshly prepared just for you! Get ready to indulge in nourishing goodness, delivered right to your doorstep. We're thrilled to be part of your journey to better health and happiness</p>
-      </div>
-      </div>
-  </div>
-  </div>`;
+    `;
 }
 
 function createCartMarkupProducts() {
@@ -236,7 +220,7 @@ if (document.querySelector('.order-form')) {
         updateCartCountTitle();
         cartHeader.textContent = 'Cart(0)';
         cartContent.innerHTML = createCartMarkupDefault();
-        modalContent.innerHTML = makeModalMarkup(message);
+        modalCartContent.innerHTML = makeModalMarkup(message);
         openModal();
       })
       .catch(err => {
@@ -247,14 +231,14 @@ if (document.querySelector('.order-form')) {
 }
 
 function openModal() {
-  modal.style.display = 'block';
+  modalCart.style.display = 'block';
   document.body.classList.add('no-scroll');
   document.addEventListener('keydown', onEscCloseModal);
   window.addEventListener('click', onClickCloseModal);
 }
 
 function closeModal() {
-  modal.style.display = 'none';
+  modalCart.style.display = 'none';
   document.removeEventListener('keydown', onEscCloseModal);
   window.removeEventListener('click', onClickCloseModal);
   document.body.classList.remove('no-scroll');
@@ -267,19 +251,28 @@ function onEscCloseModal(e) {
 }
 
 function onClickCloseModal(e) {
-  if (e.target.classList.contains('modal')) {
+  if (e.target.classList.contains('cart-modal-content')) {
     // закриття по кліку по бекдропу
     closeModal();
-  } else if (e.target.closest('.modal-btn-close')) {
+  } else if (e.target.closest('.cart-delete-modal')) {
     // закриття по кліку по кнопці з класом '.modal-btn-close'
     closeModal();
   }
 }
 
 function makeModalMarkup(message) {
+  let messageTitle = message.substring(0, message.indexOf("Thank you for shopping"));
+  let messageText = message.substring(message.indexOf("Thank you for shopping"));
+  messageTitle = messageTitle.toUpperCase().replace('!', '');
   return `
-  <button class="modal-btn-close">X
-</button>
-<p>${message}</p>
-`;
+  <button class="cart-delete-modal">
+    <svg class="cart_close_all" width="18" height="18">
+      <use xlink:href="${iconsURL}#icon-ion_close-sharp"></use>
+    </svg>
+  </button>
+  <img class="cart-modal-img" src="${imgURLdesc}" alt="basket" />
+  
+  <h1 class="cart-success">${messageTitle}</h1>
+  <p class="cart-modal-info">${messageText}</p>
+  `;
 }
