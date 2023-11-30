@@ -41,6 +41,7 @@
 .tui-next{
   margin-left: 10px;
 }
+
 @media only screen and (min-width: 768px) {
   .tui-prev{
     margin-right: 70px;
@@ -86,6 +87,17 @@
 .pagination{
   margin-top: 40px;
 }
+}
+.tui-is-disabled{
+  background-color: rgb(255, 255, 255, 0.4);
+  cursor:default;
+}
+.tui-is-disabled:hover{
+  background-color: rgb(255, 255, 255, 0.4);
+}
+.tui-is-disabled:hover .tui-ico-prev,
+.tui-is-disabled:hover .tui-ico-next{
+  fill: #a3a3a3;
 }
 
 .tui-first,
