@@ -99,11 +99,4 @@ export class LocalStorage {
   clearCart() {
     localStorage.removeItem('cart');
   }
-
-  // saveOptionsToFoodService(options) {
-  //   foodService.perPage = options.limit;
-  //   foodService.currentPage = options.page;
-  //   foodService.category = options.category;
-  //   foodService.searchQuerry = options.keyword;
-  // }
 }

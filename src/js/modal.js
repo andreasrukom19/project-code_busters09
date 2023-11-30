@@ -29,16 +29,6 @@ async function onCardClick(e) {
     return;
   }
 
-  // if (e.target.closest('ul').classList.contains('filter-box__list')) {
-  //   category = 'main';
-  // }
-  // if (e.target.closest('ul').classList.contains('popular-products__list')) {
-  //   category = 'popular';
-  // }
-  // if (e.target.closest('ul').classList.contains('discount-products__list')) {
-  //   category = 'discount';
-  // }
-
   const card = e.target.closest('li');
   if (!card) return;
   showSpinner();
@@ -155,20 +145,4 @@ function closeModal() {
   contentByOptionsDrawer();
   popularContentDrawer();
   discountContentDrawer();
-  // if (category === 'main') {
-  //   contentByOptionsDrawer();
-  // }
-  // if (category === 'popular') {
-  //   popularContentDrawer();
-  // }
-  // if (category === 'discount') {
-  //   discountContentDrawer();
-  // }
-  // const mainProducts = document.querySelector('.main-products');
-  // console.log(mainProducts);
-  // mainProducts.addEventListener('click', categoryToRefreshChooser);
 }
-
-// function categoryToRefreshChooser(e) {
-//   console.log(e.target);
-// }

@@ -15,7 +15,6 @@ function sendFormData(event) {
         .subscribe(email)
         .then(response => {
           if (response.status === 201) {
-            console.log(response.data.message);
             Swal.fire({
               title: 'Subscription is complete',
               text: response.data.message,
@@ -24,12 +23,8 @@ function sendFormData(event) {
             });
             clearFormFields(subscriptionForm);
           }
-
-          console.log('Subscription successful:', response);
         })
         .catch(error => {
-          console.error('Error subscribing:', error);
-          console.log(error.response);
           if (error.response.status === 409) {
             Swal.fire({
               title: 'Already subscribed!',
