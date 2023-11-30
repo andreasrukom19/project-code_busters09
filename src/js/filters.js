@@ -27,6 +27,7 @@ submitForm.addEventListener('submit', event => {
   // storage.updateFoodService(savedOptions);
   //launchPaginstion();
   contentByOptionsDrawer();
+  pagination.reset()
 });
 
 select.addEventListener('change', function () {
@@ -43,11 +44,13 @@ select.addEventListener('change', function () {
     storage.defaultApiOptions();
     submitForm.elements.search.value = '';
     contentByOptionsDrawer();
+    pagination.reset()
   } else {
     foodService.category = selectedItem;
     filterBoxList.innerHTML = '';
     //launchPaginstion();
     contentByOptionsDrawer();
+    pagination.reset()
   }
 });
 
