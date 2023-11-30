@@ -85,9 +85,7 @@ export function contentByOptionsDrawer() {
       storage.saveCardsToLocalStorage(data.results);
       storage.createAndSave('pagination', data);
     })
-    .catch(error => {
-      console.log('error', error);
-    });
+    .catch(error => {});
 }
 
 export function popularContentDrawer() {
@@ -98,9 +96,7 @@ export function popularContentDrawer() {
         popularProductsList.innerHTML = createPopularMarkup(data);
       }
     })
-    .catch(error => {
-      console.log('error', error);
-    });
+    .catch(error => {});
 }
 
 export function discountContentDrawer() {
@@ -111,9 +107,7 @@ export function discountContentDrawer() {
         discountProductsList.innerHTML = createDiscountMarkup(data);
       }
     })
-    .catch(error => {
-      console.log('error', error);
-    });
+    .catch(error => {});
 }
 
 export function createProductsMarkup(arr) {

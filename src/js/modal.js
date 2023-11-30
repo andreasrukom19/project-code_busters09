@@ -33,7 +33,6 @@ async function onCardClick(e) {
   if (!card) return;
   showSpinner();
   productData = await foodService.findProductById(card.dataset.id);
-  console.log(productData);
   const cartList = storage.getCart();
 
   modalContent.innerHTML = makeModalMarkup(productData);
@@ -53,7 +52,6 @@ async function onCardClick(e) {
 
 function onCartBtnClick() {
   const cartList = storage.getCart();
-  console.log(cartList);
   const isInCartList = cartList.some(
     cartElem => cartElem._id === productData._id
   );
