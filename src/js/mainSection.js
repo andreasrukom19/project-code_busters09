@@ -78,8 +78,10 @@ export function contentByOptionsDrawer() {
       } else {
         addClassHidden(noProductsMessageEl);
       }
-      console.log(data);
-      filterBoxList.innerHTML = createProductsMarkup(data.results);
+      if (filterBoxList) {
+        filterBoxList.innerHTML = createProductsMarkup(data.results);
+      }
+
       hideSpinner();
       // filterBoxList.classList.add('fade-in');
       storage.saveCardsToLocalStorage(data.results);
@@ -95,7 +97,10 @@ export function popularContentDrawer() {
   foodService
     .getPopular()
     .then(data => {
-      popularProductsList.innerHTML = createPopularMarkup(data);
+      if (popularProductsList) {
+        popularProductsList.innerHTML = createPopularMarkup(data);
+      }
+
       // popularProductsList.classList.add('fade-in');
     })
     .catch(error => {
@@ -108,7 +113,10 @@ export function discountContentDrawer() {
   foodService
     .getDiscount()
     .then(data => {
-      discountProductsList.innerHTML = createDiscountMarkup(data);
+      if (discountProductsList) {
+        discountProductsList.innerHTML = createDiscountMarkup(data);
+      }
+
       // discountProductsList.classList.add('fade-in');
       // discountProductsListResp.innerHTML = createDiscountMarkup(data);
     })

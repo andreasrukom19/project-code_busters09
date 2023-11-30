@@ -1,4 +1,3 @@
-
 import { foodService, storage } from './js/mainSection';
 import { updateCartCountTitle } from './js/header';
 
@@ -215,7 +214,6 @@ if (document.querySelector('.order-form')) {
     foodService
       .order(emailInput.value, totalCart)
       .then(result => {
-        console.log(result.data.message);
         const message = result.data.message;
         storage.clearCart();
         updateCartCountTitle();
@@ -262,8 +260,13 @@ function onClickCloseModal(e) {
 }
 
 function makeModalMarkup(message) {
-  let messageTitle = message.substring(0, message.indexOf("Thank you for shopping"));
-  let messageText = message.substring(message.indexOf("Thank you for shopping"));
+  let messageTitle = message.substring(
+    0,
+    message.indexOf('Thank you for shopping')
+  );
+  let messageText = message.substring(
+    message.indexOf('Thank you for shopping')
+  );
   messageTitle = messageTitle.toUpperCase().replace('!', '');
   return `
   <button class="cart-delete-modal">
